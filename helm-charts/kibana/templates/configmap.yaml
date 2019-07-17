@@ -1,14 +1,15 @@
+{{- if .Values.kibanaConfig }}
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "kibana.fullname" . }}
+  name: {{ template "fullname" . }}-config
   labels:
-    app: {{ template "kibana.name" . }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    app: {{ .Chart.Name }}
+    release: {{ .Release.Name | quote }}
 data:
-{{- range $key, $value := .Values.files }}
-  {{ $key }}: |
-{{ toYaml $value | default "{}" | indent 4 }}
+{{- range $path, $config := .Values.kibanaConfig }}
+  {{ $path }}: |
+{{ $config | indent 4 -}}
+{{- end -}}
 {{- end -}}

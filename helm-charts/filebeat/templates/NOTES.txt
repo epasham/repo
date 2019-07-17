@@ -1,3 +1,2 @@
-To verify that Filebeat has started, run:
-
-  kubectl --namespace={{ .Release.Namespace }} get pods -l "app={{ template "filebeat.name" . }},release={{ .Release.Name }}"
+1. Watch all containers come up.
+  $ kubectl get pods --namespace={{ .Release.Namespace }} -l app={{ template "fullname" . }} -w
