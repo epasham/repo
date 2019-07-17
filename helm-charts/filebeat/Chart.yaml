@@ -1,11 +1,14 @@
-appVersion: 7.2.0
-description: Official Elastic helm chart for Filebeat
-home: https://github.com/elastic/helm-charts
-icon: https://helm.elastic.co/icons/filebeat.png
+apiVersion: v1
+appVersion: 7.0.1
+description: A Helm chart to collect Kubernetes logs with filebeat
+home: https://www.elastic.co/products/beats/filebeat
+icon: https://www.elastic.co/assets/blt47799dcdcf08438d/logo-elastic-beats-lt.svg
 maintainers:
-- email: helm-charts@elastic.co
-  name: Elastic
+- email: pete.brown@powerhrg.com
+  name: rendhalver
+- email: shane.starcher@gmail.com
+  name: sstarcher
 name: filebeat
 sources:
-- https://github.com/elastic/beats
-version: 7.2.0
+- https://www.elastic.co/guide/en/beats/filebeat/current/index.html
+version: 2.0.1

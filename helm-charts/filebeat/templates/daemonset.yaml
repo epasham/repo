@@ -1,136 +1,160 @@
----
-apiVersion: apps/v1
+apiVersion: apps/v1beta2
 kind: DaemonSet
 metadata:
-  name: {{ template "fullname" . }}
+  name: {{ template "filebeat.fullname" . }}
   labels:
-    app: "{{ template "fullname" . }}"
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
+    app: {{ template "filebeat.name" . }}
+    chart: {{ template "filebeat.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
   selector:
     matchLabels:
-      app: "{{ template "fullname" . }}"
-      release: {{ .Release.Name | quote }}
+      app: {{ template "filebeat.name" . }}
+      release: {{ .Release.Name }}
+  minReadySeconds: 10
   updateStrategy:
-    type: {{ .Values.updateStrategy }}
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
   template:
     metadata:
-      annotations:
-        {{- range $key, $value := .Values.podAnnotations }}
-        {{ $key }}: {{ $value | quote }}
-        {{- end }}
-        {{/* This forces a restart if the configmap has changed */}}
-        {{- if .Values.filebeatConfig }}
-        configChecksum: {{ include (print .Template.BasePath "/configmap.yaml") . | sha256sum | trunc 63 }}
-        {{- end }}
-      name: "{{ template "fullname" . }}"
       labels:
-        app: "{{ template "fullname" . }}"
-        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-        heritage: {{ .Release.Service | quote }}
-        release: {{ .Release.Name | quote }}
+        app: {{ template "filebeat.name" . }}
+        release: {{ .Release.Name }}
+      annotations:
+        checksum/secret: {{ toYaml (default .Values.config .Values.overrideConfig) | sha256sum }}
+{{- if .Values.annotations }}
+{{ toYaml .Values.annotations | indent 8 }}
+{{- end }}
     spec:
-      {{- with .Values.tolerations }}
-      tolerations:
-{{ toYaml . | indent 6 }}
-      {{- end }}
-      serviceAccountName: {{ template "serviceAccount" . }}
-      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriod }}
-      volumes:
-      {{- range .Values.secretMounts }}
-      - name: {{ .name }}
-        secret:
-          secretName: {{ .secretName }}
-      {{- end }}
-      {{- if .Values.filebeatConfig }}
-      - name: filebeat-config
-        configMap:
-          defaultMode: 0600
-          name: {{ template "fullname" . }}-config
-      {{- end }}
-      - name: data
-        hostPath:
-          path: {{ .Values.hostPathRoot }}/{{ template "fullname" . }}-{{ .Release.Namespace }}-data
-          type: DirectoryOrCreate
-      - name: varlibdockercontainers
-        hostPath:
-          path: /var/lib/docker/containers
-      - name: varrundockersock
-        hostPath:
-          path: /var/run/docker.sock
-      {{- if .Values.extraVolumes }}
-{{ tpl .Values.extraVolumes . | indent 6 }}
-      {{- end }}
-      {{- if .Values.imagePullSecrets }}
+    {{- if .Values.image.pullSecrets }}
       imagePullSecrets:
-{{ toYaml .Values.imagePullSecrets | indent 8 }}
+      {{- range $sec := .Values.image.pullSecrets }}
+        - name: {{ $sec | quote }}
       {{- end }}
+    {{- end }}
+{{- if .Values.priorityClassName }}
+      priorityClassName: "{{ .Values.priorityClassName }}"
+{{- end }}
+      initContainers:
+{{- if .Values.indexTemplateLoad }}
+      - name: "load-es-template"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command:
+        - /bin/bash
+        - -c
+        - filebeat setup --template
+          -E output.logstash.enabled=false
+          -E output.file.enabled=false
+          -E output.elasticsearch.hosts=[{{- range $index, $host := .Values.indexTemplateLoad }}{{ if $index }}, {{ end }}{{ $host | quote }}{{- end }}]
+{{- end }}
+{{- if .Values.extraInitContainers }}
+{{ toYaml .Values.extraInitContainers | indent 6 }}
+{{- end }}
       containers:
-      - name: "filebeat"
-        image: "{{ .Values.image }}:{{ .Values.imageTag }}"
-        imagePullPolicy: "{{ .Values.imagePullPolicy }}"
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+{{- if .Values.command }}
+        command:
+{{ toYaml .Values.command | indent 8 }}
+{{- end }}
         args:
+{{- if .Values.args }}
+{{ toYaml .Values.args | indent 8 }}
+{{- else }}
         - "-e"
-        - "-E"
-        - "http.enabled=true"
-        livenessProbe:
-          exec:
-            command:
-            - sh
-            - -c
-            - |
-              #!/usr/bin/env bash -e
-              curl --fail 127.0.0.1:5066
-{{ toYaml .Values.livenessProbe | indent 10 }}
-        readinessProbe:
-          exec:
-            command:
-            - sh
-            - -c
-            - |
-              #!/usr/bin/env bash -e
-              filebeat test output
-{{ toYaml .Values.readinessProbe | indent 10 }}
-        resources:
-{{ toYaml .Values.resources | indent 10 }}
+{{- if .Values.plugins }}
+        - "--plugin"
+        - {{ .Values.plugins | join "," | quote }}
+{{- end }}
+{{- end }}
         env:
         - name: POD_NAMESPACE
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-{{- if .Values.extraEnvs }}
-{{ toYaml .Values.extraEnvs | indent 8 }}
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+{{- if .Values.extraVars }}
+{{ toYaml .Values.extraVars | indent 8 }}
 {{- end }}
-{{- if .Values.podSecurityContext }}
+        {{- if index .Values.config "http.enabled" }}
+        ports:
+          - containerPort: {{ index .Values.config "http.port" }}
+        {{- end }}
         securityContext:
-{{ toYaml .Values.podSecurityContext | indent 10 }}
+          runAsUser: 0
+{{- if .Values.privileged }}
+          privileged: true
+{{- end }}
+{{- if .Values.resources }}
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
 {{- end }}
         volumeMounts:
-        {{- range .Values.secretMounts }}
-        - name: {{ .name }}
-          mountPath: {{ .path }}
-          {{- if .subPath }}
-          subPath: {{ .subPath }}
-          {{- end }}
-        {{- end }}
-        {{- range $path, $config := .Values.filebeatConfig }}
         - name: filebeat-config
-          mountPath: /usr/share/filebeat/{{ $path }}
+          mountPath: /usr/share/filebeat/filebeat.yml
           readOnly: true
-          subPath: {{ $path }}
-        {{- end }}
+          subPath: filebeat.yml
         - name: data
           mountPath: /usr/share/filebeat/data
+        - name: varlog
+          mountPath: /var/log
+          readOnly: true
         - name: varlibdockercontainers
           mountPath: /var/lib/docker/containers
           readOnly: true
-        # Necessary when using autodiscovery; avoid mounting it otherwise
-        # See: https://www.elastic.co/guide/en/beats/filebeat/master/configuration-autodiscover.html
-        - name: varrundockersock
-          mountPath: /var/run/docker.sock
-          readOnly: true
-        {{- if .Values.extraVolumeMounts }}
-{{ tpl .Values.extraVolumeMounts . | indent 8 }}
-        {{- end }}
+{{- if .Values.extraVolumeMounts }}
+{{ toYaml .Values.extraVolumeMounts | indent 8 }}
+{{- end }}
+{{- if .Values.monitoring.enabled }}
+      - name: {{ template "filebeat.fullname" . }}-prometheus-exporter
+        image: "{{ .Values.monitoring.image.repository }}:{{ .Values.monitoring.image.tag }}"
+        imagePullPolicy: {{ .Values.monitoring.image.pullPolicy }}
+        args:
+{{- if .Values.monitoring.args }}
+{{ toYaml .Values.monitoring.args | indent 8 }}
+{{- end }}
+{{- if .Values.monitoring.resources }}
+        resources:
+{{ toYaml .Values.monitoring.resources | indent 10 }}
+{{- end }}
+        ports:
+          - containerPort: {{ .Values.monitoring.exporterPort}}
+{{- end }}
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+      - name: filebeat-config
+        secret:
+          secretName: {{ template "filebeat.fullname" . }}
+      - name: data
+        hostPath:
+          path: {{ .Values.data.hostPath }}
+          type: DirectoryOrCreate
+{{- if .Values.extraVolumes }}
+{{ toYaml .Values.extraVolumes | indent 6 }}
+{{- end }}
+      terminationGracePeriodSeconds: 60
+      serviceAccountName: {{ template "filebeat.serviceAccountName" . }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
