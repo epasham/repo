@@ -24,4 +24,4 @@ sources:
 - https://github.com/kubernetes/charts/stable/node-problem-detector
 - https://github.com/kubernetes/node-problem-detector
 - https://kubernetes.io/docs/concepts/architecture/nodes/#condition
-version: 1.4.3
+version: 1.5.0

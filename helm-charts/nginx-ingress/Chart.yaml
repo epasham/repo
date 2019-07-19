@@ -8,14 +8,10 @@ keywords:
 - ingress
 - nginx
 maintainers:
-- email: jack.zampolin@gmail.com
-  name: jackzampolin
-- email: mgoodness@gmail.com
-  name: mgoodness
 - name: ChiefAlexander
 - email: Trevor.G.Wood@gmail.com
   name: taharah
 name: nginx-ingress
 sources:
 - https://github.com/kubernetes/ingress-nginx
-version: 1.10.2
+version: 1.10.3

@@ -15,4 +15,4 @@ maintainers:
 name: testlink
 sources:
 - https://github.com/bitnami/bitnami-docker-testlink
-version: 4.4.5
+version: 5.0.0

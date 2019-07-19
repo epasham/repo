@@ -25,4 +25,4 @@ maintainers:
 name: phabricator
 sources:
 - https://github.com/bitnami/bitnami-docker-phabricator
-version: 5.0.5
+version: 6.0.0
