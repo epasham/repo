@@ -10,7 +10,9 @@ keywords:
 maintainers:
 - email: jack@influxdb.com
   name: jackzampolin
+- email: urakiny@gmail.com
+  name: aisuko
 name: influxdb
 sources:
 - https://github.com/influxdata/influxdb
-version: 1.2.0
+version: 1.2.1

@@ -21,4 +21,4 @@ maintainers:
 name: drone
 sources:
 - https://github.com/drone/drone
-version: 2.0.5
+version: 2.0.6

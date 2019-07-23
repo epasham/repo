@@ -20,4 +20,4 @@ sources:
 - https://github.com/jenkinsci/docker-jnlp-slave
 - https://github.com/nuvo/kube-tasks
 - https://github.com/jenkinsci/configuration-as-code-plugin
-version: 1.4.0
+version: 1.4.1
