@@ -18,4 +18,4 @@ maintainers:
 name: drupal
 sources:
 - https://github.com/bitnami/bitnami-docker-drupal
-version: 4.0.1
+version: 4.1.1

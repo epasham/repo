@@ -16,4 +16,4 @@ maintainers:
 name: phpbb
 sources:
 - https://github.com/bitnami/bitnami-docker-phpbb
-version: 5.0.0
+version: 5.1.1

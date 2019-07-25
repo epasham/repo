@@ -16,4 +16,4 @@ maintainers:
 name: moodle
 sources:
 - https://github.com/bitnami/bitnami-docker-moodle
-version: 5.0.0
+version: 5.1.1
