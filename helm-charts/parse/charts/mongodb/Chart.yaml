@@ -18,4 +18,4 @@ maintainers:
 name: mongodb
 sources:
 - https://github.com/bitnami/bitnami-docker-mongodb
-version: 5.20.3
+version: 6.2.0
