@@ -1,5 +1,5 @@
 apiVersion: v1
-appVersion: 5.5.1
+appVersion: 5.6.0
 description: Terracotta Ehcache is an improved version of Java's de facto caching
   API, Ehcache. It has a powerful, streamlined, modernized caching API taking advantage
   of newer Java features as well as the capability to be used via the JSR-107 "JCache"
@@ -17,4 +17,4 @@ maintainers:
 name: terracotta
 sources:
 - https://github.com/Terracotta-OSS
-version: 1.0.0
+version: 1.1.0

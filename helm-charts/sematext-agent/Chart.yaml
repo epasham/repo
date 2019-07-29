@@ -14,4 +14,4 @@ maintainers:
 - email: ciprian.hacman@sematext.com
   name: hakman
 name: sematext-agent
-version: 1.0.14
+version: 1.0.15
