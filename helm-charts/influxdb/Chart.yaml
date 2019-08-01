@@ -15,4 +15,4 @@ maintainers:
 name: influxdb
 sources:
 - https://github.com/influxdata/influxdb
-version: 1.3.0
+version: 1.3.1

@@ -17,7 +17,7 @@ This helm chart is a lightweight way to configure and run our official [Kibana d
   ```
 * Install it
   ```
-  helm install --name kibana elastic/kibana --version 7.2.0
+  helm install --name kibana elastic/kibana
   ```
 
 ## Compatibility
@@ -26,14 +26,14 @@ This chart is tested with the latest supported versions. The currently tested ve
 
 | 6.x   | 7.x   |
 | ----- | ----- |
-| 6.8.1 | 7.2.0 |
+| 6.8.1 | 7.3.0 |
 
 Examples of installing older major versions can be found in the [examples](./examples) directory.
 
-While only the latest releases are tested, it is possible to easily install old or new releases by overriding the `imageTag`. To install version `7.2.0` of Kibana it would look like this:
+While only the latest releases are tested, it is possible to easily install old or new releases by overriding the `imageTag`. To install version `7.3.0` of Kibana it would look like this:
 
 ```
-helm install --name kibana elastic/kibana --version 7.2.0 --set imageTag=7.2.0
+helm install --name kibana elastic/kibana --set imageTag=7.3.0
 ```
 
 ## Configuration
@@ -46,15 +46,16 @@ helm install --name kibana elastic/kibana --version 7.2.0 --set imageTag=7.2.0
 | `extraEnvs`               | Extra [environment variables](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/#using-environment-variables-inside-of-your-config) which will be appended to the `env:` definition for the container                                                                                                             | `[]`                                                                                                                      |
 | `secretMounts`            | Allows you easily mount a secret as a file inside the deployment. Useful for mounting certificates and other secrets. See [values.yaml](./values.yaml) for an example                                                                                                                                                                                          | `[]`                                                                                                                      |
 | `image`                   | The Kibana docker image                                                                                                                                                                                                                                                                                                                                        | `docker.elastic.co/kibana/kibana`                                                                                         |
-| `imageTag`                | The Kibana docker image tag                                                                                                                                                                                                                                                                                                                                    | `7.2.0`                                                                                                                   |
+| `imageTag`                | The Kibana docker image tag                                                                                                                                                                                                                                                                                                                                    | `7.3.0`                                                                                                                   |
 | `imagePullPolicy`         | The Kubernetes [imagePullPolicy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) value                                                                                                                                                                                                                                                 | `IfNotPresent`                                                                                                            |
+| `podAnnotations`          | Configurable [annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) applied to all Kibana pods                                                                                                                                                                                                                          | `{}`                                                                                                                      |
 | `resources`               | Allows you to set the [resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/) for the statefulset                                                                                                                                                                                                                   | `requests.cpu: 100m`<br>`requests.memory: 2Gi`<br>`limits.cpu: 1000m`<br>`limits.memory: 2Gi`                             |
 | `protocol`                | The protocol that will be used for the readinessProbe. Change this to `https` if you have `server.ssl.enabled: true` set                                                                                                                                                                                                                                       | `http`                                                                                                                    |
 | `serverHost`              | The [`server.host`](https://www.elastic.co/guide/en/kibana/current/settings.html) Kibana setting. This is set explicitly so that the default always matches what comes with the docker image.                                                                                                                                                                  | `0.0.0.0`                                                                                                                 |
-| `healthCheckPath`         | The path used for the readinessProbe to check that Kibana is ready                                                                                                                                                                                                                                                                                             | `/app/kibana`                                                                                                             |
+| `healthCheckPath`         | The path used for the readinessProbe to check that Kibana is ready. If you are setting `server.basePath` you will also need to update this to `/${basePath}/app/kibana`                                                                                                                                                                                        | `/app/kibana`                                                                                                             |
 | `kibanaConfig`            | Allows you to add any config files in `/usr/share/kibana/config/` such as `kibana.yml`. See [values.yaml](./values.yaml) for an example of the formatting.                                                                                                                                                                                                     | `{}`                                                                                                                      |
-| `podSecurityContext`      | Allows you to set the [securityContext](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod) for the pod                                                                                                                                                                                             | `fsGroup: 1000`                                                                                                                      |
-| `securityContext`      | Allows you to set the [securityContext](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container) for the container                                                                                                                                                                                             | `capabilities.drop:[ALL]`<br>`runAsNonRoot: true`<br>`runAsUser: 1000`                                                                                                                      |
+| `podSecurityContext`      | Allows you to set the [securityContext](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod) for the pod                                                                                                                                                                                             | `fsGroup: 1000`                                                                                                           |
+| `securityContext`         | Allows you to set the [securityContext](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container) for the container                                                                                                                                                                                 | `capabilities.drop:[ALL]`<br>`runAsNonRoot: true`<br>`runAsUser: 1000`                                                    |
 | `serviceAccount`          | Allows you to overwrite the "default" [serviceAccount](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) for the pod                                                                                                                                                                                                        | `[]`                                                                                                                      |
 | `priorityClassName`       | The [name of the PriorityClass](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/#priorityclass). No default is supplied as the PriorityClass must be created first.                                                                                                                                                                  | ``                                                                                                                        |
 | `antiAffinityTopologyKey` | The [anti-affinity topology key](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity). By default this will prevent multiple Kibana instances from running on the same Kubernetes node                                                                                                                               | `kubernetes.io/hostname`                                                                                                  |
@@ -68,6 +69,7 @@ helm install --name kibana elastic/kibana --version 7.2.0 --set imageTag=7.2.0
 | `tolerations`             | Configurable [tolerations](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)                                                                                                                                                                                                                                                            | `[]`                                                                                                                      |
 | `ingress`                 | Configurable [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) to expose the Kibana service. See [`values.yaml`](./values.yaml) for an example                                                                                                                                                                                       | `enabled: false`                                                                                                          |
 | `service`                 | Configurable [service](https://kubernetes.io/docs/concepts/services-networking/service/) to expose the Kibana service. See [`values.yaml`](./values.yaml) for an example                                                                                                                                                                                       | `type: ClusterIP`<br>`port: 5601`<br>`nodePort:`<br>`annotations: {}`                                                     |
+| `labels`                  | Configurable [label](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) applied to all Kibana pods                                                                                                                                                                                                                                     | `{}`                                                                                                                      |
 
 ## Examples
 
@@ -94,11 +96,20 @@ In [examples/](./examples) you will find some example configurations. These exam
   cd examples/security
   make
   ```
-* You can now setup a port forward and access Kibana at http://localhost:5601 with the credentials `elastic:changeme`
+* Setup a port forward and access Kibana at https://localhost:5601
   ```
-  kubectl port-forward deployment/helm-kibana-default-kibana 5601
-  ```
+  # Setup the port forward
+  kubectl port-forward deployment/helm-kibana-security-kibana 5601
 
+  # Run this in a seperate terminal
+  # Get the auto generated password
+  password=$(kubectl get secret elastic-credentials -o jsonpath='{.data.password}' | base64 --decode)
+  echo $password
+
+  # Test Kibana is working with curl or access it with your browser at https://localhost:5601
+  # The example certificate is self signed so you may see a warning about the certificate
+  curl -I -k -u elastic:$password https://localhost:5601/app/kibana
+  ```
 
 ## Testing
 
