@@ -19,4 +19,4 @@ maintainers:
 name: ghost
 sources:
 - https://github.com/bitnami/bitnami-docker-ghost
-version: 6.7.33
+version: 7.0.0
