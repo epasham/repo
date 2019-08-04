@@ -20,4 +20,4 @@ maintainers:
 name: minio
 sources:
 - https://github.com/minio/minio
-version: 2.5.4
+version: 2.5.5
