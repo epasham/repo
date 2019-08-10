@@ -14,11 +14,11 @@ keywords:
 - connectivity
 - encryption
 maintainers:
-- email: john.felten@gmail.com
-  name: jfelten
+- name: jasongwartz
+- name: dippynark
 name: openvpn
 sources:
 - https://github.com/jfelten/openvpn-docker
 - https://github.com/kubernetes/charts/tree/master/stable/openvpn
 - https://github.com/jfelten/helm-charts
-version: 3.13.6
+version: 3.13.7
