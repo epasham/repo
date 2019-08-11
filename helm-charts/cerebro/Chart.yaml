@@ -10,4 +10,4 @@ name: cerebro
 sources:
 - https://github.com/lmenezes/cerebro-docker
 - https://github.com/lmenezes/cerebro
-version: 1.1.5
+version: 1.2.0
