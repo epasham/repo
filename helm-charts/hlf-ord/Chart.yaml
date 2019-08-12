@@ -11,9 +11,11 @@ keywords:
 maintainers:
 - email: sasha@aid.technology
   name: alexvicegrab
-- email: nicola@aid.technology
-  name: nicolapaoli
+- email: inzamam@aid.technology
+  name: inzamam-iqbal
+- email: diego@aid.technology
+  name: dbandin
 name: hlf-ord
 sources:
 - https://github.com/hyperledger/fabric
-version: 1.2.5
+version: 1.2.6

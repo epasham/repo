@@ -12,9 +12,11 @@ keywords:
 maintainers:
 - email: sasha@aid.technology
   name: alexvicegrab
-- email: nicola@aid.technology
-  name: nicolapaoli
+- email: inzamam@aid.technology
+  name: inzamam-iqbal
+- email: diego@aid.technology
+  name: dbandin
 name: hlf-couchdb
 sources:
 - https://github.com/hyperledger/fabric
-version: 1.0.6
+version: 1.0.7
