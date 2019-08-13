@@ -8,4 +8,4 @@ maintainers:
 name: prometheus-rabbitmq-exporter
 sources:
 - https://github.com/kbudde/rabbitmq_exporter
-version: 0.5.1
+version: 0.5.2

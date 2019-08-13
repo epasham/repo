@@ -12,4 +12,4 @@ maintainers:
 name: prometheus-postgres-exporter
 sources:
 - https://github.com/wrouesnel/postgres_exporter
-version: 0.7.1
+version: 0.7.2

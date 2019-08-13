@@ -15,4 +15,4 @@ maintainers:
 - email: dave@natulte.net
   name: danderson
 name: metallb
-version: 0.10.0
+version: 0.11.1

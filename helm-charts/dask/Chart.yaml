@@ -1,14 +1,16 @@
 apiVersion: v1
-appVersion: 1.1.0
+appVersion: 1.1.5
 description: Distributed computation in Python with task scheduling
-home: https://dask.pydata.org
+home: https://dask.org
 icon: https://avatars3.githubusercontent.com/u/17131925?v=3&s=200
 maintainers:
 - email: df.rodriguez143@gmail.com
   name: danielfrg
 - email: mrocklin@gmail.com
   name: mrocklin
+- email: beberg@gmail.com
+  name: beberg
 name: dask
 sources:
 - https://github.com/dask/dask
-version: 2.2.1
+version: 3.0.0
