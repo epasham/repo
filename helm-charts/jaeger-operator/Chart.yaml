@@ -9,4 +9,4 @@ maintainers:
 - email: batazor111@gmail.com
   name: batazor
 name: jaeger-operator
-version: 2.8.0
+version: 2.9.0
