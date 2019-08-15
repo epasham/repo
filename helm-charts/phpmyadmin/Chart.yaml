@@ -3,7 +3,7 @@ appVersion: 4.9.0-1
 description: phpMyAdmin is an mysql administration frontend
 engine: gotpl
 home: https://www.phpmyadmin.net/
-icon: https://bitnami.com/assets/stacks/phpmyadmin/img/phpmyadmin-stack-2.0.334.png
+icon: https://bitnami.com/assets/stacks/phpmyadmin/img/phpmyadmin-stack-220x234.png
 keywords:
 - mariadb
 - mysql
@@ -14,4 +14,4 @@ maintainers:
 name: phpmyadmin
 sources:
 - https://github.com/bitnami/bitnami-docker-phpmyadmin
-version: 3.0.0
+version: 3.0.1
