@@ -12,4 +12,4 @@ maintainers:
 name: kong
 sources:
 - https://github.com/Kong/kong
-version: 0.15.0
+version: 0.15.1

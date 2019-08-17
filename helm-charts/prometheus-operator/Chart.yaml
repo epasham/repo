@@ -17,4 +17,4 @@ name: prometheus-operator
 sources:
 - https://github.com/coreos/prometheus-operator
 - https://coreos.com/operators/prometheus
-version: 6.6.1
+version: 6.7.1
