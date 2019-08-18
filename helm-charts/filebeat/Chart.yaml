@@ -11,4 +11,4 @@ maintainers:
 name: filebeat
 sources:
 - https://www.elastic.co/guide/en/beats/filebeat/current/index.html
-version: 2.0.2
+version: 3.0.0

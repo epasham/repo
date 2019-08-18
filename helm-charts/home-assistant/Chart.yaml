@@ -17,4 +17,4 @@ sources:
 - https://github.com/home-assistant/home-assistant
 - https://github.com/danielperna84/hass-configurator
 - https://github.com/cdr/code-server
-version: 0.9.4
+version: 0.9.5
