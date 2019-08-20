@@ -20,4 +20,4 @@ name: parse
 sources:
 - https://github.com/bitnami/bitnami-docker-parse
 - https://github.com/bitnami/bitnami-docker-parse-dashboard
-version: 8.0.3
+version: 9.0.0
