@@ -19,4 +19,4 @@ name: mariadb
 sources:
 - https://github.com/bitnami/bitnami-docker-mariadb
 - https://github.com/prometheus/mysqld_exporter
-version: 6.8.1
+version: 6.8.2
