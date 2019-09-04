@@ -15,4 +15,4 @@ maintainers:
 name: suitecrm
 sources:
 - https://github.com/bitnami/bitnami-docker-suitecrm
-version: 7.1.4
+version: 7.1.5
