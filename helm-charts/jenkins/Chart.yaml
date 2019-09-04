@@ -20,6 +20,6 @@ name: jenkins
 sources:
 - https://github.com/jenkinsci/jenkins
 - https://github.com/jenkinsci/docker-jnlp-slave
-- https://github.com/nuvo/kube-tasks
+- https://github.com/maorfr/kube-tasks
 - https://github.com/jenkinsci/configuration-as-code-plugin
-version: 1.5.9
+version: 1.6.0

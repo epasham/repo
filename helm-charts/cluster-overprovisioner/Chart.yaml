@@ -19,4 +19,4 @@ sources:
 - https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-configure-overprovisioning-with-cluster-autoscaler
 - https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler
 - https://github.com/kubernetes/kubernetes/tree/master/build/pause
-version: 0.2.1
+version: 0.2.3

@@ -16,4 +16,4 @@ maintainers:
 name: joomla
 sources:
 - https://github.com/bitnami/bitnami-docker-joomla
-version: 6.1.2
+version: 6.1.3
