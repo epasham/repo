@@ -21,4 +21,4 @@ name: sysdig
 sources:
 - https://app.sysdigcloud.com/#/settings/user
 - https://github.com/draios/sysdig
-version: 1.4.14
+version: 1.4.15
