@@ -11,9 +11,11 @@ keywords:
 maintainers:
 - email: salimsalaues@gmail.com
   name: ssalaues
+- email: aaron.layfield@gmail.com
+  name: dandydeveloper
 name: redis-ha
 sources:
 - https://redis.io/download
 - https://github.com/scality/Zenko/tree/development/1.0/kubernetes/zenko/charts/redis-ha
 - https://github.com/oliver006/redis_exporter
-version: 3.7.3
+version: 3.7.4
