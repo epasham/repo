@@ -1,0 +1,22 @@
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: {{ .Release.Name }}-autocert-webhook-config
+  labels:
+{{ include "autocert.labels" . | indent 4 }}
+webhooks:
+  - name: {{ .Values.autocert.label }}
+    clientConfig:
+      service:
+        name: {{ include "autocert.fullname" .}}
+        namespace: {{ .Release.Namespace }}
+        path: "/mutate"
+    rules:
+      - operations: ["CREATE"]
+        apiGroups: [""]
+        apiVersions: ["v1"]
+        resources: ["pods"]
+    failurePolicy: Ignore
+    namespaceSelector:
+      matchLabels:
+        {{ .Values.autocert.label }}: enabled

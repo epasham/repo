@@ -1,0 +1,6 @@
+dependencies:
+- name: centralledger
+  repository: file://../centralledger
+  version: 4.3.0
+digest: sha256:bd57905a19860d0ab2ff91a97691dc1343c5417941b3fa8c70ee34bdd4c2eef1
+generated: 2018-12-18T21:15:29.040164+05:30

@@ -1,0 +1,4 @@
+appVersion: 1.2.2
+description: A chart for kafka-connect-documentdb-sink
+name: kafka-connect-documentdb-sink
+version: "1.8"

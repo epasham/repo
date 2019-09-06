@@ -1,0 +1,19 @@
+appVersion: 1.9.9
+description: IBM Cloud Transformation Advisor
+home: https://developer.ibm.com/recipes/tutorials/deploying-transformation-advisor-into-ibm-cloud-private/
+icon: https://avatars3.githubusercontent.com/u/39458267?s=400&u=0c8db2a54473062c18debc22926cecf4cdda5234&v=4
+keywords:
+- Transformation Advisor
+- amd64
+- Limited
+- DevOps
+- Tools
+- ICPRHOCP
+kubeVersion: '>= 1.10.0'
+maintainers:
+- name: HybridCloud
+name: ibm-transadv-rhel-dev
+sources:
+- https://github.com/IBM/charts/tree/master/stable
+tillerVersion: '>=2.7.2'
+version: 1.9.9

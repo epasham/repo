@@ -1,0 +1,9 @@
+dependencies:
+- name: ml-api-adapter-service
+  repository: file://./chart-service
+  version: 7.4.1
+- name: ml-api-adapter-handler-notification
+  repository: file://./chart-handler-notification
+  version: 7.4.1
+digest: sha256:0bc15a4fd3f06c18bcb65eef22474fe4da5207a7099cf45e048bd1ddf6132112
+generated: 2019-08-30T15:12:36.458344333Z

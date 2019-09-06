@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "instance-termination-handler.fullname" . }}
+  labels:
+{{ include "instance-termination-handler.labels" . | indent 4 }}
+data:
+  config.yaml: |-
+    {{- with .Values.log }}
+    log:
+    {{- toYaml . | nindent 6 }}
+    {{- end }}
+
+    {{- with .Values.http }}
+    http:
+      listenAddress: ":{{ .listenPort }}"
+    {{- end }}
+
+    {{- with .Values.termdetect }}
+    termdetect:
+    {{- toYaml . | nindent 6 }}
+    {{- end }}
+
+    {{- with .Values.termnotifier }}
+    termnotifier:
+    {{- toYaml . | nindent 6 }}
+    {{- end }}
+
+    {{- with .Values.asgInstanceTermNotifier }}
+    asgInstanceTermNotifier:
+    {{- toYaml . | nindent 6 }}
+    {{- end }}
+
+    {{- with .Values.asgInstanceDetacher }}
+    asgInstanceDetacher:
+    {{- toYaml . | nindent 6 }}
+    {{- end }}
+
+    {{- with .Values.metrics }}
+    metrics:
+    {{- toYaml . | nindent 6 }}
+    {{- end }}
+
+    {{- with .Values.drainer }}
+    drainer:
+    {{- toYaml . | nindent 6 }}
+    {{- end }}
+
+    {{- with .Values.hollowtreesNotifier }}
+    hollowtreesNotifier:
+      enabled: {{ .enabled }}
+      URL: {{ .URL | quote }}
+      skipTLSVerify: {{ .skipTLSVerify }}
+      organizationID: {{ .organizationID }}
+      clusterID: {{ .clusterID }}
+      clusterName: {{ .clusterName }}
+      jwtToken: ""
+    {{- end }}
+
+    testserver:
+      enabled: false

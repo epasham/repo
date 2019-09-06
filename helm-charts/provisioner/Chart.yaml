@@ -1,0 +1,12 @@
+apiVersion: v1
+appVersion: 2.3.2
+description: local provisioner chart
+engine: gotpl
+home: https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/tree/master/helm/provisioner
+keywords:
+- storage
+- local
+maintainers:
+- name: billimek
+name: provisioner
+version: 2.3.2

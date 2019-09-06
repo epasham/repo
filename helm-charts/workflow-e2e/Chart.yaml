@@ -1,0 +1,6 @@
+description: End-to-end tests for Deis Workflow, executed in parallel.
+home: https://github.com/teamhephy/workflow-e2e
+maintainers:
+- email: team@teamhephy.com
+name: workflow-e2e
+version: v2.20.0

@@ -1,0 +1,17 @@
+apiVersion: v1
+appVersion: 1.1.0
+description: A tool to get statistics from Uptime Robot and log it into InfluxDB
+home: https://github.com/billimek/billimek-charts/tree/master/uptimerobot
+icon: https://i.imgur.com/ARSSILk.png
+keywords:
+- uptimerobot
+- influxdb
+- grafana
+maintainers:
+- email: jeff@billimek.com
+  name: billimek
+name: uptimerobot
+sources:
+- https://github.com/trojanc/node-influx-uptimerobot
+- https://github.com/billimek/billimek-charts
+version: 1.1.10

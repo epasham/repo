@@ -1,0 +1,15 @@
+apiVersion: v1
+appVersion: 1.1.1
+description: The official haproxy 2.0 ingress controller
+home: https://github.com/mirusresearch/charts
+icon: http://www.haproxy.org/img/HAProxyCommunityEdition_60px.png
+keywords:
+- ingress
+- haproxy
+maintainers:
+- email: alec@mirusresearch.com
+  name: alectroemel
+name: haproxytech-haproxy-ingress
+sources:
+- https://github.com/haproxytech/kubernetes-ingress
+version: 0.0.3

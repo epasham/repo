@@ -1,0 +1,6 @@
+dependencies:
+- name: spark-hs
+  repository: https://kubernetes-charts.banzaicloud.com
+  version: 0.2.3
+digest: sha256:894aaf89d9615cb1b1f4bbd4286eeb124e53a8dbe59190ab06ea06d986c05642
+generated: 2019-06-14T16:13:26.280036999Z

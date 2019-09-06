@@ -1,0 +1,14 @@
+apiVersion: v1
+appVersion: 7.4.0-snapshot
+description: Quoting-Service Helm chart for Kubernetes
+home: http://mojaloop.io
+icon: http://mojaloop.io/images/logo.png
+maintainers:
+- email: miguel.debarros@modusbox.com
+  name: Miguel de Barros
+name: quoting-service
+sources:
+- https://github.com/mojaloop/quoting-service
+- https://github.com/mojaloop/helm
+- https://github.com/mojaloop/documentation
+version: 7.4.0

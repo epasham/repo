@@ -1,0 +1,54 @@
+daemonset:
+  enabled: true
+  port: 9090
+  image:
+    repository: docker.io/appdynamics/machine-agent-analytics
+    tag: latest
+    pullPolicy: IfNotPresent
+  nodeSelector: {}
+  tolerations: {}
+  resources:
+    limits:
+      cpu: 600m
+      memory: "2G"
+    requests: 
+      cpu: 300m
+      memory: "1G"
+
+controller:
+  host: <tenant>.saas.appdynamics.com
+  port: 443
+  ssl:  true
+  accountName: customer1
+  globalAccountName: null
+  accessKey: null
+  
+
+agent:
+  simEnabled: true
+  dockerEnabled: true
+  logLevel: info
+  stdoutLogging: false
+  proxyHost: ""
+  proxyPort: ""
+  proxyUser: ""
+  proxyPass: ""
+  metricsLimit: 4000
+  hierarchyPath: ""
+  uniqueHostId: ""
+  enableContainerAsHostID: false
+
+
+analytics:
+  eventEndpoint: https://analytics.api.appdynamics.com
+  port: 9090
+
+serviceAccount:
+  create: true
+  name: appdynamics-infraviz
+
+rbac:
+  create: true
+
+openshift:
+  scc: true

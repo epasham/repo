@@ -1,0 +1,7 @@
+apiVersion: v1
+appVersion: 0.1.0
+description: istio-release-operator manages canary deployments
+name: istio-release-operator
+sources:
+- https://github.com/banzaicloud/istio-release-operator
+version: 0.1.1

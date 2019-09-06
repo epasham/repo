@@ -1,0 +1,9 @@
+charts:
+  - archive: file:repo/stable/ibm-datapower-dev-3.0.2.tgz
+    repository-keys:
+      - datapower.image.repository
+
+images:
+- image: ibmcom/datapower:2018.4.1.7.312001
+  references:
+  - repository : ibmcom/datapower:2018.4.1.7.312001

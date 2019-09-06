@@ -1,0 +1,8 @@
+apiVersion: v1
+appVersion: "0.4"
+description: Validation of best practices in your Kubernetes clusters
+maintainers:
+- email: robertb@fairwinds.com
+  name: bobby-brennan
+name: polaris
+version: 0.5.1

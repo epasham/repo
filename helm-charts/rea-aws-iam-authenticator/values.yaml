@@ -1,0 +1,67 @@
+# Default values for aws-iam-authenticator.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# The 0.4.0 image repository was determined from https://github.com/kubernetes-sigs/aws-iam-authenticator/blob/master/example.yaml
+image:
+  repository: 602401143452.dkr.ecr.us-west-2.amazonaws.com/amazon/aws-iam-authenticator
+  tag: v0.4.0
+# To instead use the previous 0.3.0 image:
+# image:
+#  repository: gcr.io/heptio-images/authenticator
+#  tag: v0.3.0
+
+volumes:
+  output:
+    mountPath: /etc/kubernetes/aws-iam-authenticator/
+    hostPath: /srv/kubernetes/aws-iam-authenticator/
+  state:
+    mountPath: /var/aws-iam-authenticator/
+    hostPath: /srv/kubernetes/aws-iam-authenticator/
+  config:
+    mountPath: /etc/aws-iam-authenticator/
+
+
+## Use this to specify the entire configmap as an override if you don't want the default templated configmap.  Allows for more advanced configuration
+
+# configMap:
+#   clusterID: my-dev-cluster.example.com
+#   defaultRole: arn:aws:iam::000000000000:role/KubernetesAdmin
+#   server:
+#     ec2DescribeInstancesRoleARN: arn:aws:iam::000000000000:role/DescribeInstancesRole
+#     mapRoles:
+#     - roleARN: arn:aws:iam::000000000000:role/KubernetesAdmin
+#       username: kubernetes-admin
+#       groups:
+#       - system:masters
+#     - roleARN: arn:aws:iam::000000000000:role/KubernetesNode
+#       username: aws:{{AccountID}}:instance:{{SessionName}}
+#       groups:
+#       - system:bootstrappers
+#       - aws:instances
+#     - roleARN: arn:aws:iam::000000000000:role/KubernetesNode
+#       username: system:node:{{EC2PrivateDNSName}}
+#       groups:
+#       - system:nodes
+#       - system:bootstrappers
+#     - roleARN: arn:aws:iam::000000000000:role/KubernetesAdmin
+#       username: admin:{{SessionName}}
+#       groups:
+#       - system:masters
+#     mapUsers:
+#     - userARN: arn:aws:iam::000000000000:user/Alice
+#       username: alice
+#       groups:
+#       - system:masters
+#     mapAccounts:
+#     - "012345678901"
+#     - "456789012345"
+
+
+resources:
+  requests:
+    memory: 20Mi
+    cpu: 10m
+  limits:
+    memory: 20Mi
+    cpu: 100m

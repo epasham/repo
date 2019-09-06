@@ -1,0 +1,35 @@
+letsencrypt:
+  enabled: false
+  email: ""
+  server: https://acme-v02.api.letsencrypt.org/directory
+wordpress-operator:
+  enabled: true
+  extraArgs:
+  - --ingress-class=presslabs-stack
+mysql-operator:
+  enabled: true
+  orchestrator:
+    topologyPassword: this-must-be-set-in-stone-because-of-mysql-operator-bug-75
+    image: quay.io/presslabs/orchestrator:v3.0.14-r37
+    replicas: 1
+nginx-ingress:
+  enabled: true
+  controller:
+    ingressClass: presslabs-stack
+    config:
+      custom-http-errors: 502,503,504
+    publishService:
+      enabled: true
+  defaultBackend:
+    image:
+      repository: quay.io/presslabs/default-backend
+      tag: 0.5.1
+      pullPolicy: Always
+cert-manager:
+  enabled: true
+prometheus-operator:
+  enabled: true
+git-webhook:
+  enabled: false
+  image:
+    tag: 0.5.1

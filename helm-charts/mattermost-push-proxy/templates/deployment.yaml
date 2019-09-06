@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mattermost-push-proxy.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "mattermost-push-proxy.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/component: server
+    helm.sh/chart:  {{ include "mattermost-push-proxy.chart" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "mattermost-push-proxy.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/managed-by: {{ .Release.Service }}
+      app.kubernetes.io/component: server
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "{{ .Values.service.internalPort }}"
+        prometheus.io/path: "/metrics"
+      labels:
+        app.kubernetes.io/name: {{ include "mattermost-push-proxy.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        app.kubernetes.io/component: server
+        helm.sh/chart: {{ include "mattermost-push-proxy.chart" . }}
+    spec:
+      containers:
+        - name: {{ include "mattermost-push-proxy.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.internalPort }}
+          volumeMounts:
+            - mountPath: /config/config.json
+              name: push-config-template
+              subPath: push-config.json
+          {{- if .Values.applePushSettings.apple.privateCert }}
+            - mountPath: /certs/apple-push-cert.pem
+              name: apple-push-cert
+              subPath: apple-push-cert.pem
+          {{- end }}
+          {{- if .Values.applePushSettings.apple_rn.privateCert }}
+            - mountPath: /certs/apple-rn-push-cert.pem
+              name: apple-rn-push-cert
+              subPath: apple-rn-push-cert.pem
+          {{- end }}
+          {{- if .Values.applePushSettings.apple_rnbeta.privateCert }}
+            - mountPath: /certs/apple-rnbeta-push-cert.pem
+              name: apple-rnbeta-push-cert
+              subPath: apple-rnbeta-push-cert.pem
+          {{- end }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+    {{- end }}
+      volumes:
+        - name: push-config-template
+          configMap:
+            name: {{ include "mattermost-push-proxy.fullname" . }}-push-config-template
+            items:
+            - key: push-config.json
+              path: push-config.json
+        {{- if .Values.applePushSettings.apple.privateCert }}
+        - name: apple-push-cert
+          secret:
+            secretName: {{ include "mattermost-push-proxy.fullname" . }}-apple-certs
+            items:
+            - key: apple
+              path: apple-push-cert.pem
+        {{- end }}
+        {{- if .Values.applePushSettings.apple_rn.privateCert }}
+        - name: apple-rn-push-cert
+          secret:
+            secretName: {{ include "mattermost-push-proxy.fullname" . }}-apple-certs
+            items:
+            - key: apple_rn
+              path: apple-rn-push-cert.pem
+        {{- end }}
+        {{- if .Values.applePushSettings.apple_rnbeta.privateCert }}
+        - name: apple-rnbeta-push-cert
+          secret:
+            secretName: {{ include "mattermost-push-proxy.fullname" . }}-apple-certs
+            items:
+            - key: apple_rnbeta
+              path: apple-rnbeta-push-cert.pem
+        {{- end }}

@@ -1,0 +1,15 @@
+apiVersion: v1
+appVersion: v0.1.4
+description: k8up Operator
+home: https://vshn.github.io/k8up/
+keywords:
+- backup
+- operator
+- appuio
+maintainers:
+- email: info@appuio.ch
+  name: APPUiO Team
+name: k8up
+sources:
+- https://github.com/vshn/k8up
+version: 0.2.2

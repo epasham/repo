@@ -1,0 +1,52 @@
+dependencies:
+  - name: builder
+    version: "v2.13.2"
+    repository: https://charts.teamhephy.com
+  - name: slugbuilder
+    version: "v2.7.2"
+    repository: https://charts.teamhephy.com
+  - name: dockerbuilder
+    version: "v2.8.0"
+    repository: https://charts.teamhephy.com
+  - name: controller
+    version: "v2.20.4"
+    repository: https://charts.teamhephy.com
+  - name: slugrunner
+    version: "v2.6.1"
+    repository: https://charts.teamhephy.com
+  - name: database
+    version: "v2.7.3"
+    repository: https://charts.teamhephy.com
+  - name: fluentd
+    version: "v2.14.0"
+    repository: https://charts.teamhephy.com
+  - name: redis
+    version: "v2.4.0"
+    repository: https://charts.teamhephy.com
+  - name: logger
+    version: "v2.5.0"
+    repository: https://charts.teamhephy.com
+  - name: minio
+    version: "v2.4.3"
+    repository: https://charts.teamhephy.com
+  - name: monitor
+    version: "v2.11.1"
+    repository: https://charts.teamhephy.com
+  - name: nsqd
+    version: "v2.4.0"
+    repository: https://charts.teamhephy.com
+  - name: registry
+    version: "v2.5.0"
+    repository: https://charts.teamhephy.com
+  - name: registry-proxy
+    version: "v1.5.0"
+    repository: https://charts.teamhephy.com
+  - name: registry-token-refresher
+    version: "v1.2.0"
+    repository: https://charts.teamhephy.com
+  - name: router
+    version: "v2.16.0"
+    repository: https://charts.teamhephy.com
+  - name: workflow-manager
+    version: "v2.6.1"
+    repository: https://charts.teamhephy.com

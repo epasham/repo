@@ -1,0 +1,23 @@
+apiVersion: v1
+appVersion: 2.9.0
+description: Universal component scan for security and license inventory and impact
+  analysis
+home: https://www.jfrog.com/xray/
+icon: https://raw.githubusercontent.com/jfrog/artifactory-dcos/master/images/jfrog_med.png
+keywords:
+- xray
+- jfrog
+maintainers:
+- email: amithk@jfrog.com
+  name: amithins
+- email: daniele@jfrog.com
+  name: danielezer
+- email: eldada@jfrog.com
+  name: eldada
+- email: rimasm@jfrog.com
+  name: rimusz
+name: xray
+sources:
+- https://bintray.com/jfrog/product/xray/view
+- https://github.com/jfrog/charts
+version: 1.1.0

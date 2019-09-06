@@ -1,0 +1,12 @@
+dependencies:
+- name: magic-namespace
+  repository: https://kubernetes-charts.storage.googleapis.com
+  version: 0.5.2
+- name: magic-namespace
+  repository: https://kubernetes-charts.storage.googleapis.com
+  version: 0.5.2
+- name: nginx-ingress
+  repository: https://kubernetes-charts.storage.googleapis.com
+  version: 1.7.0
+digest: sha256:8dea5773f999f441575c61d31eed7730d46172c80c311c59b8366dbfc7a1e730
+generated: "2019-08-02T21:15:54.804264331Z"

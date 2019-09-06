@@ -1,0 +1,13 @@
+apiVersion: v1
+description: Central-KMS Helm chart for Kubernetes
+home: http://mojaloop.io
+icon: http://mojaloop.io/images/logo.png
+maintainers:
+- email: miguel.debarros@modusbox.com
+  name: Miguel de Barros
+name: centralkms
+sources:
+- https://github.com/mojaloop/mojaloop
+- https://github.com/mojaloop/helm
+- https://github.com/mojaloop/central-kms
+version: 2.4.0

@@ -1,0 +1,14 @@
+apiVersion: v1
+appVersion: 7.4.3
+description: Central-Ledger Get Transfer Handler Helm chart for Kubernetes
+home: http://mojaloop.io
+icon: http://mojaloop.io/images/logo.png
+maintainers:
+- email: miguel.debarros@modusbox.com
+  name: Miguel de Barros
+name: centralledger-handler-transfer-get
+sources:
+- https://github.com/mojaloop/mojaloop
+- https://github.com/mojaloop/helm
+- https://github.com/mojaloop/central-ledger
+version: 7.4.3

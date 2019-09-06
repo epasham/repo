@@ -1,0 +1,13 @@
+apiVersion: v1
+description: interop-switch Helm chart for Kubernetes
+home: http://mojaloop.io
+icon: http://mojaloop.io/images/logo.png
+maintainers:
+- email: murthy@modusbox.com
+  name: Murthy Kakarlamudi
+name: interop-switch
+sources:
+- https://github.com/mojaloop/mojaloop
+- https://github.com/mojaloop/helm
+- https://github.com/mojaloop/interop-switch
+version: 3.4.2

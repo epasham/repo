@@ -1,0 +1,17 @@
+appVersion: v1.0
+description: The Helm chart for IBM Cloud Private verification
+keywords:
+- Verification
+- amd64
+- ppc64le
+- s390x
+- Automation
+- Devops
+- Tools
+- OpenSource
+- Limited
+- ICP
+kubeVersion: '>=1.13.5'
+name: ibm-kerify-dev
+tillerVersion: '>=2.12.3'
+version: 1.0.0

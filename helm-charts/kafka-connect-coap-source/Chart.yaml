@@ -1,0 +1,4 @@
+appVersion: 1.2.2
+description: A chart for kafka-connect-coap-source
+name: kafka-connect-coap-source
+version: "1.8"

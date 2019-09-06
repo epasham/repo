@@ -1,0 +1,21 @@
+appVersion: 0.8.8
+description: Pipeline CICD is a Continuous Integration platform built on Kubernetes.
+home: https://banzaicloud.com/
+icon: https://banzaicloud.com/img/banzai-cloud-logo.png
+keywords:
+- continuous-delivery
+- continuous-deployment
+- continuous-integration
+- pipeline
+- kubernetes
+- banzaicloud
+maintainers:
+- email: info@banzaicloud.com
+  name: Banzai Cloud
+name: cicd
+sources:
+- https://banzaicloud.com
+- https://github.com/banzaicloud
+- https://github.com/banzaicloud/cicd
+- https://beta.banzaicloud.io/docs/cicd/getting_started/
+version: 2.0.4

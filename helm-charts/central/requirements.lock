@@ -1,0 +1,12 @@
+dependencies:
+- name: centralledger
+  repository: file://../centralledger
+  version: 7.4.3
+- name: centralsettlement
+  repository: file://../centralsettlement
+  version: 7.4.1
+- name: centraleventprocessor
+  repository: file://../centraleventprocessor
+  version: 7.1.1
+digest: sha256:ec1d75a6777a3b37475352295df957a563988bf24a6941863747ae591e8cbd9b
+generated: 2019-08-30T15:12:31.097848587Z

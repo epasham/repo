@@ -1,0 +1,44 @@
+# CI values for Xray
+
+# rbac:
+#   create: false
+#
+# serviceAccount:
+#   create: false
+
+analysis:
+  loggers:
+    - xray_analysis.log
+
+indexer:
+  loggers:
+    - xray_indexer.log
+
+persist:
+  loggers:
+    - xray_persist.log
+
+server:
+  loggers:
+    - xray_server.log
+
+postgresql:
+  postgresDatabase: xraydb
+  postgresUser: xray
+  postgresPassword: xray
+  persistence:
+    enabled: false
+
+mongodb:
+  mongodbRootPassword: password
+  mongodbUsername: xray
+  mongodbPassword: password
+  mongodbDatabase: xray
+  persistence:
+    enabled: false
+
+rabbitmq-ha:
+  rabbitmqUsername: guest
+  rabbitmqPassword: guest
+  persistentVolume:
+    enabled: false

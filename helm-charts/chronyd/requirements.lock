@@ -1,0 +1,6 @@
+dependencies:
+- name: chronyd
+  repository: https://pnnl-miscscripts.github.io/image-library-charts/
+  version: 2.0.0
+digest: sha256:f1124d04e417685bfc4b9865a77dace6e2e937ac56e4fa098a18aefca3f7293f
+generated: 2019-05-15T00:35:05.901340887Z

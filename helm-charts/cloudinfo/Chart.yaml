@@ -1,0 +1,14 @@
+apiVersion: v1
+appVersion: 0.7.7
+description: Cloud instance type and price information as a service
+home: https://banzaicloud.com
+icon: https://banzaicloud.com/img/banzai-cloud-logo.png
+maintainers:
+- email: info@banzaicloud.com
+  name: Banzai Cloud
+name: cloudinfo
+sources:
+- https://banzaicloud.com
+- https://github.com/banzaicloud
+- https://github.com/banzaicloud/cloudinfo
+version: 0.6.5

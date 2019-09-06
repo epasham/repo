@@ -1,0 +1,42 @@
+dependencies:
+- name: spark
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.0.0
+- name: superset
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.1.7
+- name: postgresql
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 5.3.13
+- name: minio
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 2.4.18
+- name: grafana
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 3.5.13
+- name: jupyterhub
+  repository: https://jupyterhub.github.io/helm-chart/
+  version: 0.8.2
+- name: nifi
+  repository: https://cetic.github.io/helm-charts/
+  version: 0.1.6
+- name: pgadmin
+  repository: https://cetic.github.io/helm-charts/
+  version: 0.1.8
+- name: openldap
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.1.0
+- name: phpldapadmin
+  repository: https://cetic.github.io/helm-charts/
+  version: 0.1.2
+- name: elastic-stack
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.8.0
+- name: kafka
+  repository: https://kubernetes-charts-incubator.storage.googleapis.com
+  version: 0.1.5
+- name: cassandra
+  repository: https://kubernetes-charts-incubator.storage.googleapis.com
+  version: 0.13.2
+digest: sha256:f05d887fc950569bfdc2cca285a2e4a72703acd832ec534573e9ff5d65347ee7
+generated: "2019-08-27T12:25:49.779648116Z"

@@ -1,0 +1,15 @@
+apiVersion: v1
+appVersion: 0.7.0
+description: A Helm chart for thanos monitoring components
+home: https://github.com/thanos-io/thanos
+icon: https://raw.githubusercontent.com/thanos-io/thanos/master/docs/img/Thanos-logo_fullmedium.png
+maintainers:
+- email: rico.pahlisch@kiwigrid.com
+  name: rpahli
+- email: axel.koehler@kiwigrid.com
+  name: axdotl
+name: prometheus-thanos
+sources:
+- https://github.com/thanos-io/thanos
+- https://github.com/kiwigrid/helm-charts/tree/master/charts/prometheus-thanos
+version: 2.1.1

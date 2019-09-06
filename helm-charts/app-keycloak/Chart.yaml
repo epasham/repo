@@ -1,0 +1,24 @@
+appVersion: 5.0.0
+deprecated: true
+description: Open Source Identity and Access Management For Modern Applications and
+  Services
+home: https://www.keycloak.org/
+icon: https://www.keycloak.org/resources/images/keycloak_logo_480x108.png
+keywords:
+- sso
+- idm
+- openid connect
+- saml
+- kerberos
+- ldap
+maintainers:
+- email: marcel@beck.im
+  name: nexeck
+- email: unguiculus@gmail.com
+  name: unguiculus
+- email: simon.ruegg@vshn.ch
+  name: srueg
+name: app-keycloak
+sources:
+- https://github.com/jboss-dockerfiles/keycloak
+version: 5.0.0

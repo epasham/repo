@@ -1,0 +1,5 @@
+appVersion: 2.3.1
+description: A chart for Landoops Lenses SQL processor runner
+icon: https://www.landoop.com/images/landoop-dark.svg
+name: lenses-sql-processor-runner
+version: 2.3.0

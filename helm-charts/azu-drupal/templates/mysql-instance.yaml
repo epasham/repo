@@ -1,0 +1,22 @@
+{{- if not .Values.mysql.embeddedMaria }}
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceInstance
+metadata:
+  name: {{ template "drupal.fullname" . }}-mysql-instance
+  labels:
+    app: {{ template "drupal.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  clusterServiceClassExternalName: azure-mysql-5-7
+  clusterServicePlanExternalName: {{ .Values.mysql.azure.servicePlan }}
+  parameters:
+    location: {{ .Values.mysql.azure.location }}
+    resourceGroup: {{ .Release.Namespace }}
+    sslEnforcement: disabled
+    firewallRules:
+    - startIPAddress: "0.0.0.0"
+      endIPAddress: "255.255.255.255"
+      name: "AllowAll"
+{{- end }}

@@ -1,0 +1,12 @@
+apiVersion: v1
+description: Ingress-Nginx Helm chart for Kubernetes
+home: http://mojaloop.io
+icon: http://mojaloop.io/images/logo.png
+maintainers:
+- email: miguel.debarros@modusbox.com
+  name: Miguel de Barros
+name: ingress-nginx
+sources:
+- https://github.com/mojaloop/mojaloop
+- https://github.com/mojaloop/helm
+version: 0.1.0

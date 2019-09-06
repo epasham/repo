@@ -1,0 +1,11 @@
+apiVersion: v1
+description: An extention of jupyterhub with extra Pangeo resources
+maintainers:
+- email: jacob.tomlinson@informaticslab.co.uk
+  name: Jacob Tomlinson (Met Office)
+- email: jhamman@ucar.edu
+  name: Joe Hamman (NCAR)
+- email: guillaume.eynard-bontemps@cnes.fr
+  name: Guillaume Eynard-Bontemps (CNES)
+name: pangeo
+version: 19.03.05

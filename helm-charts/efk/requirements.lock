@@ -1,0 +1,15 @@
+dependencies:
+- name: fluentd-elasticsearch
+  repository: https://kiwigrid.github.io
+  version: 4.3.2
+- name: elasticsearch
+  repository: https://helm.elastic.co
+  version: 7.2.1-0
+- name: kibana
+  repository: https://helm.elastic.co
+  version: 7.2.1-0
+- name: apm-server
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 2.1.4
+digest: sha256:c266e37f0461e3c807660a8047c5c19dd13e1d678c82bf16e1695c848c291b22
+generated: 2019-08-30T15:11:55.095718278Z

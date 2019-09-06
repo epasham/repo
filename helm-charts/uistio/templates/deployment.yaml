@@ -1,0 +1,128 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "uistio.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "uistio.name" . }}
+    helm.sh/chart: {{ include "uistio.chart" . }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion | replace "+" "_" }}
+    app.kubernetes.io/component: application
+    app.kubernetes.io/part-of: {{ include "uistio.name" . }}
+spec:
+{{- if .Values.autoscaling.enabled }}
+  replicas: {{ .Values.autoscaling.minReplicas }}
+{{- else }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "uistio.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/component: application
+      app.kubernetes.io/part-of: {{ include "uistio.name" . }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "uistio.name" . }}
+        helm.sh/chart: {{ include "uistio.chart" . }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/version: {{ .Chart.AppVersion | replace "+" "_" }}
+        app.kubernetes.io/component: application
+        app.kubernetes.io/part-of: {{ include "uistio.name" . }}
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "10000"
+        sidecar.istio.io/inject: "true"
+    spec:
+      serviceAccountName: {{ include "uistio.name" . }}
+      containers:
+      {{- if .Values.web.enabled }}
+        - name: {{ .Chart.Name }}-web
+          image: "{{ required "An web image name is required!" .Values.web.image.repository }}:{{ required "An web image tag is required!" .Values.web.image.tag }}"
+          imagePullPolicy: {{ .Values.web.image.pullPolicy }}
+          env:
+          - name: PORT
+            value: "8001"
+        {{- range .Values.web.envSecrets }}
+          - name: {{ .name }}
+            valueFrom:
+              secretKeyRef:
+                {{ toYaml .secretKeyRef | nindent 16 }}
+        {{- end }}
+        {{- range .Values.web.envResourceField }}
+          - name: {{ .name }}
+            valueFrom:
+              resourceFieldRef:
+                {{ toYaml .resourceFieldRef | nindent 16 }}
+        {{- end }}
+        {{- range $name, $value := .Values.web.env }}
+          - name: {{ $name }}
+            value: {{ $value | quote }}
+        {{- end }}
+          ports:
+            - name: http-web
+              containerPort: 8001
+              protocol: TCP
+      {{- end }}
+        - name: {{ .Chart.Name }}
+          image: "{{ required "An application image name is required!" .Values.application.image.repository }}:{{ required "An application image tag is required!" .Values.application.image.tag }}"
+          imagePullPolicy: {{ .Values.application.image.pullPolicy }}
+          ports:
+            - name: http-app
+              containerPort: 8000
+              protocol: TCP
+            - name: instrumentation
+              containerPort: 10000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /version
+              port: instrumentation
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: instrumentation
+          env:
+        {{- range .Values.application.envSecrets }}
+          - name: {{ .name }}
+            valueFrom:
+              secretKeyRef:
+                {{ toYaml .secretKeyRef | nindent 16 }}
+        {{- end }}
+        {{- range .Values.application.envResourceField }}
+          - name: {{ .name }}
+            valueFrom:
+              resourceFieldRef:
+                {{ toYaml .resourceFieldRef | nindent 16 }}
+        {{- end }}
+        {{- range $name, $value := .Values.application.env }}
+          - name: {{ $name }}
+            value: {{ $value | quote }}
+        {{- end }}
+          - name: APP_ISTIOCRNAME
+            value: {{ .Values.istio.CRName | quote }}
+          - name: APP_ISTIOCRNAMESPACE
+            value: {{ .Values.istio.namespace | quote }}
+        {{- if .Values.prometheus.enabled }}
+          - name: APP_PROMETHEUS
+            value: {{ .Values.prometheus.url | quote }}
+        {{- end }}
+        {{- with .Values.resources }}
+        resources:
+          {{ toYaml . | nindent 10 }}
+        {{- end }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{ toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{ toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{ toYaml . | nindent 8 }}
+    {{- end }}

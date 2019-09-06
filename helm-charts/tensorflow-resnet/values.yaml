@@ -1,0 +1,102 @@
+## Global Docker image parameters
+## Please, note that this will override the image parameters, including dependencies, configured to use the global value
+## Current available global Docker image parameters: imageRegistry and imagePullSecrets
+##
+# global:
+#   imageRegistry: myRegistryName
+#   imagePullSecrets:
+#     - myRegistryKeySecretName
+
+replicaCount: 1
+
+## TensorFlow Serving server image version
+## ref: https://hub.docker.com/r/bitnami/tensorflow-serving/tags/
+##
+server:
+  image:
+    registry: docker.io
+    repository: bitnami/tensorflow-serving
+    tag: 1.14.0-debian-9-r57
+    ## Specify a imagePullPolicy
+    ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+    ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+    ##
+    pullPolicy: IfNotPresent
+    ## Optionally specify an array of imagePullSecrets.
+    ## Secrets must be manually created in the namespace.
+    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+    ##
+    # pullSecrets:
+    #   - myRegistryKeySecretName
+  port: 8500
+  restApiPort: 8501
+
+## TensorFlow ResNet image version
+## ref: https://hub.docker.com/r/bitnami/tensorflow-resnet/tags/
+##
+client:
+  image:
+    registry: docker.io
+    repository: bitnami/tensorflow-resnet
+    tag: 1.14.0-debian-9-r46
+    ## Specify a imagePullPolicy
+    ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+    ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+    ##
+    pullPolicy: IfNotPresent
+    ## Optionally specify an array of imagePullSecrets.
+    ## Secrets must be manually created in the namespace.
+    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+    ##
+    # pullSecrets:
+    #   - myRegistryKeySecretName
+
+## String to partially override tensorflow-resnet.fullname template (will maintain the release name)
+##
+# nameOverride:
+
+## String to fully override tensorflow-resnet.fullname template
+##
+# fullnameOverride:
+
+## Kubernetes configuration
+## For minikube, set this to NodePort, elsewhere use LoadBalancer
+##
+serviceType: LoadBalancer
+
+## Pod annotations
+## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+##
+podAnnotations: {}
+
+## Configure extra options for liveness and readiness probes
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes)
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 30
+  periodSeconds: 5
+  timeoutSeconds: 5
+  failureThreshold: 6
+  successThreshold: 1
+
+readinessProbe:
+  enabled: true
+  initialDelaySeconds: 15
+  periodSeconds: 5
+  timeoutSeconds: 5
+  failureThreshold: 6
+  successThreshold: 1
+
+## Affinity for pod assignment
+## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+##
+affinity: {}
+
+## Add the corresponding annotations so Prometheus can collect Tensorflow Serving metrics
+##
+metrics:
+  enabled: false
+  podAnnotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/monitoring/prometheus/metrics"
+    prometheus.io/port: "8501"

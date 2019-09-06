@@ -1,0 +1,7 @@
+{
+  "server": "docker.io",
+  "prefix": "",
+  "org": "pnnlmiscscripts",
+  "repo": "anaconda",
+  "tag": "20181125-1500-nginx-7"
+}

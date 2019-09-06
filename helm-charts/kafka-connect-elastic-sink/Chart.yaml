@@ -1,0 +1,4 @@
+appVersion: 1.2.2
+description: A chart for kafka-connect-elastic-sink
+name: kafka-connect-elastic-sink
+version: "1.8"

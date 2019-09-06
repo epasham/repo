@@ -1,0 +1,10 @@
+apiVersion: v1
+appVersion: 6.2.3
+description: Stardog Helm Chart
+home: https://www.stardog.com/
+icon: https://d33wubrfki0l68.cloudfront.net/img/c920235ff153186ab17617ce2bce193d867fa80c/stardog-logo.png
+maintainers:
+- email: info@appuio.ch
+  name: APPUiO Team
+name: stardog
+version: 0.0.21

@@ -1,0 +1,15 @@
+description: InfluxDB's co-processing processing engine. It can process both stream
+  and batch data from InfluxDB.
+engine: gotpl
+home: https://www.influxdata.com/time-series-platform/kapacitor/
+keywords:
+- kapacitor
+- stream
+- etl
+- timeseries
+maintainers:
+- {}
+name: inf-kapacitor
+sources:
+- https://github.com/influxdata/kapacitor
+version: 1.5.2

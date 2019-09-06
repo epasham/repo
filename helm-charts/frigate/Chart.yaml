@@ -1,0 +1,16 @@
+apiVersion: v1
+appVersion: 0.2.0
+description: Realtime object detection on RTSP cameras with the Google Coral
+home: https://github.com/billimek/billimek-charts/tree/master/frigate
+icon: https://upload.wikimedia.org/wikipedia/commons/a/a4/Lutine1.jpg
+keywords:
+- tensorflow
+- coral
+- ml
+maintainers:
+- email: jeff@billimek.com
+  name: billimek
+name: frigate
+sources:
+- https://github.com/blakeblackshear/frigate
+version: 0.1.7

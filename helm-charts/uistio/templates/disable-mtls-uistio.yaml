@@ -1,0 +1,31 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: {{ include "uistio.fullname" . }}-uistio
+  labels:
+    app.kubernetes.io/name: {{ include "uistio.name" . }}-uistio
+    helm.sh/chart: {{ include "uistio.chart" . }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion | replace "+" "_" }}
+    app.kubernetes.io/part-of: {{ include "uistio.name" . }}
+spec:
+  host: uistio.{{ .Release.Namespace }}
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+---
+apiVersion: "authentication.istio.io/v1alpha1"
+kind: "Policy"
+metadata:
+  name: {{ include "uistio.fullname" . }}-ustio
+  labels:
+    app.kubernetes.io/name: {{ include "uistio.name" . }}-prometheus
+    helm.sh/chart: {{ include "uistio.chart" . }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion | replace "+" "_" }}
+    app.kubernetes.io/part-of: {{ include "uistio.name" . }}
+spec:
+  targets:
+  - name: uistio

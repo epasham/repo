@@ -1,0 +1,9 @@
+dependencies:
+- name: metrics-server
+  repository: https://kubernetes-charts.banzaicloud.com
+  version: 0.0.7
+- name: kube-metrics-adapter
+  repository: https://kubernetes-charts.banzaicloud.com
+  version: 0.0.4
+digest: sha256:97207105d0f9a5a0c7142e321f38c6eae1f66567994d327df9fac3beddcb4732
+generated: 2019-08-23T10:46:40.627268892Z

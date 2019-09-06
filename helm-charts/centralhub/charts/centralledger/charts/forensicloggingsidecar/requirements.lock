@@ -1,0 +1,9 @@
+dependencies:
+- name: centralkms
+  repository: file://../centralkms
+  version: 2.4.0
+- name: postgresql
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 0.9.1
+digest: sha256:a6a88163ac2be11c2a1ec7fd4a26bc389b76d7f1e30d5e1af65d08dde4f20460
+generated: 2018-10-18T18:51:56.400535+05:30

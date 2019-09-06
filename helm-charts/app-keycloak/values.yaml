@@ -1,0 +1,13 @@
+keycloak:
+  # addressing the upstream values
+  keycloak:
+    securityContext:
+      runAsUser:
+      fsGroup:
+      runAsNonRoot:
+route:
+  enabled: true
+  annotations: {}
+      # kubernetes.io/tls-acme: "true"
+  host:
+  tls: true

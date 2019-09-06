@@ -1,0 +1,13 @@
+apiVersion: v1
+appVersion: 1.6.1
+description: IBM Watson Machine Learning Community Edition
+keywords:
+- ppc64le
+- amd64
+- Limited
+- ICP
+- AI
+kubeVersion: '>=1.11.3'
+name: ibm-wmlce-dev
+tillerVersion: '>=2.7.2'
+version: 2.0.2

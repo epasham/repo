@@ -1,0 +1,88 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: {{ include "instance-termination-handler.fullname" . }}
+  labels:
+{{ include "instance-termination-handler.labels" . | indent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "instance-termination-handler.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "instance-termination-handler.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+      {{- if .Values.metrics.enabled  }}
+        prometheus.io/scrape: "true"
+        prometheus.io/path: {{ .Values.metrics.endpoint | quote }}
+      {{- end }}
+      {{- if .Values.extraAnnotations }}
+{{ toYaml .Values.extraAnnotations | indent 8 }}
+      {{- end }}
+    spec:
+      serviceAccountName: {{ template "instance-termination-handler.fullname" . }}
+      containers:
+      - name: instance-termination-handler
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.imagePullPolicy | quote }}
+        env:
+          - name: MY_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MY_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          {{- if and .Values.hollowtreesNotifier.enabled (ne .Values.hollowtreesNotifier.jwtToken "") }}
+          - name: ITH_HOLLOWTREESNOTIFIER_JWTTOKEN
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "instance-termination-handler.fullname" . }}
+                key: tokenSigningKey
+          {{- end }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.http.listenPort }}
+        {{- if .Values.hostPort }}
+          hostPort: {{ .Values.hostPort }}
+        {{- end }}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: http
+          initialDelaySeconds: 120
+          timeoutSeconds: 5
+          failureThreshold: 6
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: http
+            httpHeaders:
+          initialDelaySeconds: 30
+          timeoutSeconds: 3
+          periodSeconds: 5
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        volumeMounts:
+        - name: config
+          mountPath: /config/
+      volumes:
+      - name: config
+        configMap:
+          name: {{ include "instance-termination-handler.fullname" . }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

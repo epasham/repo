@@ -1,0 +1,14 @@
+apiVersion: v1
+appVersion: v0.1.0
+description: A Helm chart for Kubernetes
+home: https://github.com/honestica/lifen-charts
+keywords:
+- squid
+- proxy
+maintainers:
+- email: matthieu.paret@lifen.fr
+  name: mtparet
+name: squid
+sources:
+- https://github.com/squid-cache/squid
+version: 0.1.0

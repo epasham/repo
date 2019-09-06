@@ -1,0 +1,13 @@
+apiVersion: v1
+description: Forensic Logging Sidecar Helm chart for Kubernetes
+home: http://mojaloop.io
+icon: http://mojaloop.io/images/logo.png
+maintainers:
+- email: miguel.debarros@modusbox.com
+  name: Miguel de Barros
+name: forensicloggingsidecar
+sources:
+- https://github.com/mojaloop/mojaloop
+- https://github.com/mojaloop/helm
+- https://github.com/mojaloop/forensic-logging-sidecar
+version: 2.4.0

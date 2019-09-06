@@ -1,0 +1,16 @@
+apiVersion: v1
+appVersion: 7.4.1
+description: ml-api-adapter Handler for Notifications component Helm chart for Kubernetes
+home: http://mojaloop.io
+icon: http://mojaloop.io/images/logo.png
+maintainers:
+- email: murthy@modusbox.com
+  name: Murthy Kakarlamudi
+- email: miguel.debarros@modusbox.com
+  name: Miguel de Barros
+name: ml-api-adapter-handler-notification
+sources:
+- https://github.com/mojaloop/mojaloop
+- https://github.com/mojaloop/helm
+- https://github.com/mojaloop/ml-api-adapter
+version: 7.4.1

@@ -1,0 +1,10 @@
+apiVersion: v1
+appVersion: 0.0.1
+description: A Helm chart for Kubernetes K8Dash
+maintainers:
+- email: kiryanov.i@gmail.com
+  name: Ivan Kirianov
+- email: eric@herbrandson.com
+  name: Eric Herbrandson
+name: k8dash
+version: 0.0.1

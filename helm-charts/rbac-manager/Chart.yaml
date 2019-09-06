@@ -1,0 +1,19 @@
+appVersion: 0.7.0
+description: A Kubernetes operator that simplifies the management of Role Bindings
+  and Service Accounts.
+engine: gotpl
+home: https://fairwindsops.github.io/rbac-manager/
+keywords:
+- rbac
+- authorization
+maintainers:
+- email: ej@fairwinds.com
+  name: ejether
+- name: robscott
+- email: andy@fairwinds.com
+  name: sudermanjr
+name: rbac-manager
+sources:
+- https://github.com/FairwindsOps/charts/tree/master/stable/rbac-manager
+- https://github.com/FairwindsOps/rbac-manager
+version: 1.3.1

@@ -1,0 +1,9 @@
+apiVersion: v1
+description: Loadtesting for seldon core
+keywords:
+- kubernetes
+- machine-learning
+name: seldon-core-loadtesting
+sources:
+- https://github.com/SeldonIO/seldon-core
+version: 0.1.2

@@ -1,0 +1,9 @@
+apiVersion: v1
+appVersion: "0.4"
+description: Installs the kubernetes-registry-proxy cluster addon.
+home: https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/registry
+maintainers:
+- email: maor.friedman@redhat.com
+  name: maorfr
+name: kube-registry-proxy
+version: 0.3.1

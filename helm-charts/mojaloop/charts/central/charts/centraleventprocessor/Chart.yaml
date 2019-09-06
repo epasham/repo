@@ -1,0 +1,16 @@
+apiVersion: v1
+appVersion: 7.1.1
+description: Central Event Processor for Mojaloop
+home: http://mojaloop.io
+icon: http://mojaloop.io/images/logo.png
+maintainers:
+- email: valentin.genev@modusbox.com
+  name: Valentin Genev
+- email: deon.botha@modusbox.com
+  name: Deon Botha
+name: centraleventprocessor
+sources:
+- https://github.com/mojaloop/mojaloop
+- https://github.com/mojaloop/helm
+- https://github.com/mojaloop/central-event-processor
+version: 7.1.1

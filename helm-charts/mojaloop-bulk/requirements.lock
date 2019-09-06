@@ -1,0 +1,12 @@
+dependencies:
+- name: bulk-api-adapter
+  repository: file://../bulk-api-adapter
+  version: 7.1.0
+- name: bulk-centralledger
+  repository: file://../bulk-centralledger
+  version: 7.4.3
+- name: mongodb
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 4.9.0
+digest: sha256:757d8094f3ae6958650a8e2b6126196c139afcc1a8bef33df1cf56cf6ca92ec6
+generated: 2019-08-30T15:12:42.86415607Z

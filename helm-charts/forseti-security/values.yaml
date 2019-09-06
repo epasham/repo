@@ -1,0 +1,76 @@
+# Copyright 2019 The Forseti Security Authors. All rights reserved.
+#
+# Licensed under the Apache License, Versisn 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# cloudsqlConnection is the connection to the cloudsql instance
+cloudsqlConnection: ""
+
+# loadBalancer is the type of load balancer to deploy for the forseti-server
+# if desired: none, external, internal
+loadBalancer: none
+
+# orchestratorDeploy sets whether or not to deploy the orchestrator.
+orchestratorDeploy: true
+
+# orchestratorImage is the container image used by the Forseti Orchestrator
+orchestratorImage: "gcr.io/forseti-containers/forseti"
+
+# orchestratorImageTag is the tag for the orchestrator container image.
+orchestratorImageTag: "v2.19.1"
+
+# orchestratorKeyContents is the Base64 encoded JSON credentials for the
+# orchestrator.  This can be the IAM service account key for the Forseti Client.
+orchestratorKeyContents: ""
+
+# rulesBucket is the GCS bucket containing the rules.  Often this is the same as the
+# serverBucket.  Ommit the "gs://".
+rulesBucket: ""
+
+# rulesBucketFolder is the folder inside the rulesBucket containing all the rules.
+rulesBucketFolder: "rules"
+
+# serverBucket is the bucket containing the server configurations
+serverBucket: ""
+
+# serverBucketConfigFolder is the folder in the server bucket containing the server configs.
+serverBucketConfigFolder: "configs"
+
+# serverConfigContents is the Base64 encoded contents of the forseti_conf_server.yaml file.
+serverConfigContents: ""
+
+# serverImage is the container image used by the server
+serverImage: "gcr.io/forseti-containers/forseti"
+
+# serverImageTag is the tag for the server container image.
+serverImageTag: "v2.19.1"
+
+# serverKeyContents is the Base64 JSON credentials for the server.
+serverKeyContents: ""
+
+# serverLogLevel is the log level for the server.
+serverLogLevel: info
+
+# serverSchedule is the cron schedule for the orchestrator.  The default is every
+# 60 minutes
+serverSchedule: "*/60 * * * *"
+
+# networkPolicyEnable enables pod network policy to limit the connectivty to the server.
+networkPolicyEnable: false
+
+# networkPolicyIngressCidr is a list of CIDR's from which to allow
+# communication to the server.  This is only relevant for client connectivity
+# from outside the Kubernetes cluster.
+networkPolicyIngressCidr: []
+
+# production sets whether or not to deploy in a production configuration.
+production: false

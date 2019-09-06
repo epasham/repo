@@ -1,0 +1,8 @@
+apiVersion: v1
+appVersion: 1.1.0
+description: OpenShift oauth-proxy
+maintainers:
+- email: info@appuio.ch
+  name: APPUiO Team
+name: openshift-oauth-proxy
+version: 0.2.1

@@ -1,0 +1,16 @@
+apiVersion: v1
+appVersion: 7.3.0
+description: Email Notifier For Mojaloop
+home: http://mojaloop.io
+icon: http://mojaloop.io/images/logo.png
+maintainers:
+- email: valentin.genev@modusbox.com
+  name: Valentin Genev
+- email: deon.botha@modusbox.com
+  name: Deon Botha
+name: emailnotifier
+sources:
+- https://github.com/mojaloop/mojaloop
+- https://github.com/mojaloop/helm
+- https://github.com/mojaloop/email-notifier
+version: 7.3.0

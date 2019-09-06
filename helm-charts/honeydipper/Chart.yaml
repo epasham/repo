@@ -1,0 +1,17 @@
+apiVersion: v1
+appVersion: 0.1.9
+description: An event driven orchestration system
+home: https://honeydipper.io
+icon: https://raw.githubusercontent.com/honeydipper/honeydipper/master/logo/log_medium.png
+keywords:
+- event-driven
+- orchestration
+- integration
+- workflows
+- templating
+maintainers:
+- email: charles.huang@joinhoney.com
+  name: Charles546
+  url: https://honeydipper.io
+name: honeydipper
+version: 0.1.2

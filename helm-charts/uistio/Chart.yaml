@@ -1,0 +1,12 @@
+apiVersion: v1
+appVersion: 0.3.10
+description: UIstio manages hybrid clusters connected with Istio
+home: https://banzaicloud.com
+icon: https://banzaicloud.com/img/banzai-cloud-logo.png
+maintainers:
+- email: info@banzaicloud.com
+  name: Banzai Cloud
+name: uistio
+sources:
+- https://github.com/banzaicloud/uistio
+version: 0.0.12

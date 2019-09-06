@@ -1,0 +1,12 @@
+dependencies:
+- name: cl-handler-bulk-transfer-prepare
+  repository: file://./chart-handler-bulk-transfer-prepare
+  version: 7.4.3
+- name: cl-handler-bulk-transfer-fulfil
+  repository: file://./chart-handler-bulk-transfer-fulfil
+  version: 7.4.3
+- name: cl-handler-bulk-transfer-processing
+  repository: file://./chart-handler-bulk-transfer-processing
+  version: 7.4.3
+digest: sha256:98b690a40e7c492b85fa7bf4636526c32a2fbb6ed5156aba146cf868cd00bb8e
+generated: 2019-08-30T15:12:38.314405086Z

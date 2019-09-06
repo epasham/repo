@@ -1,0 +1,4 @@
+appVersion: 1.2.2
+description: A chart for kafka-connect-mqtt-source
+name: kafka-connect-mqtt-source
+version: "1.8"
