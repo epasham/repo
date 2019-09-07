@@ -16,4 +16,4 @@ name: eventstore
 sources:
 - https://github.com/EventStore/eventstore-docker
 - https://github.com/EventStore/EventStore
-version: 0.2.4
+version: 0.2.5
