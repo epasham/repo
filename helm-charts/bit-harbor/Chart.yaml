@@ -20,4 +20,4 @@ sources:
 - https://github.com/bitnami/bitnami-docker-harbor-jobservice
 - https://github.com/bitnami/bitnami-docker-harbor-registry
 - https://github.com/bitnami/bitnami-docker-harbor-registryctl
-version: 2.6.4
+version: 2.6.5

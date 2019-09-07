@@ -1,7 +1,7 @@
 dependencies:
 - name: loki
   repository: file://../loki
-  version: 0.14.0
+  version: 0.14.1
 - name: promtail
   repository: file://../promtail
   version: 0.12.0
@@ -12,4 +12,4 @@ dependencies:
   repository: https://kubernetes-charts.storage.googleapis.com/
   version: 8.11.6
 digest: sha256:56ec74e718c0340dc9ae5566e1b8a10a5a6314e3fbab087115d22bdc52e730e7
-generated: 2019-09-05T18:34:21.86638745Z
+generated: 2019-09-06T18:00:36.808913606Z
