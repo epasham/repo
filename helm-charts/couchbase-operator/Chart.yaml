@@ -1,5 +1,5 @@
 apiVersion: v1
-appVersion: 1.2.0
+appVersion: 1.2.1
 description: A Helm chart to deploy the Couchbase Autonomous Operator for easily deploying,
   managing, and maintaining Couchbase Clusters.
 home: https://www.couchbase.com
@@ -17,4 +17,4 @@ maintainers:
 name: couchbase-operator
 sources:
 - https://github.com/couchbase/docker/tree/master/enterprise/couchbase-operator/1.0.0
-version: 1.0.0
+version: 1.0.1
