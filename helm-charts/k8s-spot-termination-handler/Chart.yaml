@@ -14,4 +14,4 @@ maintainers:
 name: k8s-spot-termination-handler
 sources:
 - https://github.com/kube-aws/kube-spot-termination-notice-handler
-version: 1.4.3
+version: 1.4.4
