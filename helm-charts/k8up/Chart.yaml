@@ -12,4 +12,4 @@ maintainers:
 name: k8up
 sources:
 - https://github.com/vshn/k8up
-version: 0.2.2
+version: 0.2.3

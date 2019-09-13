@@ -17,4 +17,4 @@ maintainers:
 name: bit-owncloud
 sources:
 - https://github.com/bitnami/bitnami-docker-owncloud
-version: 6.2.1
+version: 6.2.3

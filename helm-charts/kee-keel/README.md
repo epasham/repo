@@ -96,8 +96,9 @@ The following table lists has the main configurable parameters (polling, trigger
 | `slack.token`                               | Slack token                            |                                                           |
 | `slack.channel`                             | Slack channel                          |                                                           |
 | `slack.approvalsChannel`                    | Slack channel for approvals            |                                                           |
-| `service.enable`                            | Enable/disable Keel service            | `false`                                                   |
+| `service.enabled`                           | Enable/disable Keel service            | `false`                                                   |
 | `service.type`                              | Keel service type                      | `LoadBalancer`                                            |
+| `service.externalIP`                        | Keel static IP                         |                                                           |
 | `service.externalPort`                      | Keel service port                      | `9300`                                                    |
 | `service.clusterIP`                         | Keel service clusterIP                 |                                                           |
 | `webhookRelay.enabled`                      | Enable/disable WebhookRelay integration| `false`                                                   |
@@ -129,8 +130,8 @@ The following table lists has the main configurable parameters (polling, trigger
 | `dockerRegistry.enabled`                    | Docker registry secret enabled.        | `false`                                                   |
 | `dockerRegistry.name`                       | Docker registry secret name            |                                                           |
 | `dockerRegistry.key`                        | Docker registry secret key             |                                                           |
-| `secret.name`                               | Secret name                            |       `                                                   |
-| `secret.create`                             | Create secret                          |  true                                                     |
+| `secret.name`                               | Secret name                            |                                                           |
+| `secret.create`                             | Create secret                          |  `true`                                                   |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 

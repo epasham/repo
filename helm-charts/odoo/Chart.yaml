@@ -16,4 +16,4 @@ maintainers:
 name: odoo
 sources:
 - https://github.com/bitnami/bitnami-docker-odoo
-version: 11.1.1
+version: 11.1.4

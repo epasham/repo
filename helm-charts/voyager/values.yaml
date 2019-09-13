@@ -6,11 +6,11 @@ replicaCount: 1
 voyager:
   registry: appscode
   repository: voyager
-  tag: 10.0.0
+  tag: v11.0.0
 haproxy:
   registry: appscode
   repository: haproxy
-  tag: 1.9.6-10.0.0-alpine
+  tag: 1.9.6-v11.0.0-alpine
 cleaner:
   registry: appscode
   repository: kubectl
@@ -59,11 +59,6 @@ tolerations: {}
 ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
 ##
 affinity: {}
-
-## Install Default RBAC roles and bindings
-rbac:
-  # Specifies whether RBAC resources should be created
-  create: true
 
 serviceAccount:
   # Specifies whether a ServiceAccount should be created

@@ -14,4 +14,4 @@ name: spring-cloud-data-flow
 sources:
 - https://github.com/spring-cloud/spring-cloud-dataflow
 - https://github.com/spring-cloud/spring-cloud-skipper
-version: 2.4.2
+version: 2.4.3

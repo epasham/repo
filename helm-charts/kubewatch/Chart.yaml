@@ -18,4 +18,4 @@ maintainers:
 name: kubewatch
 sources:
 - https://github.com/bitnami/bitnami-docker-kubewatch
-version: 0.8.7
+version: 0.8.8

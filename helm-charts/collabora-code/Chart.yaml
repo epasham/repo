@@ -9,4 +9,4 @@ maintainers:
 name: collabora-code
 sources:
 - https://github.com/CollaboraOnline/Docker-CODE
-version: 1.0.4
+version: 1.0.5

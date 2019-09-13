@@ -46,9 +46,9 @@ dependencies:
   version: v1.2.0
 - name: router
   repository: https://charts.teamhephy.com
-  version: v2.16.0
+  version: v2.16.1
 - name: workflow-manager
   repository: https://charts.teamhephy.com
   version: v2.6.1
-digest: sha256:5dee7c012c1f051fb29c4bc2baecf4f03c43d88e650bfa264b2d598126557598
-generated: 2019-08-11T07:29:52.465334221-04:00
+digest: sha256:65880da9b48ec5a5e6c21a6fc48adab961f2945af77bf452a6110ccf68fdf365
+generated: 2019-09-11T13:15:55.819138679-04:00

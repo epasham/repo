@@ -1,6 +1,6 @@
 org: "hephy"
 pull_policy: "IfNotPresent"
-docker_tag: v2.16.0
+docker_tag: v2.16.1
 platform_domain: ""
 dhparam: ""
 # limits_cpu: "100m"
