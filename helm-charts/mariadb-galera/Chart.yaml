@@ -20,4 +20,4 @@ name: mariadb-galera
 sources:
 - https://github.com/bitnami/bitnami-docker-mariadb-galera
 - https://github.com/prometheus/mysqld_exporter
-version: 0.2.6
+version: 0.2.7
