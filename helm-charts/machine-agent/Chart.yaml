@@ -16,4 +16,4 @@ name: machine-agent
 sources:
 - https://cloud.docker.com/u/appdynamics/repository/docker/appdynamics/machine-agent-analytics/general
 - https://github.com/Appdynamics/appdynamics-docker-images/blob/master/appd-machine-agent-analytics/Dockerfile
-version: 0.2.3
+version: 0.2.4
