@@ -10,4 +10,4 @@ maintainers:
 name: metabase
 sources:
 - https://github.com/metabase/metabase
-version: 0.8.0
+version: 0.8.1
