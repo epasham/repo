@@ -15,7 +15,9 @@ maintainers:
   name: shashidharatd
 - email: andor44@gmail.com
   name: andor44
+- email: manuel@rueg.eu
+  name: mrueg
 name: coredns
 sources:
 - https://github.com/coredns/coredns
-version: 1.7.1
+version: 1.7.2
