@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 image:
   repository: mattermost/mattermost-team-edition
-  tag: 5.13.0
+  tag: 5.13.2
   imagePullPolicy: IfNotPresent
 
 initContainerImage:
@@ -186,6 +186,8 @@ configJSON: {
     "EnableOnlyAdminIntegrations": false,
     "EnablePostUsernameOverride": false,
     "EnablePostIconOverride": false,
+    "EnableBotAccountCreation": false,
+    "EnableUserAccessTokens": false,
     "EnableLinkPreviews": false,
     "EnableTesting": false,
     "EnableDeveloper": false,
