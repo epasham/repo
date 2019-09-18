@@ -1,5 +1,5 @@
 {{- define "pnnlmiscscripts.k8s-node-image-nginx-1-15.server" -}}
-{{- if and (hasKey . "section") (kindIs "bool" .section) (hasKey .section "server") .section.server -}}
+{{- if and (hasKey . "section") (hasKey .section "server") .section.server -}}
 {{ .section.server }}
 {{- else -}}
 docker.io
@@ -32,7 +32,7 @@ k8s-node-image
 {{- if and (hasKey . "section") (hasKey .section "tag") .section.tag -}}
 {{ .section.tag }}
 {{- else -}}
-1.15.3-nginx-4
+1.15.3-nginx-5
 {{- end -}}
 {{- end -}}
 

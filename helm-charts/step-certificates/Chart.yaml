@@ -28,4 +28,4 @@ maintainers:
 name: step-certificates
 sources:
 - https://github.com/smallstep/certificates
-version: 1.0.6
+version: 1.13.0

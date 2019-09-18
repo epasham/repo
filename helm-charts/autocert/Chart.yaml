@@ -27,4 +27,4 @@ maintainers:
 name: autocert
 sources:
 - https://github.com/smallstep/autocert
-version: 1.0.1
+version: 1.11.0

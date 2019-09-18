@@ -8,22 +8,26 @@ fullnameOverride: ""
 
 image:
   repository: tomkerkhove/promitor-agent-scraper
-  tag: 1.0.0-preview-8
+  tag: 1.0.0-rc-1
   pullPolicy: Always
 
 azureAuthentication:
   appId: ""
   appKey: ""
 
-scrapeConfig:
-  path: /metrics
-  timestamp: True
-
+prometheus:
+  scrapeEndpointPath: /metrics
+  enableMetricTimestamps: True
+  metricUnavailableValue: NaN
 telemetry:
-  appInsightsKey: ""
-
-logging:
-  minimalLogLevel: "Warning"
+  defaultLogLevel: "Error"
+  applicationInsights:
+    enabled: False
+    key: ""
+    logLevel: ""
+  containerLogs:
+    enabled: True
+    logLevel: ""
 
 ## Metric Declaration YAML
 azureMetadata:
@@ -38,15 +42,16 @@ metricDefaults:
 metrics: []
 # Sample metric configuration below
 #   - name: demo_queue_size
-#     description: "Amount of active messages of the 'myqueue' queue"
+#     description: "Amount of active messages of the 'myqueue' queue (determined with ServiceBusQueue provider)"
 #     resourceType: ServiceBusQueue
-#     namespace: promitor-messaging
-#     queueName: myqueue
 #     azureMetricConfiguration:
 #       metricName: ActiveMessages
 #       aggregation:
 #         type: Total
 #         interval: 00:15:00
+#     resources:
+#       - namespace: promitor-messaging
+#         queueName: orders
 
 secrets:
   # To use your own secret, set createSecret to false and define the name/keys that your secret uses
@@ -62,3 +67,11 @@ service:
   targetPort: 88
   labelType: infrastructure
   selectorType: runtime
+
+resources: {}
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
