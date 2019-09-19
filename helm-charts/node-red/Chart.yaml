@@ -15,4 +15,4 @@ name: node-red
 sources:
 - https://github.com/node-red/node-red-docker
 - https://github.com/kubernetes/charts/stable/node-red
-version: 1.3.2
+version: 1.3.3
