@@ -22,7 +22,7 @@ secretMounts: []
 #    subPath: kibana.keystore # optional
 
 image: "docker.elastic.co/kibana/kibana"
-imageTag: "7.3.0"
+imageTag: "7.3.2"
 imagePullPolicy: "IfNotPresent"
 
 # additionals labels
@@ -34,7 +34,7 @@ podAnnotations: {}
 resources:
   requests:
     cpu: "100m"
-    memory: "500m"
+    memory: "500Mi"
   limits:
     cpu: "1000m"
     memory: "1Gi"

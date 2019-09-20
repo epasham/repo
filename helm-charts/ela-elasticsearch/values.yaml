@@ -43,7 +43,7 @@ secretMounts: []
 #    path: /usr/share/elasticsearch/config/certs
 
 image: "docker.elastic.co/elasticsearch/elasticsearch"
-imageTag: "7.3.0"
+imageTag: "7.3.2"
 imagePullPolicy: "IfNotPresent"
 
 podAnnotations: {}
@@ -86,20 +86,42 @@ volumeClaimTemplate:
     requests:
       storage: 30Gi
 
+rbac:
+  create: false
+  serviceAccountName: ""
+
+podSecurityPolicy:
+  create: false
+  name: ""
+  spec:
+    privileged: true
+    fsGroup:
+      rule: RunAsAny
+    runAsUser:
+      rule: RunAsAny
+    seLinux:
+      rule: RunAsAny
+    supplementalGroups:
+      rule: RunAsAny
+    volumes:
+      - secret
+      - configMap
+      - persistentVolumeClaim
+
 persistence:
   enabled: true
   annotations: {}
 
-extraVolumes: []
+extraVolumes: ""
   # - name: extras
   #   emptyDir: {}
 
-extraVolumeMounts: []
+extraVolumeMounts: ""
   # - name: extras
   #   mountPath: /usr/share/extras
   #   readOnly: true
 
-extraInitContainers: []
+extraInitContainers: ""
   # - name: do-something
   #   image: busybox
   #   command: ['do', 'something']
@@ -132,6 +154,8 @@ service:
   type: ClusterIP
   nodePort:
   annotations: {}
+  httpPortName: http
+  transportPortName: transport
 
 updateStrategy: RollingUpdate
 
@@ -142,6 +166,7 @@ maxUnavailable: 1
 
 podSecurityContext:
   fsGroup: 1000
+  runAsUser: 1000
 
 # The following value is deprecated,
 # please use the above podSecurityContext.fsGroup instead
@@ -210,3 +235,5 @@ lifecycle: {}
 
 sysctlInitContainer:
   enabled: true
+
+keystore: []

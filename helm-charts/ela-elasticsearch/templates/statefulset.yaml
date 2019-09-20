@@ -6,7 +6,7 @@ metadata:
   labels:
     heritage: {{ .Release.Service | quote }}
     release: {{ .Release.Name | quote }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    chart: "{{ .Chart.Name }}"
     app: "{{ template "uname" . }}"
     {{- range $key, $value := .Values.labels }}
     {{ $key }}: {{ $value | quote }}
@@ -39,7 +39,7 @@ spec:
       labels:
         heritage: {{ .Release.Service | quote }}
         release: {{ .Release.Name | quote }}
-        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        chart: "{{ .Chart.Name }}"
         app: "{{ template "uname" . }}"
       annotations:
         {{- range $key, $value := .Values.podAnnotations }}
@@ -58,6 +58,11 @@ spec:
         {{- if .Values.fsGroup }}
         fsGroup: {{ .Values.fsGroup }} # Deprecated value, please use .Values.podSecurityContext.fsGroup
         {{- end }}
+      {{- if .Values.rbac.create }}
+      serviceAccountName: "{{ template "uname" . }}"
+      {{- else if not (eq .Values.rbac.serviceAccountName "") }}
+      serviceAccountName: {{ .Values.rbac.serviceAccountName | quote }}
+      {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
 {{ toYaml . | indent 6 }}
@@ -111,8 +116,16 @@ spec:
           configMap:
             name: {{ template "uname" . }}-config
         {{- end }}
+{{- if .Values.keystore }}
+        - name: keystore
+          emptyDir: {}
+        {{- range .Values.keystore }}
+        - name: keystore-{{ .secretName }}
+          secret: {{ toYaml . | nindent 12 }}
+        {{- end }}
+{{ end }}
       {{- if .Values.extraVolumes }}
-{{ tpl .Values.extraVolumes . | indent 6 }}
+{{ tpl .Values.extraVolumes . | indent 8 }}
       {{- end }}
       {{- if .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -129,6 +142,38 @@ spec:
         resources:
 {{ toYaml .Values.initResources | indent 10 }}
       {{- end }}
+{{ if .Values.keystore }}
+      - name: keystore
+        image: "{{ .Values.image }}:{{ .Values.imageTag }}"
+        command:
+        - sh
+        - -c
+        - |
+          #!/usr/bin/env bash
+          set -euo pipefail
+
+          elasticsearch-keystore create
+
+          for i in /tmp/keystoreSecrets/*/*; do
+            key=$(basename $i)
+            echo "Adding file $i to keystore key $key"
+            elasticsearch-keystore add-file "$key" "$i"
+          done
+
+          # Add the bootstrap password since otherwise the Elasticsearch entrypoint tries to do this on startup
+          [ ! -z "$ELASTIC_PASSWORD" ] && echo "$ELASTIC_PASSWORD" | elasticsearch-keystore add -x bootstrap.password
+
+          cp -a /usr/share/elasticsearch/config/elasticsearch.keystore /tmp/keystore/
+        env: {{ toYaml .Values.extraEnvs | nindent 10 }}
+        resources: {{ toYaml .Values.initResources | nindent 10 }}
+        volumeMounts:
+          - name: keystore
+            mountPath: /tmp/keystore
+          {{- range .Values.keystore }}
+          - name: keystore-{{ .secretName }}
+            mountPath: /tmp/keystoreSecrets/{{ .secretName }}
+          {{- end }}
+{{ end }}
       {{- if .Values.extraInitContainers }}
 {{ tpl .Values.extraInitContainers . | indent 6 }}
       {{- end }}
@@ -219,6 +264,11 @@ spec:
           - name: "{{ template "uname" . }}"
             mountPath: /usr/share/elasticsearch/data
           {{- end }}
+{{ if .Values.keystore }}
+          - name: keystore
+            mountPath: /usr/share/elasticsearch/config/elasticsearch.keystore
+            subPath: elasticsearch.keystore
+{{ end }}
           {{- range .Values.secretMounts }}
           - name: {{ .name }}
             mountPath: {{ .path }}

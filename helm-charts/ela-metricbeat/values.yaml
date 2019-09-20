@@ -14,7 +14,8 @@ metricbeatConfig:
         - system
         - volume
       period: 10s
-      hosts: ["localhost:10255"]
+      host: "${NODE_NAME}"
+      hosts: ["${NODE_NAME}:10255"]
       processors:
       - add_kubernetes_metadata:
           in_cluster: true
@@ -57,7 +58,7 @@ metricbeatConfig:
         - state_pod
         - state_container
       period: 10s
-      hosts: ["${KUBE_STATE_METRICS_HOSTS:kube-state-metrics:8080}"]
+      hosts: ["${KUBE_STATE_METRICS_HOSTS}"]
     output.elasticsearch:
       hosts: '${ELASTICSEARCH_HOSTS:elasticsearch-master:9200}'
 
@@ -72,12 +73,12 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-extraVolumeMounts: []
+extraVolumeMounts: ""
   # - name: extras
   #   mountPath: /usr/share/extras
   #   readOnly: true
 
-extraVolumes: []
+extraVolumes: ""
   # - name: extras
   #   emptyDir: {}
 
@@ -85,7 +86,7 @@ extraVolumes: []
 hostPathRoot: /var/lib
 
 image: "docker.elastic.co/beats/metricbeat"
-imageTag: "7.3.0"
+imageTag: "7.3.2"
 imagePullPolicy: "IfNotPresent"
 imagePullSecrets: []
 
@@ -138,6 +139,10 @@ secretMounts: []
 terminationGracePeriod: 30
 
 tolerations: []
+
+nodeSelector: {}
+
+affinity: {}
 
 updateStrategy: RollingUpdate
 

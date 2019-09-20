@@ -36,8 +36,16 @@ spec:
         release: {{ .Release.Name | quote }}
     spec:
       {{- with .Values.tolerations }}
-      tolerations:
-{{ toYaml . | indent 6 }}
+      tolerations: {{ toYaml . | nindent 6 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector: {{ toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.priorityClassName }}
+      priorityClassName: {{ .Values.priorityClassName  }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity: {{ toYaml . | nindent 8 -}}
       {{- end }}
       serviceAccountName: {{ template "serviceAccount" . }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriod }}
