@@ -19,4 +19,4 @@ maintainers:
 name: bit-jasperreports
 sources:
 - https://github.com/bitnami/bitnami-docker-jasperreports
-version: 6.2.2
+version: 6.2.3

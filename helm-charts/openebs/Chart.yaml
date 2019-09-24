@@ -16,4 +16,4 @@ maintainers:
 name: openebs
 sources:
 - https://github.com/openebs/openebs
-version: 1.2.1
+version: 1.2.2

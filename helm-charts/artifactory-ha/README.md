@@ -88,6 +88,10 @@ helm install --name artifactory-ha \
                --set artifactory.node.resources.limits.memory="4Gi" \
                --set artifactory.node.javaOpts.xms="1g" \
                --set artifactory.node.javaOpts.xmx="4g" \
+               --set initContainers.resources.requests.cpu="10m" \
+               --set initContainers.resources.limits.cpu="250m" \
+               --set initContainers.resources.requests.memory="64Mi" \
+               --set initContainers.resources.limits.memory="128Mi" \
                --set postgresql.resources.requests.cpu="200m" \
                --set postgresql.resources.limits.cpu="1" \
                --set postgresql.resources.requests.memory="500Mi" \
@@ -582,10 +586,13 @@ kubectl logs -n <NAMESPACE> <POD_NAME> -c <LOG_CONTAINER_NAME>
 ### Custom init containers
 There are cases where a special, unsupported init processes is needed like checking something on the file system or testing something before spinning up the main container.
 
-For this, there is a section for writing a custom init container in the [values.yaml](values.yaml). By default it's commented out
+For this, there is a section for writing custom init containers before and after the predefined init containers in the [values.yaml](values.yaml) . By default it's commented out
 ```yaml
 artifactory:
-  ## Add custom init containers
+  ## Add custom init containers executed before predefined init containers
+  customInitContainersBegin: |
+    ## Init containers template goes here ##
+  ## Add custom init containers executed after predefined init containers
   customInitContainers: |
     ## Init containers template goes here ##
 ```
@@ -672,7 +679,8 @@ The following table lists the configurable parameters of the artifactory chart a
 | `artifactory.image.version`          | Container image tag                  | `.Chart.AppVersion`                        |
 | `artifactory.loggers`             | Artifactory loggers (see values.yaml for possible values) | `[]`                     |
 | `artifactory.catalinaLoggers`     | Artifactory Tomcat loggers (see values.yaml for possible values) | `[]`              |
-| `artifactory.customInitContainers`| Custom init containers                  |                                            |
+| `artifactory.customInitContainersBegin`| Custom init containers to run before existing init containers |                 |
+| `artifactory.customInitContainers`| Custom init containers to run after existing init containers |                       |
 | `artifactory.customSidecarContainers`| Custom sidecar containers            |                                            |
 | `artifactory.customVolumes`       | Custom volumes                    |                                                  |
 | `artifactory.customVolumeMounts`  | Custom Artifactory volumeMounts   |                                                  |
@@ -788,6 +796,10 @@ The following table lists the configurable parameters of the artifactory chart a
 | `artifactory.node.javaOpts.other`               | Artifactory member node additional java options  |                     |
 | `artifactory.node.persistence.existingClaim`    | Whether to use existing PVCs for the member nodes | `false`            |
 | `artifactory.terminationGracePeriodSeconds`     | Termination grace period (seconds)               | `30s`               |
+| `initContainers.resources.requests.memory`    | Init containers initial memory request   |                     |
+| `initContainers.resources.requests.cpu`       | Init containers initial cpu request      |                     |
+| `initContainers.resources.limits.memory`      | Init containers memory limit             |                     |
+| `initContainers.resources.limits.cpu`         | Init containers cpu limit                |                     |
 | `ingress.enabled`           | If true, Artifactory Ingress will be created | `false`                                     |
 | `ingress.annotations`       | Artifactory Ingress annotations     | `{}`                                                 |
 | `ingress.labels`       | Artifactory Ingress labels     | `{}`                                                           |

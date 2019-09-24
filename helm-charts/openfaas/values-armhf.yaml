@@ -1,7 +1,7 @@
 basic_auth: false
 
 gateway:
-  image: openfaas/gateway:0.17.0-armhf
+  image: openfaas/gateway:0.17.3-armhf
 
 faasnetes:
   image: openfaas/faas-netes:0.8.6-armhf
@@ -18,10 +18,13 @@ prometheus:
 alertmanager:
   image: prom/alertmanager:v0.18.0
 
+ingressOperator:
+  image: openfaas/ingress-operator:0.4.0-armhf
+  create: false
+
 faasIdler:
   image: openfaas/faas-idler:0.2.0-armhf
 
 basicAuthPlugin:
   image: openfaas/basic-auth-plugin:0.17.0-armhf
   replicas: 1
-

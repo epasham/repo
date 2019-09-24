@@ -17,4 +17,4 @@ maintainers:
 name: bit-etcd
 sources:
 - https://github.com/bitnami/bitnami-docker-etcd
-version: 4.3.6
+version: 4.3.7

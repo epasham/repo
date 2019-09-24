@@ -16,4 +16,4 @@ maintainers:
 name: bit-phpbb
 sources:
 - https://github.com/bitnami/bitnami-docker-phpbb
-version: 6.2.1
+version: 6.2.2

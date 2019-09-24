@@ -21,7 +21,7 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 rules:
   - apiGroups:
-      - logging.banzaicloud.com
+      - logging.banzaicloud.io
     resources:
       - loggings
       - flows
@@ -37,7 +37,7 @@ rules:
       - update
       - watch
   - apiGroups:
-      - logging.banzaicloud.com
+      - logging.banzaicloud.io
     resources:
       - loggings/status
     verbs:
@@ -78,14 +78,14 @@ rules:
     verbs:
       - "*"
   {{- if .Values.rbac.psp.enabled }}
-- apiGroups:
-    - extensions
-  resources:
-    - podsecuritypolicies
-  resourceNames:
-    - psp.logging-operator
-  verbs:
-    - use
+  - apiGroups:
+      - extensions
+    resources:
+      - podsecuritypolicies
+    resourceNames:
+      - psp.logging-operator
+    verbs:
+      - use
   {{- end }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1

@@ -13,4 +13,4 @@ name: prometheus-pingdom-exporter
 sources:
 - https://github.com/giantswarm/prometheus-pingdom-exporter
 - https://github.com/camptocamp/prometheus-pingdom-exporter
-version: 2.0.0
+version: 2.2.0

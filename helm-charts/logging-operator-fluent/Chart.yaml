@@ -14,4 +14,4 @@ maintainers:
 name: logging-operator-fluent
 sources:
 - https://github.com/banzaicloud/logging-operator
-version: 0.3.3
+version: 1.0.0

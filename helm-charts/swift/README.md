@@ -1,5 +1,5 @@
 # swift
-[swift by AppsCode](https://github.com/appscode/swift) - Ajax friendly Helm Tiller Proxy
+[swift by AppsCode](https://github.com/kubepack/swift) - Ajax friendly Helm Tiller Proxy
 
 ## TL;DR;
 
@@ -11,7 +11,7 @@ $ helm install appscode/swift
 
 ## Introduction
 
-This chart bootstraps a [Helm Tiller Proxy](https://github.com/appscode/swift) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
+This chart bootstraps a [Helm Tiller Proxy](https://github.com/kubepack/swift) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
 
 ## Prerequisites
 
@@ -48,7 +48,7 @@ The following tables lists the configurable parameters of the swift chart and th
 | `replicaCount`            | Number of swift replicas to create (only 1 is supported)      | `1`              |
 | `swift.registry`          | Docker registry used to pull Swift image                      | `appscode`       |
 | `swift.repository`        | Swift container image                                         | `swift`          |
-| `swift.tag`               | Swift container image tag                                     | `0.11.1`          |
+| `swift.tag`               | Swift container image tag                                     | `v0.12.1`          |
 | `imagePullSecrets`        | Specify image pull secrets                                    | `nil` (does not add image pull secrets to deployed pods) |
 | `imagePullPolicy`         | Image pull policy                                             | `IfNotPresent`   |
 | `logLevel`                | Log level for proxy                                           | `3`              |
