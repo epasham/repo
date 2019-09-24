@@ -26,6 +26,15 @@ sts:
   AntiAffinity: soft
   hostPort: null
 
+## Useful if using any custom secrets
+## Pass in some secrets to use (if required)
+# secrets:
+# - name: myNifiSecret
+#   keys:
+#     - key1
+#     - key2
+#   mountPath: /opt/nifi/secret
+
 properties:
   # use externalSecure for when inbound SSL is provided by nginx-ingress or other external mechanism
   externalSecure: false
@@ -104,8 +113,8 @@ persistence:
   # For example:
   # storageClass: standard
   #
+  # The default storage class is used if this variable is not set.
 
-  storageClass: standard
   accessModes:  [ReadWriteOnce]
   ## Storage Capacities for persistent volumes
   # Storage capacity for the 'data' directory, which is used to hold things such as the flow.xml.gz, configuration, state, etc.

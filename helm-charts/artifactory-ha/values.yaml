@@ -84,7 +84,11 @@ networkpolicy:
   #         matchLabels:
   #           app: artifactory-ha
 
-# Database
+
+## Database configurations
+## Use the wait-for-db init container. Set to false to skip
+waitForDatabase: true
+
 ## Configuration values for the postgresql dependency
 ## ref: https://github.com/kubernetes/charts/blob/master/stable/postgresql/README.md
 ##
@@ -929,6 +933,8 @@ nginx:
     loadBalancerIP:
     ## There are two available options: “Cluster” (default) and “Local”.
     externalTrafficPolicy: Cluster
+    labels: {}
+    #  label-key: label-value
   externalPortHttp: 80
   internalPortHttp: 80
   externalPortHttps: 443

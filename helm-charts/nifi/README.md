@@ -72,6 +72,8 @@ The following table lists the configurable parameters of the nifi chart and the 
 | **sts**                                                                     |
 | `sts.podManagementPolicy`                                                   | Parallel podManagementPolicy                                                                                       | `Parallel`                      |
 | `sts.AntiAffinity`                                                          | Affinity for pod assignment                                                                                        | `soft`                          |
+| **secrets**
+| `secrets`                                                                   | Pass any secrets to the nifi pods. The secret can also be mounted to a specific path if required.                               | `nil` |
 | **nifi properties**                                                         |
 | `properties.externalSecure`                                                 | externalSecure for when inbound SSL                                                                                | `false`                         |
 | `properties.isNode`                                                         | cluster node properties (only configure for cluster nodes)                                                         | `true`                          |
@@ -108,7 +110,7 @@ The following table lists the configurable parameters of the nifi chart and the 
 | `ingress.tls`                                                               | Ingress TLS configuration                                                                                          | `[]`                            |
 | **Persistence**                                                             |
 | `persistence.enabled`                                                       | Use persistent volume to store data                                                                                | `false`                         |
-| `persistence.storageClass`                                                  | Storage class name of PVCs                                                                                         | `standard`                      |
+| `persistence.storageClass`                                                  | Storage class name of PVCs (use the default type if unset)                                                         | `nil`                           |
 | `persistence.accessMode`                                                    | ReadWriteOnce or ReadOnly                                                                                          | `[ReadWriteOnce]`               |
 | `persistence.dataStorage.size`                                              | Size of persistent volume claim                                                                                    | `1Gi`                           |
 | `persistence.flowfileRepoStorage.size`                                      | Size of persistent volume claim                                                                                    | `10Gi`                          |

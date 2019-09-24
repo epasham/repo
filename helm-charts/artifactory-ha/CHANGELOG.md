@@ -1,6 +1,12 @@
 # JFrog Artifactory-ha Chart Changelog
 All changes to this chart will be documented in this file.
 
+## [0.16.7] - Sep 24, 2019
+* Option to skip wait-for-db init container with '--set waitForDatabase=false'
+
+## [0.16.6] - Sep 24, 2019
+* Add support for setting `nginx.service.labels`
+
 ## [0.16.5] - Sep 23, 2019
 * Add support for setting `artifactory.customInitContainersBegin`
 
