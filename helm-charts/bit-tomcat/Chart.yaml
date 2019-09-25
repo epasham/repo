@@ -17,4 +17,4 @@ maintainers:
 name: bit-tomcat
 sources:
 - https://github.com/bitnami/bitnami-docker-tomcat
-version: 4.4.2
+version: 5.0.0
