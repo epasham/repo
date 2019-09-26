@@ -12,4 +12,4 @@ maintainers:
 name: sentry-kubernetes
 sources:
 - https://github.com/getsentry/sentry-kubernetes
-version: 0.2.1
+version: 0.2.2
