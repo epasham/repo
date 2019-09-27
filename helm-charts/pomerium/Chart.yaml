@@ -1,5 +1,5 @@
 apiVersion: v1
-appVersion: 0.3.0
+appVersion: 0.3.1
 description: Pomerium is an identity-aware access proxy.
 engine: gotpl
 home: http://www.pomerium.io/
@@ -23,4 +23,4 @@ maintainers:
 name: pomerium
 sources:
 - https://github.com/pomerium/pomerium
-version: 2.0.0
+version: 2.0.1
