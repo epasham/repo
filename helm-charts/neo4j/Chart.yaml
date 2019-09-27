@@ -11,4 +11,4 @@ sources:
 - https://github.com/neo4j/neo4j
 - https://github.com/neo4j/docker-neo4j
 - https://github.com/mneedham/k8s-kubectl
-version: 1.2.0
+version: 1.2.1

@@ -20,4 +20,4 @@ name: xray
 sources:
 - https://bintray.com/jfrog/product/xray/view
 - https://github.com/jfrog/charts
-version: 1.1.0
+version: 1.1.1
