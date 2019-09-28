@@ -1,8 +1,8 @@
-# What's new in Chart Version 1.2.10
+# What's new in Chart Version 1.2.11
 * Updated the secret generation image to be the Universal Base Image
 
 # Fixes
-* Node affinity: specifying a weight of zero will remove that platform from your nodeAffinity
+* Fixed the way that the image path is resolved for the secret generation yaml
 
 # Prerequisites
 * Kubernetes version 1.9 or greater
@@ -16,6 +16,7 @@
 # Version History
 | Chart  | Date     | Kubernetes Required | Details |
 |--------|----------|---------------------|---------|
+| 1.2.11 | 06/25/19 | >=1.9.0 | Updated secret generation image and bug fixes |
 | 1.2.10 | 05/29/19 | >=1.9.0 | Updated secret generation image and bug fixes |
 | 1.2.9  | 05/10/19 | >=1.9.0 | Added secret generation support |
 | 1.2.8  | 03/14/19 | >=1.9.0 | Bug fixes |

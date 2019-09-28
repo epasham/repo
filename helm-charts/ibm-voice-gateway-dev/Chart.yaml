@@ -1,13 +1,16 @@
-appVersion: 1.0.2.0
-description: IBM Voice Gateway Helm chart (Developer Trial).
-icon: https://raw.githubusercontent.com/WASdev/sample.voice.gateway/master/images/VoiceGateway_WebLogo_Color.png
+appVersion: 1.0.3.0
+description: Watson Voice Gateway Helm chart (Developer Trial).
+icon: https://broker.voiceagent.cloud.ibm.com/images/vgaas_icon_32.svg
 keywords:
-- voice gateway
-- message queue
+- Voice Gateway
+- SMS Gateway
+- Message Queue
+- Watson
 - Limited
 - amd64
 - ICP
-kubeVersion: '>=1.11'
+- RHOCP
+kubeVersion: '>=1.11.0'
 name: ibm-voice-gateway-dev
-tillerVersion: '>=2.9.1'
-version: 2.2.1
+tillerVersion: '>=2.9.0'
+version: 3.0.0

@@ -1,6 +1,5 @@
 image:
-  repository:
-  name: opencontent-common-utils
+  name: ibmcom/opencontent-common-utils
   tag: 1.1.2-amd64
   pullPolicy: IfNotPresent
   pullSecret: ""

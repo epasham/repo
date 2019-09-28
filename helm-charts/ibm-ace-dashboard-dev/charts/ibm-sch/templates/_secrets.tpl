@@ -25,12 +25,7 @@ Usage of "sch.secretGen.*" requires the following:
    - image: opencontent-common-utils:1.1.2-amd64
      references:
      - repository: opencontent-common-utils:1.1.2-amd64
-       pull-repository: hyc-cp-opencontent-docker-local.artifactory.swg-devops.com/release-master/opencontent-common-utils:1.1.2-amd64
-       pull-authorization:
-         username:
-           env: ARTIFACTORY_USER
-         password:
-           env: ARTIFACTORY_PASS
+       pull-repository: ibmcom/opencontent-common-utils:1.1.2-amd64
    ```
 
 1. PodSecurityPolicy Requirements
@@ -60,7 +55,7 @@ Usage of "sch.secretGen.*" requires the following:
     apiVersion: v1
     kind: ServiceAccount
     metadata:
-        name: ibm-aspera-secret-gen
+        name: ibm-sch-secret-gen
         namespace: "{{ NAMESPACE }}" #Replace {{ NAMESPACE }} with the namespace you are deploying to
     ```
 
@@ -70,11 +65,11 @@ Usage of "sch.secretGen.*" requires the following:
     apiVersion: rbac.authorization.k8s.io/v1
     kind: Role
     metadata:
-        name: ibm-sch-secret-gen
+      name: ibm-sch-secret-gen
     rules:
     - apiGroups: [""]
-        resources: ["secrets"]
-        verbs: ["list", "create", "delete"]
+      resources: ["secrets"]
+      verbs: ["list", "create", "delete"]
     ```
 
   1. RoleBinding:
@@ -83,15 +78,15 @@ Usage of "sch.secretGen.*" requires the following:
     apiVersion: rbac.authorization.k8s.io/v1
     kind: RoleBinding
     metadata:
-        name: ibm-sch-secret-gen
+      name: ibm-sch-secret-gen
     roleRef:
-        apiGroup: rbac.authorization.k8s.io
-        kind: Role
-        name: ibm-sch-secret-gen
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: ibm-sch-secret-gen
     subjects:
     - kind: ServiceAccount
-        name: ibm-sch-secret-gen
-        namespace: "{{ NAMESPACE }}"
+      name: ibm-sch-secret-gen
+      namespace: "{{ NAMESPACE }}"
     ```
 
 ********************************************************************
@@ -253,7 +248,7 @@ spec:
           limits:
             memory: 200Mi
             cpu: '.5'
-        image: "{{ $secretGenRoot.Values.image.repository }}/{{ $secretGenRoot.Values.image.name }}:{{ $secretGenRoot.Values.image.tag }}"
+        image: "{{ if $secretGenRoot.Values.image.repository }}{{ trimSuffix "/" $secretGenRoot.Values.image.repository }}/{{ end }}{{ $secretGenRoot.Values.image.name }}:{{ $secretGenRoot.Values.image.tag }}"
         imagePullPolicy: {{ $secretGenRoot.Values.image.pullPolicy }}
         volumeMounts:
         - name: tls-out
@@ -378,7 +373,14 @@ spec:
           capabilities:
             drop:
             - ALL
-        image: "{{ $secretGenRoot.Values.image.repository }}/{{ $secretGenRoot.Values.image.name }}:{{ $secretGenRoot.Values.image.tag }}"
+        resources:
+          requests:
+            memory: 100Mi
+            cpu: '.2'
+          limits:
+            memory: 200Mi
+            cpu: '.5'
+        image: "{{ if $secretGenRoot.Values.image.repository }}{{ trimSuffix "/" $secretGenRoot.Values.image.repository }}/{{ end }}{{ $secretGenRoot.Values.image.name }}:{{ $secretGenRoot.Values.image.tag }}"
         imagePullPolicy: {{ $secretGenRoot.Values.image.pullPolicy }}
         command:
         - /bin/bash
