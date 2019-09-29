@@ -19,7 +19,9 @@ arch:
 
 image:
   name: "opencontent-redis-3"
-  tag: "1.0.1"
+  tag: "1.1.1"
+#  name: "opencontent-redis-3"
+#  tag: "1.0.1"
   pullPolicy: "IfNotPresent"
 
 creds:
@@ -45,6 +47,9 @@ global:
   sch:
     # global.sch.enabled - Specifies if the ibm-sch chart should be used as sub-chart. If set to false, a compatible version of sch chart should be provided by umbrella chart.
     enabled: true
+  rbac:
+    # Specifies whether RBAC resources should be created
+    create: true 
 
 affinity: {}
 
@@ -163,7 +168,7 @@ serverService:
 
 rbac:
   # Specifies whether RBAC resources should be created
-  create: true
+  create: 
 
 serviceAccount:
   # Specifies whether a ServiceAccount should be created
@@ -191,19 +196,13 @@ resources:
       memory: 200Mi
       cpu: 100m
 
-redisPodSecurityContext: |
-  runAsNonRoot: true
-  runAsUser: 1000
-  runAsGroup: 1000
-  fsGroup: 1000
+securityContext:
+  redis:
+    fsGroup: 1000
+    runAsUser: 1000
+    runAsGroup: 1000
+  creds:
+    runAsUser: 99
 
-redisContainerSecurityContext: |
-  runAsNonRoot: true
-  runAsUser: 1000
-  runAsGroup: 1000
-  privileged: false
-  readOnlyRootFilesystem: false
-  allowPrivilegeEscalation: false
-  capabilities:
-    drop:
-    - ALL
+# clusterDomain - the suffix of all the cluster DNS names like service_name.service_namespace.svc.cluster.local. Supports templated values like "{{ .Values.global.clusterDomain }}"
+clusterDomain: "cluster.local"

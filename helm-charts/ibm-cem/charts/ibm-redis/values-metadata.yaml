@@ -192,7 +192,16 @@ global:
         description: "Set to false only is upstream chart provides ibm-sch chart"
         type: "boolean"
         hidden: false
-
+  rbac:
+    create:
+      __metadata:
+        name: "create"
+        label: "Create"
+        description: "Create RBAC roles and bindings"
+        type: "boolean"
+        immutable: true
+        required: true
+        hidden: true
 
 affinity: 
   __metadata:
@@ -624,7 +633,7 @@ rbac:
       description: "Create RBAC roles and bindings"
       type: "boolean"
       immutable: false
-      required: true
+      required: false
 
 serviceAccount:
   __metadata:
@@ -707,20 +716,42 @@ resources:
           type: "string"
           required: true
 
-redisPodSecurityContext:
+securityContext:
   __metadata:
-    name: "redisPodSecurityContext"
-    label: "Pod level Security Context for redis server/sentinel statefulsets"
-    description: "Pod Security Context to the redis server/sentinel pods in yaml format"
-    type: "string"
-    required: false
-    multiline: true
+    label: "Securitycontext configuration"
+    description: "Security context configuration for all containers and pods"
+  redis:
+    runAsUser: 
+      __metadata:
+        label: "Runasuser"
+        description: "Run as user config for the contianers redis and redis sentinel"
+        type: "number"
+        required: false
+    runAsGroup:      
+      __metadata:
+        label: "Runasgroup"
+        description: "Run as group config for the contianers redis and redis sentinel"
+        type: "number"
+        required: false
+    fsGroup: 
+      __metadata:
+        label: "Fsgroup"
+        description: "Fsgroup config for the contianers redis and redis sentinel"
+        type: "number"
+        required: false
+  creds:
+    runAsUser:       
+      __metadata:
+        label: "Runasuser"
+        description: "Run as user config for the containers creds gen and creds clean up"
+        type: "number"
+        required: false
 
-redisContainerSecurityContext:
+clusterDomain:
   __metadata:
-    name: "redisContainerSecurityContext"
-    label: "Container level Security Context for redis server/sentinel statefulsets"
-    description: "Container Security Context to the redis server/sentinel pods in yaml format"
+    name: "clusterDomain"
+    label: "Cluster domain used by in-cluster KubeDNS names."
+    description: "Specify only if your KubeDNS service names does not end with cluster.local."
     type: "string"
     required: false
-    multiline: true
+    hidden: true

@@ -38,10 +38,9 @@ This chart requires the adopter to encrypt data prior or the cluster owner to en
 ## Prerequisites
 
 - Kubernetes 1.10
-- Tiller 2.9.1 or later
+- Tiller 2.9.0
 - PV support on the underlying infrastructure
 - Persistent Volume is required if persistance is enabled. Currently, only volumes created via dynamic provisioning are supported.
-
 
 ## Configuration
 
@@ -57,6 +56,8 @@ The following tables lists the configurable parameters of the Redis chart and th
 | `global.persistence.supplementalGroups`        | Provide the gid of the volumes as list (required for NFS).                                              |
 | `global.image.pullSecret`               |Image pull secret that is globally used inside the chart    | ``                                    |
 | `global.environmentSize`         | Controls the resource sizes the value can be either 'custom', 'size0' or 'size1'. Size0 is a minimal spec for evaluation or development purposes. Set to 'custom' to use sizing set in values.yaml                           | `custom`                                    |
+|global.sch.enabled  | Specifies if ibm-sch chart is used as required subchart. If set to false, the umbrella chart has to provide this dependency | `true`|
+|global.rbac.create | This global parameter is used when the chart parameter is set invalid value | `true` |
 | `image.name`                      | Redis image name                                       | `release/opencontent-redis-3`   
 | `image.tag`                      | Redis image tag                                       | `1.0.1`                                          |
 | `image.pullPolicy`                      | Redis image pull policy                                       | `IfNotPresent`  |
@@ -119,8 +120,10 @@ The following tables lists the configurable parameters of the Redis chart and th
 | `resources.sentinel.requests.cpu`    | Sentinel CPU resource requests                      | `100m`         |
 | `resources.sentinel.limits.memory`   | Sentinel Memory resource limits                     | `200Mi`        |
 | `resources.sentinel.limits.cpu`      | Sentinel CPU resource limits                        | `100m`         |
-| `redisPodSecurityContext`            | Security context for the pods in yaml form          | `<yaml>`       |
-| `redisContainerSecurityContext`      | Security context for the containers in yaml form    | `<yaml>`       |
+| securityContext.redis.runAsUser  | The User ID that needs to be run as by all redis containers. This applies only when installed on non-openshift clusters.  |   `1000` |
+| securityContext.redis.runAsGroup   | The Group ID that needs to be run as by all redis containers. This applies only when installed on non-openshift clusters. | `1000` |
+| securityContext.redis.fsGroup  | The FS Group ID that needs to be run as by all redis containers. This applies only when installed on non-openshift clusters.  | `1000` |
+| securityContext.creds.runAsUser  | The User ID that needs to be run as by all creds job containers. This applies only when installed on non-openshift clusters. | `99` |
 
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
@@ -229,69 +232,7 @@ This chart also defines a custom PodSecurityPolicy which can be used to finely c
 
 This chart requires a `SecurityContextConstraints` to be bound to the target namespace prior to installation. To meet this requirement there may be cluster scoped as well as namespace scoped pre and post actions that need to occur.
 
-The predefined `SecurityContextConstraints` name: [`ibm-restricted-scc`](https://ibm.biz/cpkspec-scc) has been verified for this chart, if your target namespace is bound to this `SecurityContextConstraints` resource you can proceed to install the chart.
-
-### Creating the required resources
-
-This chart defines a custom `SecurityContextConstraints` which can be used to finely control the permissions/capabilities needed to deploy this chart. You can enable this custom `SecurityContextConstraints` resource using the supplied instructions or scripts in the `ibm_cloud_pak/pak_extensions/prereqs` directory.
-
-* From the user interface, you can copy and paste the following snippets to enable the custom `SecurityContextConstraints`
-  * Custom `SecurityContextConstraints` definition:
-
-  ```yaml
-  apiVersion: security.openshift.io/v1
-  kind: SecurityContextConstraints
-  metadata:
-    annotations:
-      kubernetes.io/description: "This policy is the most restrictive,
-        requiring pods to run with a non-root UID, and preventing pods from accessing the host."
-      cloudpak.ibm.com/version: "1.0.0"
-    name: ibm-restricted-scc
-  allowHostDirVolumePlugin: false
-  allowHostIPC: false
-  allowHostNetwork: false
-  allowHostPID: false
-  allowHostPorts: false
-  allowPrivilegedContainer: false
-  allowPrivilegeEscalation: false
-  allowedCapabilities: []
-  allowedFlexVolumes: []
-  allowedUnsafeSysctls: []
-  defaultAddCapabilities: []
-  defaultPrivilegeEscalation: false
-  forbiddenSysctls:
-    - "*"
-  fsGroup:
-    type: MustRunAs
-    ranges:
-    - max: 65535
-      min: 1
-  readOnlyRootFilesystem: false
-  requiredDropCapabilities:
-  - ALL
-  runAsUser:
-    type: MustRunAsNonRoot
-  seccompProfiles:
-  - docker/default
-  seLinuxContext:
-    type: RunAsAny
-  supplementalGroups:
-    type: MustRunAs
-    ranges:
-    - max: 65535
-      min: 1
-  volumes:
-  - configMap
-  - downwardAPI
-  - emptyDir
-  - persistentVolumeClaim
-  - projected
-  - secret
-  priority: 11 # default anyuid has priority 10
-  ```
-
-* From the command line, you can run the setup scripts included under `ibm_cloud_pak/pak_extensions/prereqs` to create namespace and apply `SecurityContextConstraints` to the namespace
-  * `ibm_cloud_pak/pak_extensions/prereqs/createSccAndNamespace.sh --namespace [namespace]`
+The predefined `SecurityContextConstraints` name: [`restricted`](https://ibm.biz/cpkspec-scc) has been verified for this chart, if your target namespace is bound to this `SecurityContextConstraints` resource you can proceed to install the chart.
 
 ## Installing the Chart
 

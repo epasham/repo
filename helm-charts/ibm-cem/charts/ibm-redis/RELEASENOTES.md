@@ -1,19 +1,12 @@
 # Release Notes
 
-## What's new in Chart Version 1.3.0
+## What's new in Chart Version 1.4.4
 
-* New Image for secret generation
-* New Image for Redis 
-* CV lint version 1.4.1 fixes
-* Follow Hero Metadata
-* Support Affinity Overriding
-* Removed pre install helm hooks
-* uses ibm-sch-1.2.10
+* Fix chart upgrade issue by removing `labelType: new` from `ibm-sch` chart config 
 
 ## Fixes
 
-* Previously the redis helm chart with sch integration, sets master role to serveral pods when the release name is too long, this bug has been fixed in this release. 
-* Previoulsy non UBI image was used to generate secret, ubi based image is used in this release. 
+CVE fixes
 
 ## Prerequisites
 
@@ -21,7 +14,7 @@ No changes
 
 ## Breaking Changes
 
-Values.yaml file has been restructured 
+None
 
 ## Documentation
 
@@ -31,6 +24,10 @@ Values.yaml file has been restructured
 
 | Chart | Date | Kubernetes Version Required | Breaking Changes | Details |
 | ----- | ---- | --------------------------- | ---------------- | ------- |
+|1.4.4 | September 3, 2019 | >=1.10 | None | Fix chart upgrade issue by removing `labelType: new` from `ibm-sch` chart config |
+|1.4.3 | August 19, 2019 | >=1.10 | None | Adding Global.RBAC.Create parameter |
+|1.4.2 | August 14, 2019 | >=1.10 | None | New images with CVE fixes and cv lint 1.4.5 fixes |
+|1.4.0 | July 26, 2019 | >=1.10 | | Support for openshift restricted scc and cv lint 1.4.4 fixes |
 |1.3.1 | June 11, 2019 | >=1.10 | | couple cv lint fixes, adding cv tests, fixing readme with latest code, known issues, encryption details, copyright consistent |
 |1.3.0 |June 3, 2019   | >=1.10  | Values.yaml file changed | * New Image for secret generation </br> * New Image for Redis </br> * CV lint version 1.4.1 fixes </br> * Follow Hero Metadata </br> * Support Affinity Overriding </br> * Removed pre install helm hooks </br> * uses ibm-sch-1.2.10 </br> |
 | 1.2.1 | March 29, 2019 | >= 1.10 | None | Persistence configuration

@@ -32,6 +32,9 @@ sch:
   chart:
     appName: ""
     labelType: non-prefixed
+    secretGen:
+      suffix: "generated"
+      secrets: []
   names:
     fullName:
       maxLength: 63
@@ -108,11 +111,38 @@ or
   {{- if not $schChartConfig -}}
   {{- fail (cat "Sch import failure: Unable to merge sch into values as the data passed is <nil>") -}}
   {{- end -}}
+  {{- /* Evaluate and remove and secrets whose create property is false */ -}}
+  {{- if hasKey $schChartConfig.sch "chart" }}
+    {{- if hasKey $schChartConfig.sch.chart "secretGen" }}
+      {{- $_ := set $schChartConfig "initSecrets" (list) -}}
+      {{- range $secret := $schChartConfig.sch.chart.secretGen.secrets }}
+        {{- if $secret.create -}}
+          {{- $_ := unset $secret "create" -}}
+          {{- $_ := set $schChartConfig "initSecrets" (append $schChartConfig.initSecrets $secret) -}}
+        {{- end -}}
+      {{- end -}}
+      {{- if eq (len $schChartConfig.initSecrets) 0 -}}
+        {{- $_ := unset $schChartConfig.sch.chart "secretGen" -}}
+      {{- else -}}
+        {{- $_ := set $schChartConfig.sch.chart.secretGen "secrets" $schChartConfig.initSecrets -}}
+      {{- end -}}
+      {{- $_ := unset $schChartConfig "initSecrets" -}}
+    {{- end -}}
+  {{- end -}}
   {{- $_ := merge $root $schChartConfig -}}
   {{- $_ := merge $root $schConfig -}}
   {{- $valuesMetadata := dict "valuesMetadata" (fromYaml ($root.Files.Get "values-metadata.yaml")) -}}
   {{- include "sch.validate.valuesMetadata" (list $valuesMetadata "") -}}
   {{- $_ := merge $root $valuesMetadata -}}
+  {{- /* appName and shortName are in $root by default and need to be forcefully overwritten if they exist */ -}}
+  {{- if hasKey $schChartConfig.sch "chart" }}
+    {{- if hasKey $schChartConfig.sch.chart "appName" }}
+      {{- $_ := set $root.sch.chart "appName" $schChartConfig.sch.chart.appName }}
+    {{- end }}
+    {{- if hasKey $schChartConfig.sch.chart "shortName" }}
+      {{- $_ := set $root.sch.chart "shortName" $schChartConfig.sch.chart.shortName }}
+    {{- end }}
+  {{- end }}
 {{- end -}}
 
 {{- define "sch.validate.valuesMetadata" -}}

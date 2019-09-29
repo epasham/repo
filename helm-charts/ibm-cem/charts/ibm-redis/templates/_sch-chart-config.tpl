@@ -50,8 +50,25 @@ sch:
           key: beta.kubernetes.io/arch
     credsPodSecurityContext:
       runAsNonRoot: true
-      runAsUser: 99
+    {{- if not (.Capabilities.APIVersions.Has "security.openshift.io/v1") }}
+      runAsUser: {{ .Values.securityContext.creds.runAsUser }}
+    {{- end }} 
     credsContainerSecurityContext:
+      privileged: false
+      readOnlyRootFilesystem: false
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+    redisPodSecurityContext:
+      runAsNonRoot: true
+    {{- if not (.Capabilities.APIVersions.Has "security.openshift.io/v1") }}
+      fsGroup: {{ .Values.securityContext.redis.fsGroup }}
+      runAsUser: {{ .Values.securityContext.redis.runAsUser }}
+      runAsGroup: {{ .Values.securityContext.redis.runAsGroup }}
+    {{- end }} 
+    redisContainerSecurityContext:
+      runAsNonRoot: true
       privileged: false
       readOnlyRootFilesystem: false
       allowPrivilegeEscalation: false

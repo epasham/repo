@@ -27,8 +27,19 @@ Create the name of the service account to use
 {{- if .Values.serviceAccount.create -}}
     {{- include "sch.names.fullName" (list .) -}}
 {{- else -}}
-    {{ default "default" .Values.serviceAccount.name }}
+    {{ default "default" ( default .Values.global.rbac.serviceAccountName .Values.serviceAccount.name ) }}
 {{- end -}}
+{{- end -}}
+
+{{/*
+Allow use of global.rbac.create
+*/}}
+{{- define "ibmRedis.rbac.create" }}
+{{- if ne (kindOf .Values.rbac.create) "invalid" }}
+  {{- .Values.rbac.create }}
+{{- else }}
+  {{- .Values.global.rbac.create }}
+{{- end }}
 {{- end -}}
 
 {{/*
@@ -49,6 +60,30 @@ Create the name of the service account to use
     {{- include "sch.affinity.nodeAffinity" (list . .sch.chart.nodeAffinity) }}
   {{- end -}}
 {{- end -}}
+
+{{/*
+check if replicas.servers == "environmentSizeDefault" and if so use value in _resouces.tpl
+corresponding to environmentSize setting
+*/}}
+{{- define "ibmRedis.server.replicationFactor" -}}
+  {{- if eq ( .Values.replicas.servers | toString) "environmentSizeDefault" }}
+    {{- include "ibmRedis.comp.size.data" (list . "server" "replicas") }}
+  {{- else }}
+    {{- .Values.replicas.servers }}
+  {{- end }}
+{{- end }}
+
+{{/*
+check if replicas.servers == "environmentSizeDefault" and if so use value in _resouces.tpl
+corresponding to environmentSize setting
+*/}}
+{{- define "ibmRedis.sentinel.replicationFactor" -}}
+  {{- if eq ( .Values.replicas.sentinels | toString) "environmentSizeDefault" }}
+    {{- include "ibmRedis.comp.size.data" (list . "sentinel" "replicas") }}
+  {{- else }}
+    {{- .Values.replicas.sentinels }}
+  {{- end }}
+{{- end }}
 
 {{- define "ibmRedis.persistenceEnabled" }}
   {{- if ne (kindOf .Values.persistence.enabled) "invalid" }}

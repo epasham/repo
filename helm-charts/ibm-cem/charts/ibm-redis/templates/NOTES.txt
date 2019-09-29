@@ -1,6 +1,6 @@
 {{- include "sch.config.init" (list . "ibmRedis.sch.chart.config.values") -}}
 Redis cluster can be accessed via port 6379 on the following DNS name from within your cluster:
-{{ include "sch.names.fullCompName" (list . .sch.chart.components.masterService) }}.{{ .Release.Namespace }}.svc.cluster.local
+{{ include "sch.names.fullCompName" (list . .sch.chart.components.masterService) }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}
 
 
 To connect to your Redis server:

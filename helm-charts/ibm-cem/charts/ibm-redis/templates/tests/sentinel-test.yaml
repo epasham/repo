@@ -18,14 +18,12 @@ metadata:
 {{ include "sch.metadata.labels.standard" (list . "sentinel-test") | indent 4 }}
   annotations:
     "helm.sh/hook": test-success
-    "helm.sh/hook-delete-policy": "hook-succeeded"
 spec:
   hostNetwork: false
   hostPID: false
   hostIPC: false
   securityContext:
-    runAsNonRoot: true
-    runAsUser: 1000
+{{ include "sch.security.securityContext" (list . .sch.chart.redisPodSecurityContext) | indent 4 }}
   restartPolicy: Never
   affinity:
         {{- if .Values.affinity }}
@@ -50,14 +48,7 @@ spec:
           memory: 128Mi
           cpu: 50m
       securityContext:
-        privileged: false
-        readOnlyRootFilesystem: false
-        allowPrivilegeEscalation: false
-        runAsNonRoot: true
-        runAsUser: 1000
-        capabilities:
-          drop:
-          - ALL
+{{ include "sch.security.securityContext" (list . .sch.chart.redisContainerSecurityContext) | indent 8 }}
       command:
       - "redis-cli"
       - "-h"

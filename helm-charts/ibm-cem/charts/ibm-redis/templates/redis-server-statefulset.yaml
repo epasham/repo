@@ -21,7 +21,7 @@ metadata:
 {{ include "sch.metadata.labels.standard" (list . .sch.chart.components.server) | indent 4 }}
 spec:
   serviceName: {{ include "sch.names.fullCompName" (list . .sch.chart.components.server) | quote }}
-  replicas: {{ include "ibmRedis.comp.size.data" (list . "server" "replicas" ) }}
+  replicas: {{ include "ibmRedis.server.replicationFactor" . }}
   selector:
     matchLabels:
 {{ include "sch.metadata.labels.standard" (list . .sch.chart.components.server) | indent 6 }}
@@ -37,7 +37,7 @@ spec:
       hostPID: false
       hostIPC: false
       securityContext:
-{{ .Values.redisPodSecurityContext | indent 8 }}
+{{ include "sch.security.securityContext" (list . .sch.chart.redisPodSecurityContext) | indent 8 }}
         {{- range $group := .Values.global.persistence.supplementalGroups }}
           - {{ $group -}}
         {{ end }}
@@ -46,7 +46,8 @@ spec:
       serviceAccountName: {{ include "ibmRedis.serviceAccountName" . | quote }}
 {{- if ne .Values.global.image.pullSecret "" }}
       imagePullSecrets:
-      - name: {{ .Values.global.image.pullSecret }}
+      - name: "{{ .Values.global.image.pullSecret }}"
+      - name: "us-south-redsonja-token"
 {{- end }}
       containers:
       - name: redis
@@ -54,7 +55,7 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy | quote  }}
         {{- if .Values.master.livenessProbe.enabled}}
         securityContext:
-{{ .Values.redisContainerSecurityContext | indent 10 }}
+{{ include "sch.security.securityContext" (list . .sch.chart.redisContainerSecurityContext) | indent 10 }}
         livenessProbe:
           initialDelaySeconds: {{ .Values.master.livenessProbe.initialDelaySeconds }}
           periodSeconds: {{ .Values.master.livenessProbe.periodSeconds }}

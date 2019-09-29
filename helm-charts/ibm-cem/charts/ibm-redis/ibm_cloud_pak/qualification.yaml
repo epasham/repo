@@ -10,7 +10,7 @@
 
 qualification:
   levelName: "certified-ibm-cloud-pak"
-  levelDescription: "Certified IBM Cloud Pak"
+  levelDescription: "IBM Certified Container"
   issueDate: "06/2019"
   duration: "12M"
   terms: "Valid from date of issue. Security vulnerability management and enhancements are delivered on the latest version of the chart and images."
@@ -22,7 +22,7 @@ prereqs:
         name: "ibm-restricted-psp"
     openshift:
       securityContextConstraints:
-        name: "ibm-restricted-scc"
+        name: "restricted"
     ibmCloudPrivate:
       installerRole:
         name: "Administrator"
