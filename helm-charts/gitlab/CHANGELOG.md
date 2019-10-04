@@ -2,6 +2,105 @@
 documentation](doc/development/changelog.md) for instructions on adding your own
 entry.
 
+## 2.3.5
+
+### Fixed (1 change, 1 of them is from the community)
+
+- Fix volumeMounts indentation in task-runner backup-job. !983 (Chris Boot)
+
+### Other (1 change)
+
+- Update GitLab Version to 12.3.4.
+
+
+## 2.3.4
+
+### Other (1 change)
+
+- Update GitLab Version to 12.3.3.
+
+
+## 2.3.3
+
+### Other (1 change)
+
+- Update GitLab Version to 12.3.2.
+
+
+## 2.3.2
+
+### Other (1 change)
+
+- Update GitLab Version to 12.3.1.
+
+
+## 2.3.1
+
+### Fixed (1 change)
+
+- Pin gitlab-exporter version to the proper image.
+
+### Other (1 change)
+
+- Update GitLab Version to 12.3.0.
+
+
+## 2.3.0
+
+### Fixed (4 changes, 2 of them are from the community)
+
+- Set the default retention for Prometheus data to 15d. !905 (Gerard Hickey)
+- Removes duplicate http key from registry config. !923 (jarv)
+- Configure the backup cron to use a different tmp volume than the task-runner. !942
+- Disable object storage for disabled features. !962
+
+### Changed (4 changes, 1 of them is from the community)
+
+- Update operator to v0.7, introduces status subresource, and gitaly waiting fixes. !906
+- Update the sidekiq queues example with all of the queues #1429. !909 (Mike Rennie)
+- Set a sane default of 2 seconds for Unicorn 'readinessProbe.timeoutSeconds'. !950
+- Set a sane default of 2 seconds for Workhorse 'readinessProbe.timeoutSeconds'. !964
+
+### Added (6 changes, 4 of them are from the community)
+
+- Added Grafana support into chart install. !789 (Gerard Hickey)
+- Allow postgres to use a serviceName as well as a host #1458. !886 (Mike Rennie)
+- Allow the monitoring IP whitelist to be specified for unicorn #1499. !887 (Mike Rennie)
+- Add missing gitaly config options. !939
+- Added scheduling options for redis Subchart. !949 (Willi Eggeling)
+- Option to bypass two-factor auth for certain omniauth providers. !961
+
+### Other (3 changes)
+
+- Rename gitlab-monitor to gitlab-exporter. !897
+- Update gitlab-runner to 0.9.0/12.3.0. !965
+- Update GitLab Version to 12.3.0.
+
+
+## 2.2.6
+
+### Other (1 change)
+
+- Update GitLab Version to 12.2.5.
+
+
+## 2.2.5
+
+### Fixed (1 change)
+
+- Set/expose securityContext for upgrade check hook. !915
+
+### Added (2 changes, 1 of them is from the community)
+
+- Adds readiness and liveness configuration for Registry. !932
+- Allows draintimeout to be configured for registry. !934 (jarv)
+
+### Other (2 changes)
+
+- Update gitlab-runner to 0.8.0/12.2.0. !912
+- Update GitLab Version to 12.2.4.
+
+
 ## 2.2.4
 
 ### Added (2 changes, 2 of them are from the community)
@@ -62,6 +161,24 @@ entry.
 - Update operator to v0.6 for newer k8s support. !895
 - Document global.ingress.class & sample Traefik. !898
 - Update GitLab Version to 12.2.0.
+
+
+## 2.1.10
+
+### Other (1 change)
+
+- Update GitLab Version to 12.1.11.
+
+
+## 2.1.8
+
+### Fixed (1 change)
+
+- Chart pull policies syntax restored to previous and documented names. !904
+
+### Other (1 change)
+
+- Update GitLab Version to 12.1.8.
 
 
 ## 2.1.7
@@ -153,6 +270,20 @@ entry.
 - Run before_fork only once on boot for Unicorn. !852
 - Update gitlab-runner to 0.7.0/12.1.0. !878
 - Update GitLab Version to 12.1.0.
+
+
+## 2.0.7
+
+### Other (1 change)
+
+- Update GitLab Version to 12.0.9.
+
+
+## 2.0.6
+
+### Other (1 change)
+
+- Update GitLab Version to 12.0.8.
 
 
 ## 2.0.5
@@ -1085,4 +1216,4 @@ entry.
 
 ## 2018-03-22 Alpha
 
-- See [alpha documentation](https://gitlab.com/charts/helm.gitlab.io/blob/master/doc/architecture/alpha.md)
+- See [alpha documentation](https://docs.gitlab.com/charts/releases/alpha.html)

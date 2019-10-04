@@ -13,7 +13,7 @@ maintainers:
   name: GitLab Inc.
 name: certmanager-issuer
 sources:
-- https://gitlab.com/charts/gitlab/tree/master/charts/certmanager-issuer
+- https://gitlab.com/gitlab-org/charts/gitlab/tree/master/charts/certmanager-issuer
 - https://gitlab.com/gitlab-org/build/CNG/tree/master/kubectl
 - https://github.com/jetstack/cert-manager
 version: 0.1.0

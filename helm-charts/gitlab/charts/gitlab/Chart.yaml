@@ -10,5 +10,5 @@ maintainers:
   name: GitLab Inc.
 name: gitlab
 sources:
-- https://gitlab.com/charts/gitlab
+- https://gitlab.com/gitlab-org/charts/gitlab
 version: 0.1.0

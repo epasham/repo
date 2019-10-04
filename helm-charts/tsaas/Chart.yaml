@@ -1,0 +1,11 @@
+appVersion: 0.1.2
+description: A Helm chart for Tsimulus as a Service
+home: https://github.com/cetic/tsimulus-saas
+keywords:
+- tsimulus
+- generator
+maintainers:
+- name: AyadiAmen
+- name: alexnuttinck
+name: tsaas
+version: 0.1.2

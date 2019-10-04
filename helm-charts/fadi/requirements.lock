@@ -19,24 +19,33 @@ dependencies:
   version: 0.8.2
 - name: nifi
   repository: https://cetic.github.io/helm-charts/
-  version: 0.1.6
+  version: 0.2.0
 - name: pgadmin
   repository: https://cetic.github.io/helm-charts/
-  version: 0.1.9
+  version: 0.1.10
 - name: openldap
   repository: https://kubernetes-charts.storage.googleapis.com/
   version: 1.1.0
 - name: phpldapadmin
   repository: https://cetic.github.io/helm-charts/
   version: 0.1.2
-- name: elastic-stack
-  repository: https://kubernetes-charts.storage.googleapis.com/
-  version: 1.8.0
 - name: kafka
   repository: https://kubernetes-charts-incubator.storage.googleapis.com
   version: 0.1.5
 - name: cassandra
   repository: https://kubernetes-charts-incubator.storage.googleapis.com
   version: 0.13.3
-digest: sha256:24997c51599e33579f81beebd511c90a16e256280147289a4fe329b9d5df3ab8
-generated: "2019-09-06T12:35:17.146505217Z"
+- name: elasticsearch
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.31.1
+- name: kibana
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 3.2.4
+- name: filebeat
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.7.0
+- name: logstash
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.13.0
+digest: sha256:1eab7978b2dda7b78004aea6b62f9f2f7687a363fbd86a75cfc66ac484968068
+generated: "2019-10-03T07:53:30.138857656Z"

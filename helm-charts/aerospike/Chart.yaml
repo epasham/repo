@@ -14,4 +14,4 @@ maintainers:
 name: aerospike
 sources:
 - https://github.com/aerospike/aerospike-server
-version: 0.2.8
+version: 0.2.9

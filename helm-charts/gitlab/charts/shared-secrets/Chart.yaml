@@ -9,6 +9,6 @@ maintainers:
   name: GitLab Inc.
 name: shared-secrets
 sources:
-- https://gitlab.com/charts/gitlab/tree/master/charts/gitlab/charts/migrations
+- https://gitlab.com/gitlab-org/charts/gitlab/tree/master/charts/gitlab/charts/migrations
 - https://gitlab.com/gitlab-org/build/CNG/tree/master/gitlab-rails
 version: 0.1.0

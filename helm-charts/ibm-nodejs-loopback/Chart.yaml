@@ -1,0 +1,17 @@
+appVersion: 1.0.0
+description: Helm chart for deploying LoopBack Application.
+icon: http://raw.githubusercontent.com/IBM/charts/master/logo/icp-logo-box.svg
+keywords:
+- Node.js
+- LoopBack
+- amd64
+- OpenSource
+- Limited
+- Commercial
+- runtime
+- ICP
+- ICPRHOCP
+kubeVersion: '>=1.9.1'
+name: ibm-nodejs-loopback
+tillerVersion: '>=2.9.1'
+version: 1.0.0

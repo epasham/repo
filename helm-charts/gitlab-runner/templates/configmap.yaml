@@ -78,6 +78,9 @@ data:
         {{- range $key, $value := .Values.runners.env }}
         --env {{ $key | quote -}} = {{- $value | quote }} \
         {{- end }}
+        {{- if and (hasKey .Values.runners "runUntagged") .Values.runners.runUntagged }}
+        --run-untagged=true \
+        {{- end }}
         --non-interactive
 
       retval=$?

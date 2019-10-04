@@ -14,4 +14,4 @@ name: radarr
 sources:
 - https://hub.docker.com/r/linuxserver/radarr/
 - https://github.com/Radarr/Radarr/
-version: 2.0.7
+version: 2.0.8

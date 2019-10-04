@@ -16,4 +16,4 @@ maintainers:
 name: selenium
 sources:
 - https://github.com/SeleniumHQ/docker-selenium
-version: 1.0.8
+version: 1.0.9

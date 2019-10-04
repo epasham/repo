@@ -6,7 +6,7 @@ This helm chart is a lightweight way to configure and run our official [Metricbe
 
 ## Requirements
 
-* Kubernetes >= 1.8
+* Kubernetes >= 1.9
 * [Helm](https://helm.sh/) >= 2.8.0
 
 ## Installing
@@ -26,14 +26,14 @@ This chart is tested with the latest supported versions. The currently tested ve
 
 | 6.x   | 7.x   |
 | ----- | ----- |
-| 6.8.3 | 7.3.2 |
+| 6.8.3 | 7.4.0 |
 
 Examples of installing older major versions can be found in the [examples](./examples) directory.
 
-While only the latest releases are tested, it is possible to easily install old or new releases by overriding the `imageTag`. To install version `7.3.2` of metricbeat it would look like this:
+While only the latest releases are tested, it is possible to easily install old or new releases by overriding the `imageTag`. To install version `7.4.0` of metricbeat it would look like this:
 
 ```
-helm install --name metricbeat elastic/metricbeat --set imageTag=7.3.2
+helm install --name metricbeat elastic/metricbeat --set imageTag=7.4.0
 ```
 
 
@@ -46,10 +46,11 @@ helm install --name metricbeat elastic/metricbeat --set imageTag=7.3.2
 | `extraVolumes`           | Templatable string of additional volumes to be passed to the `tpl` function                                                                                                                                                                                                 | `""`                                                                                                                      |
 | `hostPathRoot`           | Fully-qualified [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) that will be used to persist Metricbeat registry data                                                                                                                             | `/var/lib`                                                                                                                |
 | `image`                  | The Metricbeat docker image                                                                                                                                                                                                                                                 | `docker.elastic.co/beats/metricbeat`                                                                                      |
-| `imageTag`               | The Metricbeat docker image tag                                                                                                                                                                                                                                             | `7.3.2`                                                                                                                   |
+| `imageTag`               | The Metricbeat docker image tag                                                                                                                                                                                                                                             | `7.4.0`                                                                                                                   |
 | `imagePullPolicy`        | The Kubernetes [imagePullPolicy](https://kubernetes.io/docs/concepts/containers/images/#updating-images) value                                                                                                                                                              | `IfNotPresent`                                                                                                            |
 | `imagePullSecrets`       | Configuration for [imagePullSecrets](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) so that you can use a private registry for your image                                                        | `[]`                                                                                                                      |
 | `managedServiceAccount`  | Whether the `serviceAccount` should be managed by this helm chart. Set this to `false` in order to manage your own service account and related roles.                                                                                                                       | `true`                                                                                                                    |
+| `clusterRoleRules`       | Configurable [cluster role rules](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole) that Metricbeat uses to access Kubernetes resources.                                                                                                  | see [values.yaml](./values.yaml)                                                                                          |
 | `podAnnotations`         | Configurable [annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) applied to all Metricbeat pods                                                                                                                                   | `{}`                                                                                                                      |
 | `podSecurityContext`     | Configurable [podSecurityContext](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) for Metricbeat pod execution environment                                                                                                                      | `runAsUser: 0`<br>`privileged: false`                                                                                     |
 | `livenessProbe`          | Parameters to pass to [liveness probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/) checks for values such as timeouts and thresholds.                                                                                    | `failureThreshold: 3`<br>`initialDelaySeconds: 10`<br>`periodSeconds: 10`<br>`successThreshold: 3`<br>`timeoutSeconds: 5` |

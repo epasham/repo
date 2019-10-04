@@ -13,4 +13,4 @@ maintainers:
 name: dask
 sources:
 - https://github.com/dask/dask
-version: 3.0.0
+version: 3.1.0

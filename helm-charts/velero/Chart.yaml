@@ -1,7 +1,7 @@
 apiVersion: v1
 appVersion: 1.1.0
 description: A Helm chart for velero
-home: https://github.com/heptio/velero
+home: https://github.com/vmware-tanzu/velero
 icon: https://cdn-images-1.medium.com/max/1600/1*-9mb3AKnKdcL_QD3CMnthQ.png
 maintainers:
 - email: d-caruso@hotmail.it
@@ -14,6 +14,6 @@ maintainers:
   name: prydonius
 name: velero
 sources:
-- https://github.com/heptio/velero
+- https://github.com/vmware-tanzu/velero
 tillerVersion: '>=2.10.0'
-version: 2.1.6
+version: 2.1.7

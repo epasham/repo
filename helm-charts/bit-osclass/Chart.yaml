@@ -17,4 +17,4 @@ maintainers:
 name: bit-osclass
 sources:
 - https://github.com/bitnami/bitnami-docker-osclass
-version: 6.2.2
+version: 6.2.3

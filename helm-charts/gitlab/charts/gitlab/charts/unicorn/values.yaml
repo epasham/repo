@@ -16,6 +16,10 @@ init:
 # Tolerations for pod scheduling
 tolerations: []
 
+# Monitoring IP whitelist
+monitoring:
+  ipWhitelist: []
+
 annotations: {}
 
 metrics:
@@ -152,6 +156,7 @@ global:
       autoLinkLdapUser: false
       autoLinkSamlUser: false
       externalProviders: []
+      allowBypassTwoFactor: []
       providers: []
       # - secret: gitlab-google-oauth2
       #   key: provider

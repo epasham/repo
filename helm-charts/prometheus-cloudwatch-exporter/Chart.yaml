@@ -15,4 +15,4 @@ maintainers:
 name: prometheus-cloudwatch-exporter
 sources:
 - https://github.com/prometheus/cloudwatch_exporter
-version: 0.4.10
+version: 0.4.11

@@ -13,5 +13,5 @@ maintainers:
 name: redis-ha
 sources:
 - https://gitlab.com/gitlab-org/build/CNG/tree/master/gitlab-redis-ha
-- https://gitlab.com/charts/gitlab/charts/redis-ha
+- https://gitlab.com/gitlab-org/charts/gitlab/charts/redis-ha
 version: 0.1.0

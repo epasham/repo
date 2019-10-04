@@ -15,5 +15,5 @@ maintainers:
 name: registry
 sources:
 - https://github.com/docker/distribution-library-image
-- https://gitlab.com/charts/gitlab/charts/registry
+- https://gitlab.com/gitlab-org/charts/gitlab/charts/registry
 version: 0.2.0

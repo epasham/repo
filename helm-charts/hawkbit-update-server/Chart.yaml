@@ -9,4 +9,7 @@ maintainers:
 - email: andre.bauer@kiwigrid.com
   name: monotek
 name: hawkbit-update-server
-version: 1.0.0
+sources:
+- https://github.com/eclipse/hawkbit
+- https://github.com/kiwigrid/helm-charts/tree/master/charts/hawkbit-update-server
+version: 2.0.1

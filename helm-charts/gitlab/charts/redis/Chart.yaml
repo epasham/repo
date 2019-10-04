@@ -12,5 +12,5 @@ maintainers:
 name: redis
 sources:
 - https://hub.docker.com/_/redis/
-- https://gitlab.com/charts/gitlab/charts/redis
+- https://gitlab.com/gitlab-org/charts/gitlab/charts/redis
 version: 0.1.0

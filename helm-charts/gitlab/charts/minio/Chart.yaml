@@ -11,6 +11,6 @@ maintainers:
   name: GitLab Inc.
 name: minio
 sources:
-- https://gitlab.com/charts/gitlab/charts/minio
+- https://gitlab.com/gitlab-org/charts/gitlab/charts/minio
 - https://github.com/minio/minio
 version: 0.4.3

@@ -18,4 +18,4 @@ maintainers:
 name: fluent-bit
 sources:
 - https://fluentbit.io
-version: 2.7.0
+version: 2.7.1

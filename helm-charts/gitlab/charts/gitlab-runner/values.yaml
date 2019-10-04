@@ -39,9 +39,17 @@ imagePullPolicy: IfNotPresent
 ##
 unregisterRunners: true
 
+## When stopping ther runner, give it time to wait for it's jobs to terminate.
+##
+## Updating the runner's chart version or configuration will cause the runner container
+## to be terminated with a graceful stop request. terminationGracePeriodSeconds
+## instructs Kubernetes to wait long enough for the runner pod to terminate gracefully.
+## ref: https://docs.gitlab.com/runner/commands/#signals
+terminationGracePeriodSeconds: 3600
+
 ## Set the certsSecretName in order to pass custom certficates for GitLab Runner to use
 ## Provide resource name for a Kubernetes Secret Object in the same namespace,
-## this is used to populate the /etc/gitlab-runner/certs directory
+## this is used to populate the /home/gitlab-runner/.gitlab-runner/certs/ directory
 ## ref: https://docs.gitlab.com/runner/configuration/tls-self-signed.html#supported-options-for-self-signed-certificates
 ##
 # certsSecretName:
@@ -112,6 +120,14 @@ runners:
   ## ref: https://docs.gitlab.com/ce/ci/runners/#using-tags
   ##
   # tags: ""
+
+  ## Specify if jobs without tags should be run.
+  ## If not specified, Runner will default to true if no tags were specified. In other case it will
+  ## default to false.
+  ##
+  ## ref: https://docs.gitlab.com/ce/ci/runners/#allowing-runners-with-tags-to-pick-jobs-without-tags
+  ##
+  # runUntagged: true
 
   ## Run all containers with the privileged flag enabled
   ## This will allow the docker:dind image to run if you need to run Docker
@@ -297,3 +313,18 @@ hostAliases: []
 podAnnotations: {}
   # Example:
   # iam.amazonaws.com/role: <my_role_arn>
+
+## HPA support for custom metrics:
+## This section enables runners to autoscale based on defined custom metrics.
+## In order to use this functionality, Need to enable a custom metrics API server by
+## implementing "custom.metrics.k8s.io" using supported third party adapter
+## Example: https://github.com/directxman12/k8s-prometheus-adapter
+##
+#hpa: {}
+  # minReplicas: 1
+  # maxReplicas: 10
+  # metrics:
+  # - type: Pods
+  #   pods:
+  #     metricName: gitlab_runner_jobs
+  #     targetAverageValue: 400m

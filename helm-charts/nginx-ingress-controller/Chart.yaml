@@ -17,4 +17,4 @@ maintainers:
 name: nginx-ingress-controller
 sources:
 - https://github.com/bitnami/bitnami-docker-nginx-ingress-controller
-version: 5.0.5
+version: 5.0.6

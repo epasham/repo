@@ -1,0 +1,15 @@
+apiVersion: v1
+appVersion: 1.0.0
+description: A Helm chart for Forseti Config Validator
+home: https://forsetisecurity.org/
+icon: https://forsetisecurity.org/images/site/logo/blue-logo-trans.png
+maintainers:
+- email: kdevensen@forsetisecurity.org
+  name: kevensen
+- email: shinhannah@forsetisecurity.org
+  name: hshin-g
+name: config-validator
+sources:
+- https://github.com/forseti-security/config-validator
+- https://gcr.io/forseti-containers/config-validator:latest
+version: 0.0.1

@@ -1,0 +1,7 @@
+{
+  "server": "docker.io",
+  "prefix": "",
+  "org": "pnnlmiscscripts",
+  "repo": "k8s-node-image",
+  "tag": "1.16.1-nginx-1"
+}

@@ -22,7 +22,7 @@ secretMounts: []
 #    subPath: kibana.keystore # optional
 
 image: "docker.elastic.co/kibana/kibana"
-imageTag: "7.3.2"
+imageTag: "7.4.0"
 imagePullPolicy: "IfNotPresent"
 
 # additionals labels
@@ -127,3 +127,11 @@ affinity: {}
 
 nameOverride: ""
 fullnameOverride: ""
+
+lifecycle: {}
+  # preStop:
+  #   exec:
+  #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
+  # postStart:
+  #   exec:
+  #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]

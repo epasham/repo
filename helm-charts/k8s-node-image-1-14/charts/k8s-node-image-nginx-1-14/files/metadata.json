@@ -3,5 +3,5 @@
   "prefix": "",
   "org": "pnnlmiscscripts",
   "repo": "k8s-node-image",
-  "tag": "1.14.7-nginx-1"
+  "tag": "1.14.7-nginx-3"
 }
