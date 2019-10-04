@@ -11,4 +11,4 @@ maintainers:
 name: docker-registry
 sources:
 - https://github.com/docker/distribution-library-image
-version: 1.8.2
+version: 1.8.3

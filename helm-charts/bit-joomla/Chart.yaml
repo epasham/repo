@@ -16,4 +16,4 @@ maintainers:
 name: bit-joomla
 sources:
 - https://github.com/bitnami/bitnami-docker-joomla
-version: 6.1.7
+version: 6.1.8
