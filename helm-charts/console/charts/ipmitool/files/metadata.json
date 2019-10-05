@@ -1,0 +1,7 @@
+{
+  "server": "docker.io",
+  "prefix": "",
+  "org": "pnnlmiscscripts",
+  "repo": "ipmitool",
+  "tag": "1.8.18-4"
+}

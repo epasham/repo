@@ -1,5 +1,5 @@
 {{- define "pnnlmiscscripts.ipmitool.server" -}}
-{{- if and (hasKey . "section") (kindIs "bool" .section) (hasKey .section "server") .section.server -}}
+{{- if and (hasKey . "section") (hasKey .section "server") .section.server -}}
 {{ .section.server }}
 {{- else -}}
 docker.io
@@ -32,14 +32,14 @@ ipmitool
 {{- if and (hasKey . "section") (hasKey .section "tag") .section.tag -}}
 {{ .section.tag }}
 {{- else -}}
-1.8.18-3
+1.8.18-4
 {{- end -}}
 {{- end -}}
 
-{/*
+{{- /*
 How to use:
-  {{ dict "dot" . "section" .Values.ipmitool | include "pnnlmiscscripts.ipmitool.image" }}
-*/}}
+  {{ dict "dot" . "section" (index .Values "ipmitool") | include "pnnlmiscscripts.ipmitool.image" }}
+*/ -}}
 {{- define "pnnlmiscscripts.ipmitool.image" -}}
 {{- include "pnnlmiscscripts.ipmitool.server" . -}}{{- include "pnnlmiscscripts.ipmitool.prefix" . -}}/{{- include "pnnlmiscscripts.ipmitool.org" . -}}/{{- include "pnnlmiscscripts.ipmitool.repo" . -}}:{{- include "pnnlmiscscripts.ipmitool.tag" . -}}
 {{- end -}}

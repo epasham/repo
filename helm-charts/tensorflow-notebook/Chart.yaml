@@ -9,4 +9,4 @@ name: tensorflow-notebook
 sources:
 - https://github.com/tensorflow/tensorflow
 - https://github.com/jupyter
-version: 0.1.2
+version: 0.1.3
