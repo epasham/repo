@@ -8,15 +8,16 @@ This chart deploys a single IBM® MQ Advanced for Developers version 9.1.3 serve
 
 This chart will do the following:
 
-* Create a single MQ server (Queue Manager) using a [StatefulSet](http://kubernetes.io/docs/concepts/abstractions/controllers/statefulsets/) with exactly one replica.  Kubernetes will ensure that if it fails for some reason, it will be restarted, possibly on a different worker node.
+* Create a single MQ server (Queue Manager) using a [Stateful Set](http://kubernetes.io/docs/concepts/abstractions/controllers/statefulsets/) with one or two replicas depending on whether multi-instance queue managers are enabled.  Kubernetes will ensure that if it fails for some reason, it will be restarted, possibly on a different worker node.
 * Create a [Service](https://kubernetes.io/docs/concepts/services-networking/service/).  This is used to ensure that MQ client applications have a consistent IP address to connect to, regardless of where the Queue Manager is actually running.
+* [Optional] Create additional [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for use with a multi-instance Queue Manager.
+* [Optional] Create a metrics [Service](https://kubernetes.io/docs/concepts/services-networking/service/) for accessing Queue Manager metrics.
 
 ## Prerequisites
 
 * Kubernetes 1.11.0 or greater, with beta APIs enabled.
 * You must create a [Secret](https://kubernetes.io/docs/concepts/configuration/secret/) in the target namespace (see the **Creating a Secret to store queue manager credentials** section).  This must contain the 'admin' user password and optionally the 'app' user password to use for messaging.
 * If persistence is enabled (see the **configuration** section), then you either need to create a PersistentVolume, or specify a Storage Class if classes are defined in your cluster.
-* If you are using SELinux you must meet the [MQ requirements](https://www-01.ibm.com/support/docview.wss?uid=swg21714191).
 * Operator is the minimum role required to install this chart.
 * The following IBM Platform Core Service is required: `tiller`
 
@@ -310,9 +311,9 @@ Deployments of multi-instance queue managers and queue managers with separate st
 
 ## Limitations
 
-It is not generally recommended that you change the number of replicas in the StatefulSet from the default value of 1.  Setting the number of replicas creates multiple Queue Managers.  The recommended way to scale MQ is by deploying this chart multiple times and connecting the Queue Managers together using MQ configuration — see [Architectures based on multiple queue managers](https://www.ibm.com/support/knowledgecenter/en/SSFKSJ_9.0.0/com.ibm.mq.pla.doc/q004720_.htm).  If you choose to set a different number of replicas on the StatefulSet, connections to each Queue Manager will be routed via a single IP address from the Kubernetes Service.  Connections to multiple replicas via a Service are load balanced, typically on a round-robin basis.  If you do this, you need to take great care not to create an affinity between an MQ client and server, because a client might get disconnected, and then re-connect to a different server.  See Chapter 7 of the [IBM MQ as a Service Redpaper](https://www.redbooks.ibm.com/redpapers/pdfs/redp5209.pdf)
+You must not manually change the number of replicas in the StatefulSet.  The number of replicas controls whether or not multi-instance queue managers are used, and are changed in conjunction with other settings.
 
-It is not recommended to change the number of replicas in the StatefulSet after initial deployment.  This will cause the addition or deletion of Queue Managers, which can result in loss of messages.
+The recommended way to scale MQ is by deploying this chart multiple times and connecting the Queue Managers together using MQ configuration, such as MQ clusters — see [Architectures based on multiple queue managers](https://www.ibm.com/support/knowledgecenter/en/SSFKSJ_9.0.0/com.ibm.mq.pla.doc/q004720_.htm).
 
 ## Documentation
 

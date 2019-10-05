@@ -10,9 +10,9 @@ dependencies:
   version: 0.12.0
 - name: gitlab-runner
   repository: https://charts.gitlab.io/
-  version: 0.9.0
+  version: 0.9.1
 - name: grafana
   repository: https://kubernetes-charts.storage.googleapis.com/
   version: 3.5.12
-digest: sha256:7cb2e51370346282e48014122a6360391349c304793fae08634ff547fcd8d081
-generated: "2019-10-03T21:47:36.885470267Z"
+digest: sha256:c6379e4db4470e25a33489d8c56acc738010de17d2b26df3f6f6786cfb9937fd
+generated: "2019-10-04T19:59:30.382613445Z"

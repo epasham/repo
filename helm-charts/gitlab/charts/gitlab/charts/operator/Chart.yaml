@@ -13,4 +13,4 @@ name: operator
 sources:
 - https://gitlab.com/gitlab-org/charts/gitlab/tree/master/charts/gitlab/charts/operator
 - https://gitlab.com/gitlab-org/charts/components/gitlab-operator
-version: 2.3.5
+version: 2.3.6

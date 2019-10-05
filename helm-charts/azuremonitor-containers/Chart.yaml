@@ -17,6 +17,8 @@ keywords:
 - kubernetesmonitoring
 - acs-engine
 - aks-engine
+- azurestack
+- on-prem kubernetes monitoring
 - containerlogs
 - containerhealth
 - containermonitoring
@@ -29,4 +31,4 @@ maintainers:
 name: azuremonitor-containers
 sources:
 - https://github.com/Microsoft/OMS-docker/tree/ci_feature_prod
-version: 2.0.0
+version: 2.1.0

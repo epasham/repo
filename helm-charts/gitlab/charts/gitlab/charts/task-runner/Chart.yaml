@@ -13,4 +13,4 @@ name: task-runner
 sources:
 - https://gitlab.com/gitlab-org/charts/gitlab/tree/master/charts/gitlab/charts/task-runner
 - https://gitlab.com/gitlab-org/build/CNG/tree/master/gitlab-task-runner
-version: 2.3.5
+version: 2.3.6
