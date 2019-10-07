@@ -60,9 +60,14 @@ spec:
           medium: Memory
       {{- if .Values.registry.acr.enabled }}
       - name: acr-credentials
+        {{- if (not .Values.registry.acr.secretName) }}
         hostPath:
           path: "{{ .Values.registry.acr.hostPath }}"
           type: ""
+        {{- else }}
+        secret:
+          secretName: {{ .Values.registry.acr.secretName }}
+        {{- end }}
       {{- end }}
       {{- if .Values.registry.dockercfg.enabled }}
       - name: docker-credentials
@@ -132,7 +137,11 @@ spec:
             mountPath: /var/fluxd/keygen
           {{- if .Values.registry.acr.enabled }}
           - name: acr-credentials
+            {{- if not .Values.registry.acr.secretName }}
             mountPath: /etc/kubernetes/azure.json
+            {{- else }}
+            mountPath: /etc/kubernetes/
+            {{- end }}
             readOnly: true
           {{- end }}
           {{- if .Values.registry.dockercfg.enabled }}
@@ -159,6 +168,11 @@ spec:
           {{- if .Values.extraEnvs }}
 {{ toYaml .Values.extraEnvs | indent 10 }}
           {{- end }}
+          {{- if .Values.env.secretName }}
+          envFrom:
+          - secretRef:
+              name: {{ .Values.env.secretName }}
+          {{- end }}
           args:
           {{- if not .Values.clusterRole.create }}
           - --k8s-allow-namespace={{ .Release.Namespace }}
@@ -170,6 +184,9 @@ spec:
           - --k8s-secret-name={{ .Values.git.secretName | default (printf "%s-git-deploy" (include "flux.fullname" .)) }}
           - --memcached-hostname={{ .Values.memcached.hostnameOverride | default (printf "%s-memcached" (include "flux.fullname" .)) }}
           - --sync-state={{ .Values.sync.state }}
+          {{- if .Values.sync.timeout }}
+          - --sync-timeout={{ .Values.sync.timeout }}
+          {{- end }}
           {{- if .Values.memcached.createClusterIP }}
           - --memcached-service=
           {{- end }}

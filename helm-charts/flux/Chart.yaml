@@ -1,10 +1,10 @@
 apiVersion: v1
-appVersion: 1.14.2
+appVersion: 1.15.0
 description: Flux is a tool that automatically ensures that the state of a cluster
   matches what is specified in version control
 engine: gotpl
 home: https://fluxcd.io
-icon: https://raw.githubusercontent.com/fluxcd/flux/master/docs/_files/flux.svg
+icon: https://raw.githubusercontent.com/fluxcd/flux/master/docs/_files/weave-flux.png
 keywords:
 - gitops
 kubeVersion: '>=1.9.0-0'
@@ -14,4 +14,4 @@ maintainers:
 name: flux
 sources:
 - https://github.com/fluxcd/flux
-version: 0.14.1
+version: 0.15.0
