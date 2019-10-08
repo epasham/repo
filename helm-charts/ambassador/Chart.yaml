@@ -20,4 +20,4 @@ name: ambassador
 sources:
 - https://github.com/datawire/ambassador
 - https://github.com/prometheus/statsd_exporter
-version: 4.2.1
+version: 4.3.0
