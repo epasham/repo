@@ -13,4 +13,4 @@ name: nzbget
 sources:
 - https://hub.docker.com/r/linuxserver/nzbget/
 - https://nzbget.net/
-version: 2.0.7
+version: 2.0.8

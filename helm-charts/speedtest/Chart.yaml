@@ -14,4 +14,4 @@ name: speedtest
 sources:
 - https://github.com/billimek/Speedtest-for-InfluxDB-and-Grafana
 - https://github.com/billimek/billimek-charts
-version: 1.1.7
+version: 1.1.8

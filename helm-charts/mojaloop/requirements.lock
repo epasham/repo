@@ -1,24 +1,24 @@
 dependencies:
 - name: central
   repository: file://../central
-  version: 7.4.2
+  version: 8.1.0
 - name: ml-api-adapter
   repository: file://../ml-api-adapter
-  version: 7.4.1
+  version: 8.1.0
 - name: emailnotifier
   repository: file://../emailnotifier
-  version: 7.3.0
+  version: 8.1.0
 - name: account-lookup-service
   repository: file://../account-lookup-service
-  version: 7.4.0
+  version: 8.1.0
 - name: quoting-service
   repository: file://../quoting-service
-  version: 7.4.0
+  version: 8.1.0
 - name: simulator
   repository: file://../simulator
-  version: 7.2.1
+  version: 8.1.0
 - name: mojaloop-bulk
   repository: file://../mojaloop-bulk
-  version: 7.4.1
-digest: sha256:8750e457977314ee8238ffac496ea2ef239d8478cddb06de25b29fd0b6796b58
-generated: 2019-08-30T15:12:45.575470935Z
+  version: 8.1.0
+digest: sha256:2d601d46b3d2d6e7cb158ed6c3436a9e9fe3075fed1320a73d70421da3af720d
+generated: 2019-10-07T16:43:54.279197296Z

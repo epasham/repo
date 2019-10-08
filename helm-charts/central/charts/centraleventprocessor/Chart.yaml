@@ -1,5 +1,5 @@
 apiVersion: v1
-appVersion: 7.1.1
+appVersion: 8.2.0
 description: Central Event Processor for Mojaloop
 home: http://mojaloop.io
 icon: http://mojaloop.io/images/logo.png
@@ -13,4 +13,4 @@ sources:
 - https://github.com/mojaloop/mojaloop
 - https://github.com/mojaloop/helm
 - https://github.com/mojaloop/central-event-processor
-version: 7.1.1
+version: 8.1.0

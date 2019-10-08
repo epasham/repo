@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 
 replicas: 1
-image: quay.io/presslabs/mysql-operator:0.3.2
-sidecarImage: quay.io/presslabs/mysql-operator-sidecar:0.3.2
+image: quay.io/presslabs/mysql-operator:0.3.3
+sidecarImage: quay.io/presslabs/mysql-operator-sidecar:0.3.3
 imagePullPolicy: IfNotPresent
 
 # whether or not to install CRDs
@@ -57,7 +57,7 @@ rbac:
   serviceAccountName: default
 
 orchestrator:
-  image: quay.io/presslabs/mysql-operator-orchestrator:0.3.2
+  image: quay.io/presslabs/mysql-operator-orchestrator:0.3.3
 
   # orchestrator user and password to manage MySQL clusters
   topologyUser: orchestrator

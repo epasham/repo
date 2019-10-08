@@ -3,6 +3,7 @@ description: The leading tool for querying and visualizing time series and metri
 engine: gotpl
 home: https://grafana.net
 icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+kubeVersion: ^1.8.0-0
 maintainers:
 - email: zanhsieh@gmail.com
   name: zanhsieh

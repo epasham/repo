@@ -1,12 +1,12 @@
 dependencies:
 - name: account-lookup-service
   repository: file://./chart-service
-  version: 7.4.0
+  version: 8.1.0
 - name: account-lookup-service-admin
   repository: file://./chart-admin
-  version: 7.4.0
+  version: 8.1.0
 - name: percona-xtradb-cluster
   repository: https://kubernetes-charts.storage.googleapis.com
   version: 1.0.1
-digest: sha256:a7eb1d31d99675443852b4ddd063270f255f1b4c8cc862ee4ef4c67c6a32b3fc
-generated: 2019-08-30T15:12:01.577730749Z
+digest: sha256:807163cdb82bd83e506c32b39f06ebd0ef2a23bd7d7cdbbeeab8f743b1a99ed3
+generated: 2019-10-07T16:43:11.626247304Z

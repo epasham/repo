@@ -1,0 +1,14 @@
+apiVersion: v1
+appVersion: 8.1.0-snapshot
+description: Event Stream Processor for Mojaloop
+home: http://mojaloop.io
+icon: http://mojaloop.io/images/logo.png
+maintainers:
+- email: valentin.genev@modusbox.com
+  name: Valentin Genev
+name: eventstreamprocessor
+sources:
+- https://github.com/mojaloop/mojaloop
+- https://github.com/mojaloop/helm
+- https://github.com/mojaloop/event-stream-processor
+version: 8.1.0

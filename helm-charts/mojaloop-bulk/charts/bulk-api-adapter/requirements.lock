@@ -1,9 +1,9 @@
 dependencies:
 - name: bulk-api-adapter-service
   repository: file://./chart-service
-  version: 7.1.0
+  version: 8.1.0
 - name: bulk-api-adapter-handler-notification
   repository: file://./chart-handler-notification
-  version: 7.1.0
-digest: sha256:2c4f6533d254bdc66d287f034a7bcf94d086e39eda9021d35c973b4d8da6952c
-generated: 2019-08-30T15:12:40.219916337Z
+  version: 8.1.0
+digest: sha256:686b20d89977028e545161398bc26884c1a35a4e0b7e81e8b2b5de118750bbb9
+generated: 2019-10-07T16:43:48.269118401Z

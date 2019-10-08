@@ -13,4 +13,4 @@ sources:
 - https://github.com/mojaloop/mojaloop
 - https://github.com/mojaloop/helm
 - https://github.com/mojaloop/email-notifier
-version: 7.3.0
+version: 8.1.0

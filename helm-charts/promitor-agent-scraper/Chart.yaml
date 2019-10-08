@@ -7,4 +7,4 @@ maintainers:
 - name: Tom Kerkhove
   url: https://github.com/tomkerkhove
 name: promitor-agent-scraper
-version: 1.0.0
+version: 1.1.0

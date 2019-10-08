@@ -13,4 +13,4 @@ name: modem-stats
 sources:
 - https://github.com/billimek/SB6183-stats-for-influxdb
 - https://github.com/billimek/billimek-charts
-version: 1.0.7
+version: 1.0.8

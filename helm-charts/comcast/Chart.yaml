@@ -14,4 +14,4 @@ name: comcast
 sources:
 - https://github.com/billimek/comcastUsage-for-influxdb
 - https://github.com/billimek/billimek-charts
-version: 1.0.6
+version: 1.0.7

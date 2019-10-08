@@ -5,8 +5,10 @@ home: https://github.com/kubernetes-incubator/external-storage/tree/master/aws/e
 maintainers:
 - email: aaron@roydhouse.com
   name: whereisaaron
+- email: myself@mariusv.com
+  name: mariusv
 name: efs-provisioner
 sources:
 - https://github.com/kubernetes-incubator/external-storage/tree/master/aws/efs
 - https://github.com/mirror/busybox
-version: 0.7.0
+version: 0.8.0

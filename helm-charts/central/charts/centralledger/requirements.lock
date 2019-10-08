@@ -1,33 +1,30 @@
 dependencies:
 - name: centralledger-service
   repository: file://./chart-service
-  version: 7.4.3
+  version: 8.1.0
 - name: centralledger-handler-transfer-prepare
   repository: file://./chart-handler-transfer-prepare
-  version: 7.4.3
+  version: 8.1.0
 - name: centralledger-handler-transfer-position
   repository: file://./chart-handler-transfer-position
-  version: 7.4.3
+  version: 8.1.0
 - name: centralledger-handler-transfer-get
   repository: file://./chart-handler-transfer-get
-  version: 7.4.3
+  version: 8.1.0
 - name: centralledger-handler-transfer-fulfil
   repository: file://./chart-handler-transfer-fulfil
-  version: 7.4.3
+  version: 8.1.0
 - name: centralledger-handler-timeout
   repository: file://./chart-handler-timeout
-  version: 7.4.3
+  version: 8.1.0
 - name: centralledger-handler-admin-transfer
   repository: file://./chart-handler-admin-transfer
-  version: 7.4.3
-- name: forensicloggingsidecar
-  repository: file://../forensicloggingsidecar
-  version: 2.4.0
+  version: 8.1.0
 - name: percona-xtradb-cluster
   repository: https://kubernetes-charts.storage.googleapis.com
   version: 1.0.1
 - name: kafka
   repository: http://storage.googleapis.com/kubernetes-charts-incubator
   version: 0.13.11
-digest: sha256:fa20556bb4e6968566e1fdc3f628a14f55fe24eecb1c01e84e15a0c123a043d4
-generated: 2019-08-30T15:12:11.843782938Z
+digest: sha256:5de6250313a1c1742e4d8b29abe7ebb6b490e7f3de7483f050aa27707246e2a3
+generated: 2019-10-07T16:43:23.961956505Z
