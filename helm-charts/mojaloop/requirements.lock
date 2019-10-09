@@ -21,4 +21,4 @@ dependencies:
   repository: file://../mojaloop-bulk
   version: 8.1.0
 digest: sha256:2d601d46b3d2d6e7cb158ed6c3436a9e9fe3075fed1320a73d70421da3af720d
-generated: 2019-10-07T16:43:54.279197296Z
+generated: 2019-10-08T16:39:59.84762808Z

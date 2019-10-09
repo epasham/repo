@@ -9,4 +9,4 @@ dependencies:
   repository: file://../centraleventprocessor
   version: 8.1.0
 digest: sha256:590bed05700b75a2c4be2eaaaf1e3b838036c0abf09d0d89b158591ad5135376
-generated: 2019-10-07T16:43:41.567437479Z
+generated: 2019-10-08T16:39:47.025103869Z

@@ -9,4 +9,4 @@ dependencies:
   repository: file://./chart-handler-bulk-transfer-processing
   version: 8.1.0
 digest: sha256:e5ac3fcbd7058a190917bfb77f2f938444011eee9d5aa8c41e8f9bf537044145
-generated: 2019-10-07T16:43:46.077996578Z
+generated: 2019-10-08T16:39:51.647840396Z

@@ -6,4 +6,4 @@ dependencies:
   repository: file://./chart-handler-notification
   version: 8.1.0
 digest: sha256:949dc7335d709f124c70ca45e11b97269fbf75a21d5ee6ec725ff62538d3a9e8
-generated: 2019-10-07T16:43:43.775896892Z
+generated: 2019-10-08T16:39:49.311580297Z
