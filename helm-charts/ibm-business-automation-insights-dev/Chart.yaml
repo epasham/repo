@@ -1,0 +1,14 @@
+appVersion: 19.0.2
+description: A Helm chart for IBM Business Automation Insights
+keywords:
+- amd64
+- ICP
+- Limited
+- Automation
+- businessrules
+- Analytics
+- ICPRHOCP
+kubeVersion: '>=1.11.0'
+name: ibm-business-automation-insights-dev
+tillerVersion: '>=2.9.1'
+version: 3.2.0

@@ -1,0 +1,12 @@
+appVersion: 6.5.4
+description: Elasticsearch and Kibana Helm Chart
+keywords:
+- amd64
+- ICP
+- Limited
+- Analytics
+- ICPRHOCP
+kubeVersion: '>=1.11.0'
+name: ibm-dba-ek
+tillerVersion: '>=2.9.1'
+version: 3.2.0
