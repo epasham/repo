@@ -16,4 +16,4 @@ maintainers:
 name: falco
 sources:
 - https://github.com/falcosecurity/falco
-version: 1.0.8
+version: 1.0.9

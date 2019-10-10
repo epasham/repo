@@ -14,4 +14,4 @@ maintainers:
 name: elasticsearch-exporter
 sources:
 - https://github.com/justwatchcom/elasticsearch_exporter
-version: 1.10.1
+version: 1.11.0
