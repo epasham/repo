@@ -15,4 +15,4 @@ maintainers:
 name: nginx-ingress
 sources:
 - https://github.com/kubernetes/ingress-nginx
-version: 1.24.2
+version: 1.24.3
