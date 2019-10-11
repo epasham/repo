@@ -13,4 +13,4 @@ maintainers:
 name: haproxy-ingress
 sources:
 - https://github.com/jcmoraisjr/haproxy-ingress
-version: 0.0.16
+version: 0.0.17

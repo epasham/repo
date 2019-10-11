@@ -1,6 +1,7 @@
 appVersion: 0.1.2
 description: A Helm chart for Tsimulus as a Service
 home: https://github.com/cetic/tsimulus-saas
+icon: https://raw.githubusercontent.com/cetic/tsimulus-saas/master/doc/images/TSimulus-logo.png
 keywords:
 - tsimulus
 - generator
