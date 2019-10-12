@@ -15,4 +15,4 @@ maintainers:
 name: cockroachdb
 sources:
 - https://github.com/cockroachdb/cockroach
-version: 2.1.14
+version: 2.1.15
