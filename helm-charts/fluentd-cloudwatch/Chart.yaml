@@ -19,4 +19,4 @@ name: fluentd-cloudwatch
 sources:
 - https://github.com/kubernetes/charts
 - https://github.com/fluent/fluentd-kubernetes-daemonset
-version: 0.10.2
+version: 0.11.0

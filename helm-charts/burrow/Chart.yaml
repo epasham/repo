@@ -19,4 +19,4 @@ maintainers:
 name: burrow
 sources:
 - https://github.com/hyperledger/burrow
-version: 1.5.0
+version: 1.5.1
