@@ -6,6 +6,7 @@ keywords:
 - metrics
 - elasticsearch
 - monitoring
+kubeVersion: '>=1.10.0-0'
 maintainers:
 - email: sven.mueller@commercetools.com
   name: svenmueller
@@ -14,4 +15,4 @@ maintainers:
 name: elasticsearch-exporter
 sources:
 - https://github.com/justwatchcom/elasticsearch_exporter
-version: 1.11.0
+version: 2.0.0

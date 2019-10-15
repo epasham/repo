@@ -18,12 +18,15 @@ nginx-ingress:
     ingressClass: presslabs-stack
     config:
       custom-http-errors: 502,503,504
+      hsts-preload: "true"
+    addHeaders:
+      server: nginx
     publishService:
       enabled: true
   defaultBackend:
     image:
       repository: quay.io/presslabs/default-backend
-      tag: 0.6.1
+      tag: 0.6.2
       pullPolicy: Always
 cert-manager:
   enabled: true
@@ -32,4 +35,4 @@ prometheus-operator:
 git-webhook:
   enabled: false
   image:
-    tag: 0.6.1
+    tag: 0.6.2
