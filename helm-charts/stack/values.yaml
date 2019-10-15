@@ -23,7 +23,7 @@ nginx-ingress:
   defaultBackend:
     image:
       repository: quay.io/presslabs/default-backend
-      tag: 0.6.0
+      tag: 0.6.1
       pullPolicy: Always
 cert-manager:
   enabled: true
@@ -32,4 +32,4 @@ prometheus-operator:
 git-webhook:
   enabled: false
   image:
-    tag: 0.6.0
+    tag: 0.6.1
