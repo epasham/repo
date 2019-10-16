@@ -1,4 +1,4 @@
-appVersion: 1.9.0
+appVersion: 1.9.1
 description: An open source trusted cloud native registry that stores, signs, and
   scans content
 engine: gotpl
@@ -17,4 +17,4 @@ name: har-harbor
 sources:
 - https://github.com/goharbor/harbor
 - https://github.com/goharbor/harbor-helm
-version: 1.2.0
+version: 1.2.1

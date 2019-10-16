@@ -1,111 +1,71 @@
----
-apiVersion: {{ template "pgadmin.deployment.apiVersion" . }}
+{{- $fullName := include "pgadmin.fullname" . -}}
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "pgadmin.fullname" . }}
+  name: {{ $fullName }}
   labels:
-    app: {{ template "pgadmin.name" . }}
-    chart: {{ template "pgadmin.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+{{ include "pgadmin.labels" . | indent 4 }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "pgadmin.name" . }}
-      release: {{ .Release.Name }}
+      app.kubernetes.io/name: {{ include "pgadmin.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "pgadmin.name" . }}
-        release: {{ .Release.Name }}
+        app.kubernetes.io/name: {{ include "pgadmin.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-          - name: PGADMIN_DEFAULT_EMAIL
-            value: {{ .Values.pgadmin.username }}
-          - name: PGADMIN_DEFAULT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: {{ template "pgadmin.fullname" . }}
-                key: pgadmin-password
-         {{- if .Values.pgadmin.tls }}
-          - name: PGADMIN_ENABLE_TLS
-            value: {{ .Values.pgadmin.tls | quote }}
-         {{- end }}
-          - name: PGADMIN_PORT
-            value: {{ .Values.service.port | quote }}
-         {{- if .Values.pgadmin.scriptname }}
-          - name: SCRIPT_NAME
-            value: {{ .Values.pgadmin.scriptname }}
-         {{- end }}
-         {{- range .Values.pgadmin.config }}
-          - name: {{ .name | upper }}
-            value: {{ .value | quote }}
-         {{- end }}
           ports:
-          - name: http
-            containerPort: 80
-            protocol: TCP
-          - name: https
-            containerPort: 443
-            protocol: TCP
-          volumeMounts:
-          - name: pgadmin-data
-            mountPath: /var/lib/pgadmin
-         {{- if .Values.pgadmin.tls }}
-          - name: tls-cert
-            mountPath: /certs/server.cert
-            subPath: server.cert
-          - name: tls-private-key
-            mountPath: /certs/server.key
-            subPath: server.key
-         {{- end }}
-         {{- if .Values.servers.enabled }}
-          - name: servers-config
-            mountPath: /pgadmin4/servers.json
-            subPath: servers.json
-         {{- end}}
-          resources:
-{{ toYaml .Values.resources | indent 12 }}
+            - name: http
+              containerPort: 80
+              protocol: TCP
           livenessProbe:
-{{ toYaml .Values.livenessProbe | indent 12 }}
+            httpGet:
+              path: /
+              port: http
           readinessProbe:
-{{ toYaml .Values.readinessProbe | indent 12 }}
+            httpGet:
+              path: /
+              port: http
+          env:
+            - name: PGADMIN_PORT
+              value: "80"
+            - name: PGADMIN_DEFAULT_EMAIL
+              value: {{ .Values.env.email }}
+            - name: PGADMIN_DEFAULT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}
+                  key: password
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
       volumes:
         - name: pgadmin-data
-         {{- if .Values.persistence.enabled }}
+        {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
-            claimName: {{ .Values.persistence.existingClaim | default (include "pgadmin.fullname" .) }}
-         {{- else }}
+            claimName: {{ $fullName }}
+        {{- else }}
           emptyDir: {}
-         {{- end }}
-         {{- if .Values.pgadmin.tls }}
-        - name: tls-private-key
-          secret:
-            secretName: {{ template "pgadmin.fullname" . }}
-            items:
-              - key: server.key
-                path: server.key
-        - name: tls-cert
-          secret:
-            secretName: {{ template "pgadmin.fullname" . }}
-            items:
-              - key: server.cert
-                path: server.cert
-         {{- end }}
-         {{- if .Values.servers.enabled }}
-        - name: servers-config
-          configMap:
-            name: {{ template "pgadmin.fullname" . }}
-            items:
-            - key: servers.json
-              path: servers.json
-         {{- end }}
-    {{- if .Values.nodeSelector }}
+        {{- end }}
+      {{- with .Values.nodeSelector }}
       nodeSelector:
-{{ toYaml .Values.nodeSelector | indent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
     {{- end }}

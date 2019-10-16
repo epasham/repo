@@ -1,18 +1,14 @@
 {{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
+{{- $fullName := include "pgadmin.fullname" . -}}
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: {{ template "pgadmin.fullname" . }}
+  name: {{ $fullName }}
   labels:
-    app: {{ template "pgadmin.fullname" . }}
-    chart: {{ template "pgadmin.chart" . }}
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+{{ include "pgadmin.labels" . | indent 4 }}
+  {{- with .Values.persistence.annotations }}
   annotations:
-  {{- if .Values.persistence.storageClass }}
-    volume.beta.kubernetes.io/storage-class: {{ .Values.persistence.storageClass | quote }}
-  {{- else }}
-    volume.alpha.kubernetes.io/storage-class: default
+  {{ toYaml . | indent 4 }}
   {{- end }}
 spec:
   accessModes:

@@ -1,19 +1,15 @@
-{{- if .Values.ingress.enabled }}
+{{- if .Values.ingress.enabled -}}
 {{- $fullName := include "pgadmin.fullname" . -}}
-{{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ template "pgadmin.fullname" . }}
+  name: {{ $fullName }}
   labels:
-    app: {{ template "pgadmin.name" . }}
-    chart: {{ template "pgadmin.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-{{- with .Values.ingress.annotations }}
+{{ include "pgadmin.labels" . | indent 4 }}
+  {{- with .Values.ingress.annotations }}
   annotations:
-{{ toYaml . | indent 4 }}
-{{- end }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
 {{- if .Values.ingress.tls }}
   tls:
@@ -27,12 +23,14 @@ spec:
 {{- end }}
   rules:
   {{- range .Values.ingress.hosts }}
-    - host: {{ . }}
+    - host: {{ .host | quote }}
       http:
         paths:
-          - path: {{ $ingressPath }}
+        {{- range .paths }}
+          - path: {{ . }}
             backend:
               serviceName: {{ $fullName }}
               servicePort: http
+        {{- end }}
   {{- end }}
 {{- end }}
