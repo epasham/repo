@@ -7,7 +7,7 @@ dependencies:
   version: 0.12.3
 - name: fluent-bit
   repository: file://../fluent-bit
-  version: 0.0.1
+  version: 0.0.2
 - name: grafana
   repository: https://kubernetes-charts.storage.googleapis.com/
   version: 3.4.3
@@ -15,4 +15,4 @@ dependencies:
   repository: https://kubernetes-charts.storage.googleapis.com/
   version: 8.11.6
 digest: sha256:43bd298c709906995bd22098d746fbb3884e6cef442cfb24f2efae481c836ad5
-generated: 2019-10-15T12:32:07.878386177Z
+generated: 2019-10-15T18:36:37.398821708Z

@@ -16,4 +16,4 @@ maintainers:
 name: mailhog
 sources:
 - https://github.com/mailhog/MailHog
-version: 3.1.0
+version: 3.1.1
