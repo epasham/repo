@@ -13,4 +13,4 @@ name: inc-zookeeper
 sources:
 - https://github.com/apache/zookeeper
 - https://github.com/kubernetes/contrib/tree/master/statefulsets/zookeeper
-version: 2.0.1
+version: 2.0.2

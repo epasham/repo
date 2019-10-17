@@ -16,4 +16,4 @@ name: external-dns
 sources:
 - https://github.com/kubernetes-incubator/external-dns
 - https://github.com/bitnami/bitnami-docker-external-dns
-version: 2.9.0
+version: 2.9.1

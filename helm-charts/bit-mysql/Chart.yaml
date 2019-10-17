@@ -16,4 +16,4 @@ maintainers:
 name: bit-mysql
 sources:
 - https://github.com/bitnami/bitnami-docker-mysql
-version: 6.4.5
+version: 6.4.6

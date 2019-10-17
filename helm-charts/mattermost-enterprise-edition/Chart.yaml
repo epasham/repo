@@ -13,5 +13,7 @@ maintainers:
   name: cpanato
 - email: joram@mattermost.com
   name: jwilander
+- email: stylianos@mattermost.com
+  name: stylianosrigas
 name: mattermost-enterprise-edition
-version: 0.14.0
+version: 1.0.0

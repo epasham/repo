@@ -14,4 +14,4 @@ maintainers:
 name: bit-zookeeper
 sources:
 - https://github.com/bitnami/bitnami-docker-zookeeper
-version: 5.0.2
+version: 5.0.3

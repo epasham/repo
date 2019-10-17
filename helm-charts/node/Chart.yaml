@@ -15,4 +15,4 @@ maintainers:
 name: node
 sources:
 - https://github.com/bitnami/bitnami-docker-node
-version: 11.2.5
+version: 11.2.6
