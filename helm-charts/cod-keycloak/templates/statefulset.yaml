@@ -25,7 +25,9 @@ spec:
         checksum/config-sh: {{ include (print .Template.BasePath "/configmap-sh.yaml") . | sha256sum }}
         checksum/config-startup: {{ include (print .Template.BasePath "/configmap-startup.yaml") . | sha256sum }}
         {{- with .Values.keycloak.podAnnotations }}
-        {{- toYaml . | nindent 8 }}
+        {{- range $key, $value := . }}
+        {{- printf "%s: %s" $key (tpl $value $) | nindent 8 }}
+        {{- end }}
         {{- end }}
     spec:
       {{- with .Values.keycloak.hostAliases }}
@@ -88,9 +90,9 @@ spec:
               value: /secrets/{{ include "keycloak.passwordKey" . }}
           {{- if $highAvailability }}
             - name: JGROUPS_DISCOVERY_PROTOCOL
-              value: "dns.DNS_PING"
+              value: {{ .Values.keycloak.jgroups.discoveryProtocol }}
             - name: JGROUPS_DISCOVERY_PROPERTIES
-              value: "dns_query={{ include "keycloak.serviceDnsName" . }}"
+              value: {{ tpl .Values.keycloak.jgroups.discoveryProperties . }}
             - name: KEYCLOAK_SERVICE_DNS_NAME
               value: "{{ include "keycloak.serviceDnsName" . }}"
           {{- end }}
@@ -117,6 +119,9 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+            - name: https
+              containerPort: 8443
+              protocol: TCP
           {{- if $highAvailability }}
             - name: jgroups
               containerPort: 7600
@@ -125,18 +130,14 @@ spec:
           {{- with .Values.keycloak.extraPorts }}
             {{- tpl . $ | nindent 12 }}
           {{- end }}
+          {{- with .Values.keycloak.livenessProbe }}
           livenessProbe:
-            httpGet:
-              path: {{ if ne .Values.keycloak.basepath "" }}/{{ .Values.keycloak.basepath }}{{ end }}/
-              port: http
-            initialDelaySeconds: {{ .Values.keycloak.livenessProbe.initialDelaySeconds }}
-            timeoutSeconds: {{ .Values.keycloak.livenessProbe.timeoutSeconds }}
+            {{- tpl . $ | nindent 12 }}
+          {{- end }}
+          {{- with .Values.keycloak.readinessProbe }}
           readinessProbe:
-            httpGet:
-              path: {{ if ne .Values.keycloak.basepath "" }}/{{ .Values.keycloak.basepath }}{{ end }}/realms/master
-              port: http
-            initialDelaySeconds: {{ .Values.keycloak.readinessProbe.initialDelaySeconds }}
-            timeoutSeconds: {{ .Values.keycloak.readinessProbe.timeoutSeconds }}
+            {{- tpl . $ | nindent 12 }}
+          {{- end }}
           resources:
             {{- toYaml .Values.keycloak.resources | nindent 12 }}
       {{- with .Values.keycloak.extraContainers }}

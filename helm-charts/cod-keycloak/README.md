@@ -41,14 +41,14 @@ The following table lists the configurable parameters of the Keycloak chart and 
 
 Parameter | Description | Default
 --- | --- | ---
-`init.image.repository` | Init image repository | `alpine`
-`init.image.tag` | Init image tag | `3.9`
+`init.image.repository` | Init image repository | `busybox`
+`init.image.tag` | Init image tag | `1.31`
 `init.image.pullPolicy` | Init image pull policy | `IfNotPresent`
 `init.resources` | Pod resource requests and limits for the init container | `{}`
 `clusterDomain` | The internal Kubernetes cluster domain | `cluster.local`
 `keycloak.replicas` | The number of Keycloak replicas | `1`
 `keycloak.image.repository` | The Keycloak image repository | `jboss/keycloak`
-`keycloak.image.tag` | The Keycloak image tag | `6.0.1`
+`keycloak.image.tag` | The Keycloak image tag | `7.0.0`
 `keycloak.image.pullPolicy` | The Keycloak image pull policy | `IfNotPresent`
 `keycloak.image.pullSecrets` | Image pull secrets | `[]`
 `keycloak.basepath` | Path keycloak is hosted at | `auth`
@@ -56,6 +56,8 @@ Parameter | Description | Default
 `keycloak.password` | Password for the initial Keycloak admin user (if `keycloak.existingSecret=""`). If not set, a random 10 characters password is created | `""`
 `keycloak.existingSecret` | Specifies an existing secret to be used for the admin password | `""`
 `keycloak.existingSecretKey` |  The key in `keycloak.existingSecret` that stores the admin password | `password`
+`keycloak.jgroups.discoveryProtocol` | The protocol for JGroups discovery | `dns.DNS_PING`
+`keycloak.jgroups.discoveryProperties` | Properties for JGroups discovery. Passed through the `tpl` function | `"dns_query={{ template "keycloak.fullname" . }}-headless.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}"`
 `keycloak.extraInitContainers` | Additional init containers, e. g. for providing themes, etc. Passed through the `tpl` function and thus to be configured a string | `""`
 `keycloak.extraContainers` | Additional sidecar containers, e. g. for a database proxy, such as Google's cloudsql-proxy. Passed through the `tpl` function and thus to be configured a string | `""`
 `keycloak.extraEnv` | Allows the specification of additional environment variables for Keycloak. Passed through the `tpl` function and thus to be configured a string | `PROXY_ADDRESS_FORWARDING="true"`
@@ -69,7 +71,7 @@ Parameter | Description | Default
 `keycloak.nodeSelector` | Node labels for pod assignment | `{}`
 `keycloak.tolerations` | Node taints to tolerate | `[]`
 `keycloak.podLabels` | Extra labels to add to pod | `{}`
-`keycloak.podAnnotations` | Extra annotations to add to pod | `{}`
+`keycloak.podAnnotations` | Extra annotations to add to pod. Values are passed through the `tpl` function | `{}`
 `keycloak.hostAliases` | Mapping between IP and hostnames that will be injected as entries in the pod's hosts files | `[]`
 `keycloak.enableServiceLinks` | Indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links | `false`
 `keycloak.restartPolicy` | Pod restart policy. One of `Always`, `OnFailure`, or `Never` | `Always`
@@ -79,10 +81,8 @@ Parameter | Description | Default
 `keycloak.startupScripts` | Custom startup scripts to run before Keycloak starts up | `[]`
 `keycloak.lifecycleHooks` | Container lifecycle hooks. Passed through the `tpl` function and thus to be configured a string | ``
 `keycloak.extraArgs` | Additional arguments to the start command | ``
-`keycloak.livenessProbe.initialDelaySeconds` | Liveness Probe `initialDelaySeconds` | `120`
-`keycloak.livenessProbe.timeoutSeconds` | Liveness Probe `timeoutSeconds` | `5`
-`keycloak.readinessProbe.initialDelaySeconds` | Readiness Probe `initialDelaySeconds` | `30`
-`keycloak.readinessProbe.timeoutSeconds` | Readiness Probe `timeoutSeconds` | `1`
+`keycloak.livenessProbe` | Liveness probe configuration. Passed through the `tpl` function and thus to be configured as string | See `values.yaml`
+`keycloak.readinessProbe` | Readiness probe configuration. Passed through the `tpl` function and thus to be configured as string | See `values.yaml`
 `keycloak.cli.enabled` | Set to `false` if no CLI changes should be performed by the chart | `true`
 `keycloak.cli.nodeIdentifier` | WildFly CLI script for setting the node identifier | See `values.yaml`
 `keycloak.cli.logging` | WildFly CLI script for logging configuration | See `values.yaml`
@@ -91,8 +91,10 @@ Parameter | Description | Default
 `keycloak.service.annotations` | Annotations for the Keycloak service | `{}`
 `keycloak.service.labels` | Additional labels for the Keycloak service | `{}`
 `keycloak.service.type` | The service type | `ClusterIP`
-`keycloak.service.port` | The service port | `80`
-`keycloak.service.nodePort` | The node port used if the service is of type `NodePort` | `""`
+`keycloak.service.httpPort` | The http service port | `80`
+`keycloak.service.httpsPort` | The https service port | `8443`
+`keycloak.service.httpNodePort` | The http node port used if the service is of type `NodePort` | `""`
+`keycloak.service.httpsNodePort` | The https node port used if the service is of type `NodePort` | `""`
 `keycloak.ingress.enabled` | if `true`, an ingress is created | `false`
 `keycloak.ingress.annotations` | annotations for the ingress | `{}`
 `keycloak.ingress.labels` | Additional labels for the Keycloak ingress | `{}`
@@ -145,6 +147,8 @@ It is used for the following values:
 * `keycloak.affinity`
 * `keycloak.extraVolumeMounts`
 * `keycloak.extraVolumes`
+* `keycloak.livenessProbe`
+* `keycloak.readinessProbe`
 
 It is important that these values be configured as strings.
 Otherwise, installation will fail. See example for Google Cloud Proxy or default affinity configuration in `values.yaml`.
@@ -221,7 +225,7 @@ Create your own theme and package it up into a Docker image.
 
 ```docker
 FROM busybox
-COPY my_theme /my_theme
+COPY mytheme /mytheme
 ```
 
 In combination with an `emptyDir` that is shared with the Keycloak container, configure an init container that runs your theme image and copies the theme over to the right place where Keycloak will pick it up automatically.
@@ -372,6 +376,49 @@ Additionally, we get stable values for `jboss.node.name` which can be advantageo
 The headless service that governs the StatefulSet is used for DNS discovery.
 
 ## Upgrading
+
+### From chart versions < 6.0.0
+
+#### Changes in Probe Configuration
+
+Now both readiness and liveness probes are configured as strings that are then passed through the `tpl` function.
+This allows for greater customizability of the readiness and liveness probes.
+
+The defaults are unchanged, but since 6.0.0 configured as follows:
+
+```yaml
+livenessProbe: |
+  httpGet:
+    path: {{ if ne .Values.keycloak.basepath "" }}/{{ .Values.keycloak.basepath }}{{ end }}/
+    port: http
+  initialDelaySeconds: 120
+  timeoutSeconds: 5
+
+readinessProbe: |
+  httpGet:
+    path: {{ if ne .Values.keycloak.basepath "" }}/{{ .Values.keycloak.basepath }}{{ end }}/realms/master
+    port: http
+  initialDelaySeconds: 30
+  timeoutSeconds: 1
+```
+
+#### Changes in Existing Secret Configuration
+
+This can be useful if you create a secret in a parent chart and want to reference that secret.
+Applies to `keycloak.existingSecret` and `keycloak.persistence.existingSecret`.
+
+_`values.yaml` of parent chart:_
+```yaml
+keycloak:
+  keycloak:
+    existingSecret: '{{ .Release.Name }}-keycloak-secret'
+```
+
+#### HTTPS Port Added
+
+The HTTPS port was added to the pod and to the services.
+As a result, service ports are now configured differently.
+
 
 ### From chart versions < 5.0.0
 
