@@ -15,4 +15,4 @@ maintainers:
 name: grafana
 sources:
 - https://github.com/grafana/grafana
-version: 3.12.0
+version: 3.12.1

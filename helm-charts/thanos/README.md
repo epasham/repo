@@ -116,8 +116,8 @@ Extra configuration for prometheus operator.
 prometheus:
   prometheusSpec:
     thanos:
-      image: improbable/thanos:v0.6.0
-      version: v0.6.0
+      image: improbable/thanos:v0.8.1
+      version: v0.8.1
       objectStorageConfig:
         name: thanos
         key: object-store.yaml
@@ -136,8 +136,8 @@ This section describes the values available
 ## General
 |Name|Description| Default Value|
 |----|-----------|--------------|
-| image.repository | Thanos image repository and name | improbable/thanos |
-| image.tag | Thanos image tag | v0.6.0 |
+| image.repository | Thanos image repository and name | 'quay.io/thanos/thanos'   **For Thanos version 0.6.0 or older change this to 'improbable/thanos'** |
+| image.tag | Thanos image tag | v0.8.1 |
 | image.pullPolicy | Image Kubernetes pull policy | IfNotPresent |
 | objstore | Configuration for the backend object storage in yaml format. Mutually exclusive with objstoreFile. | {} |
 | objstoreFile | Configuration for the backend object storage in string format. Mutually exclusive with objstore. | "" |
@@ -152,6 +152,7 @@ These setting applicable to nearly all components.
 | $component.annotations | Additional annotations to the Pod | {} |
 | $component.deploymentLabels | Additional labels to the deployment | {} |
 | $component.deploymentAnnotations | Additional annotations to the deployment | {} |
+| $component.extraEnv | Add extra environment variables | [] |
 | $component.metrics.annotations.enabled | Prometheus annotation for component | false |
 | $component.metrics.serviceMonitor.enabled | Prometheus ServiceMonitor definition for component | false |
 | $component.securityContext | SecurityContext for Pod | {} |
@@ -194,6 +195,27 @@ These values are just samples, for more fine-tuning please check the values.yaml
 | store.extraEnv | Add extra environment variables | [] |
 | store.extraArgs | Add extra arguments | [] |
 | store.serviceAccount | Name of the Kubernetes service account to use | "" |
+| store.livenessProbe  | Set up liveness probe for store available for Thanos v0.8.0+) |  {} |
+| store.readinessProbe  | Set up readinessProbe for store (available for Thanos v0.8.0+) | {}  |
+| timePartioning   |  list of min/max time for store partitions. See more details below. Setting this will create mutlipale thanos store deployments based on the number of items in the list  | [{min: "", max: ""}] |
+
+### Store time partions
+Thanos store supports partition based on time.
+Setting time partitions will create n number of store deployment based on the number of items in the list. Each item must contain min and max time for querying in the supported format (see details here See details at https://thanos.io/components/store.md/#time-based-partioning ).
+Leaving this empty list ([]) will create a single store for all data.
+Example - This will create 3 stores:
+```yaml
+timePartioning:
+  # One store for data older than 6 weeks
+  - min: ""
+    max: -6w
+  # One store for data newer than 6 weeks and older than 2 weeks
+  - min: -6w
+    max: -2w
+  # One store for data newer than 2 weeks
+  - min: -2w
+    max: ""
+```
 
 
 ## Query
@@ -211,6 +233,8 @@ These values are just samples, for more fine-tuning please check the values.yaml
 | query.storeDNSDiscovery | Enable DNS discovery for stores | true |
 | query.sidecarDNSDiscovery | Enable DNS discovery for sidecars (this is for the chart built-in sidecar service) | true |
 | query.stores | Addresses of statically configured store API servers (repeatable). The scheme may be prefixed with 'dns+' or 'dnssrv+' to detect store API servers through respective DNS lookups. | [] |
+| query.serviceDiscoveryFiles | Path to files that contains addresses of store API servers. The path can be a glob pattern (repeatable). | [] |
+| query.serviceDiscoveryInterval | Refresh interval to re-read file SD files. It is used as a resync fallback. | 5m |
 | query.extraEnv | Add extra environment variables | [] |
 | query.extraArgs | Add extra arguments | [] |
 | query.podDisruptionBudget.enabled | Enabled and config podDisruptionBudget resource for this component | false |

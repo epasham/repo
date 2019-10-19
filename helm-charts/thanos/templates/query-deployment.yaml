@@ -42,6 +42,9 @@ spec:
       - name: thanos-query
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        {{- with .Values.query.extraEnv }}
+        env: {{ toYaml . | nindent 8 }}
+        {{- end }}
         args:
         - "query"
         - "--log.level={{ .Values.query.logLevel }}"
@@ -71,6 +74,12 @@ spec:
         {{- range .Values.query.stores }}
         - "--store={{ . }}"
         {{- end }}
+        {{- range .Values.query.serviceDiscoveryFiles }}
+        - "--store.sd-files={{ . }}"
+        {{- end }}
+        {{- if .Values.query.serviceDiscoveryInterval }}
+        - "--store.sd-interval={{ .Values.query.serviceDiscoveryInterval }}"
+        {{- end }}
         {{- if .Values.query.extraArgs }}
         {{ toYaml .Values.query.extraArgs | nindent 8 }}
         {{- end }}
@@ -90,6 +99,10 @@ spec:
         livenessProbe:
           httpGet:
             path: /-/healthy
+            port: http
+        readinessProbe:
+          httpGet:
+            path: /-/ready
             port: http
       {{- if .Values.query.certSecretName }}
       volumes:

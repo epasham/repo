@@ -1,6 +1,6 @@
 image:
-  repository: improbable/thanos
-  tag: v0.6.0
+  repository: quay.io/thanos/thanos
+  tag: v0.8.1
   pullPolicy: IfNotPresent
 
 store:
@@ -134,6 +134,15 @@ store:
   # Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity
   affinity: {}
   serviceAccount: ""
+  # set up store readinessProbe & livenessProbe
+  # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+  livenessProbe: {}
+  readinessProbe: {}
+  # Setting time timePartioning will create multipale store deployments based on the number of partions
+  # See https://thanos.io/components/store.md/#time-based-partioning
+  timePartioning:
+    - min: ""
+      max: ""
 
 query:
   enabled: true
@@ -167,6 +176,10 @@ query:
   stores: []
   #  - "dnssrv+_grpc._tcp.<service>.<namespace>.svc.cluster.local"
   #
+  # Path to files that contains addresses of store API servers. The path can be a glob pattern (repeatable).
+  serviceDiscoveryFiles: []
+  # Refresh interval to re-read file SD files. It is used as a resync fallback.
+  serviceDiscoveryInterval: 5m
   # Log filtering level.
   logLevel: info
   # Add extra environment variables to compact
