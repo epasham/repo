@@ -17,4 +17,4 @@ name: rbac-manager
 sources:
 - https://github.com/FairwindsOps/charts/tree/master/stable/rbac-manager
 - https://github.com/FairwindsOps/rbac-manager
-version: 1.4.0
+version: 1.4.1
