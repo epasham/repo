@@ -15,4 +15,4 @@ sources:
 - https://hub.docker.com/r/looselyrigorous/rtorrent
 - https://github.com/looselyrigorous/docker-rtorrent
 - https://github.com/Flood-UI/flood
-version: 3.1.4
+version: 3.1.5
