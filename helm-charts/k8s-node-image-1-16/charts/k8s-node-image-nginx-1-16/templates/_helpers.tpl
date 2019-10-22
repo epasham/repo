@@ -32,7 +32,7 @@ k8s-node-image
 {{- if and (hasKey . "section") (hasKey .section "tag") .section.tag -}}
 {{ .section.tag }}
 {{- else -}}
-1.16.2-nginx-1
+1.16.2-nginx-2
 {{- end -}}
 {{- end -}}
 

@@ -1,5 +1,5 @@
 {{- define "pnnlmiscscripts.anaconda-nginx.server" -}}
-{{- if and (hasKey . "section") (kindIs "bool" .section) (hasKey .section "server") .section.server -}}
+{{- if and (hasKey . "section") (hasKey .section "server") .section.server -}}
 {{ .section.server }}
 {{- else -}}
 docker.io
@@ -32,7 +32,7 @@ anaconda
 {{- if and (hasKey . "section") (hasKey .section "tag") .section.tag -}}
 {{ .section.tag }}
 {{- else -}}
-20181125-1500-nginx-7
+20181125-1500-nginx-8
 {{- end -}}
 {{- end -}}
 
