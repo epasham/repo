@@ -25,10 +25,11 @@ keywords:
 - hybrid kubernetes monitoring
 - kubernetes
 - kuberneteshealth
+kubeVersion: ^1.10.0-0
 maintainers:
 - email: visnara@microsoft.com
   name: vishiy
 name: azuremonitor-containers
 sources:
 - https://github.com/Microsoft/OMS-docker/tree/ci_feature_prod
-version: 2.1.0
+version: 2.2.0

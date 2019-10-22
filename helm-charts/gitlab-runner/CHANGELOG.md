@@ -1,7 +1,13 @@
 # CHANGELOG
 
-## v0.9.1 (2019-10-04)
+## v0.10.0 (2019-10-21)
 
+- Updated GitLab Runner to 12.4.0
+- Use updated project path to release helm chart !172
+- Update resources API to stable verson !167
+- Add support for specifying log format !170
+- Use the cache.secret template to check if the secretName is set !166
+- Drop need for helm force update for now !181
 - Fix image version detection for old helm versions !173
 
 ## v0.9.0 (2019-09-20)

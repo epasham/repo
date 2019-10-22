@@ -1,4 +1,4 @@
-{{- if .Values.service.autoScaler.enabled }}
+{{- if and .Values.enabled .Values.service.autoScaler.enabled }}
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -23,5 +23,4 @@ spec:
       target:
         type: Utilization
         averageUtilization: 50
-
 {{- end }}

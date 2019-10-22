@@ -8,7 +8,7 @@
 # speech-to-text configurations
 # Refer to the charts/speechToText/values.yaml
 speechToText:
-  enabled: true
+  enabled: false
 
   # Values used for "helm test", staying with speech-onprem/values.yaml
   verification:
@@ -28,7 +28,7 @@ speechToText:
 # text-to-speech configurations
 # Refer to the charts/textToSpeech/values.yaml
 textToSpeech:
-  enabled: true
+  enabled: false
 
   # Values used for "helm test", staying with speech-onprem/values.yaml
   verification:

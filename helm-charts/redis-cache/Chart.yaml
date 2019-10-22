@@ -12,4 +12,4 @@ name: redis-cache
 sources:
 - https://github.com/antirez/redis
 - https://github.com/dhilipkumars/redis-sentinel-micro/tree/k8s
-version: 0.4.1
+version: 0.5.0

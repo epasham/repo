@@ -18,4 +18,4 @@ maintainers:
 name: kube2iam
 sources:
 - https://github.com/jtblin/kube2iam
-version: 2.0.1
+version: 2.0.2

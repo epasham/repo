@@ -7,9 +7,9 @@ keywords:
 - ipfs
 - distributed-web
 maintainers:
-- email: yuvipanda@gmail.com
-  name: YuviPanda
+- email: bruno@robotinfra.com
+  name: bclermont
 name: ipfs
 sources:
 - https://github.com/ipfs/go-ipfs
-version: 0.3.0
+version: 0.3.1

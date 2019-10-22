@@ -13,4 +13,4 @@ name: unicorn
 sources:
 - https://gitlab.com/gitlab-org/charts/gitlab/tree/master/charts/gitlab/charts/unicorn
 - https://gitlab.com/gitlab-org/build/CNG/tree/master/gitlab-unicorn
-version: 2.3.7
+version: 2.3.8
