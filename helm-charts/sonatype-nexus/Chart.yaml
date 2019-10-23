@@ -21,4 +21,4 @@ sources:
 - https://github.com/travelaudience/docker-nexus
 - https://github.com/travelaudience/kubernetes-nexus
 - https://github.com/travelaudience/docker-nexus-backup
-version: 1.19.0
+version: 1.20.0

@@ -14,4 +14,4 @@ maintainers:
 name: atlantis
 sources:
 - https://github.com/runatlantis/atlantis
-version: 3.8.2
+version: 3.8.3

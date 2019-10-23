@@ -2,7 +2,7 @@
 
 image:
   repository: weaveworks/flagger
-  tag: 0.19.0
+  tag: 0.20.0
   pullPolicy: IfNotPresent
   pullSecret:
 
@@ -12,11 +12,15 @@ podAnnotations:
 
 metricsServer: "http://prometheus:9090"
 
-# accepted values are istio, appmesh, nginx or supergloo:mesh.namespace (defaults to istio)
+# accepted values are kubernetes, istio, linkerd, appmesh, nginx, gloo or supergloo:mesh.namespace (defaults to istio)
 meshProvider: ""
 
 # single namespace restriction
 namespace: ""
+
+# list of pod labels that Flagger uses to create pod selectors
+# defaults to: app,name,app.kubernetes.io/name
+selectorLabels: ""
 
 slack:
   user: flagger
@@ -27,6 +31,19 @@ slack:
 msteams:
   # MS Teams incoming webhook URL
   url:
+
+#env:
+#- name: SLACK_URL
+#  valueFrom:
+#    secretKeyRef:
+#      name: slack
+#      key: url
+#- name: MSTEAMS_URL
+#  valueFrom:
+#    secretKeyRef:
+#      name: msteams
+#      key: url
+env: []
 
 leaderElection:
   enabled: false

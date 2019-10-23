@@ -25,7 +25,7 @@ dependencies:
   version: 0.1.11
 - name: openldap
   repository: https://kubernetes-charts.storage.googleapis.com/
-  version: 1.1.0
+  version: 1.2.1
 - name: phpldapadmin
   repository: https://cetic.github.io/helm-charts/
   version: 0.1.2
@@ -47,5 +47,5 @@ dependencies:
 - name: logstash
   repository: https://kubernetes-charts.storage.googleapis.com/
   version: 1.13.0
-digest: sha256:ab4369eaf81329953b63024ab35b371334b55529f69a67ce742ad99fe93f80b0
-generated: "2019-10-18T11:36:10.915444461Z"
+digest: sha256:2869d546268f8c29ab3361b553e95f74a022d862a1ba9f29afd439d28cffbf6f
+generated: "2019-10-22T12:54:09.02547026Z"
