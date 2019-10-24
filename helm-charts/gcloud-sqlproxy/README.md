@@ -60,7 +60,7 @@ The following table lists the configurable parameters of the `gcloud-sqlproxy` c
 | Parameter                         | Description                             | Default                                                                                     |
 | --------------------------------- | --------------------------------------  | ---------------------------------------------------------                                   |
 | `image`                           | SQLProxy image                          | `gcr.io/cloudsql-docker/gce-proxy`                                                        |
-| `imageTag`                        | SQLProxy image tag                      | `1.15`                                                                                      |
+| `imageTag`                        | SQLProxy image tag                      | `1.16`                                                                                      |
 | `imagePullPolicy`                 | Image pull policy                       | `IfNotPresent`                                                                              |
 | `replicasCount`                   | Replicas count                          | `1`                                                                                         |
 | `serviceAccountKey`               | Service account key JSON file           | Must be provided and base64 encoded when no existing secret is used, in this case a new secret will be created holding this service account |
@@ -70,12 +70,14 @@ The following table lists the configurable parameters of the `gcloud-sqlproxy` c
 | `serviceAccountName`              | specify a service account name to use   | `""`                                                                                        |
 | `cloudsql.instances`              | List of PostgreSQL/MySQL instances      | [{instance: `instance`, project: `project`, region: `region`, port: 5432}] must be provided |
 | `resources`                       | CPU/Memory resource requests/limits     | Memory: `100/150Mi`, CPU: `100/150m`                                                        |
+| `lifecycleHooks`                  | Container lifecycle hooks               | `{}`                                                                                        |
 | `autoscaling.enabled`             | Enable CPU/Memory horizontal pod autoscaler | `false`                                                                                 |
 | `autoscaling.minReplicas`         | Autoscaler minimum pod replica count    | `1`                                                                                         |
 | `autoscaling.maxReplicas`         | Autoscaler maximum pod replica count    | `3`                                                                                         |
 | `autoscaling.targetCPUUtilizationPercentage` | Scaling target for CPU Utilization Percentage | `50`                                                                       |
 | `autoscaling.targetMemoryUtilizationPercentage` | Scaling target for Memory Utilization Percentage | `50`                                                                 |
 | `nodeSelector`                    | Node Selector                           |                                                                                             |
+| `podDisruptionBudget`             | Pod disruption budget                   | `maxUnavailable: 1` if `replicasCount` > 1, does not create the PDB otherwise               |
 | `service.type`                    | Kubernetes LoadBalancer type            | `ClusterIP`                                                                                 |
 | `service.internalLB`              | Create service with `cloud.google.com/load-balancer-type: "Internal"` | Default `false`, when set to `true` you have to set also `service.type=LoadBalancer` |
 | `rbac.create`                     | Create RBAC configuration w/ SA         | `false`                                                                                     |

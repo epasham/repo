@@ -10,4 +10,4 @@ name: mcrouter
 sources:
 - https://github.com/facebook/mcrouter
 - https://github.com/jphalip/mcrouter-docker
-version: 1.0.0
+version: 1.0.1

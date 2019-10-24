@@ -28,14 +28,6 @@ metadata:
   namespace: {{ $functionNs | quote }}
 rules:
   - apiGroups:
-    - ""
-    resources:
-    - namespaces
-    verbs:
-    - get
-    - list
-    - watch
-  - apiGroups:
       - ""
     resources:
       - services
@@ -75,6 +67,8 @@ rules:
     resources:
       - pods
       - pods/log
+      - namespaces
+      - endpoints
     verbs:
       - get
       - list
@@ -153,6 +147,8 @@ rules:
     resources:
       - pods
       - pods/log
+      - namespaces
+      - endpoints
     verbs:
       - get
       - list

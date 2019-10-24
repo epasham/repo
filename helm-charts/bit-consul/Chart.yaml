@@ -12,4 +12,4 @@ maintainers:
 name: bit-consul
 sources:
 - https://github.com/bitnami/bitnami-docker-consul
-version: 6.0.4
+version: 6.0.6

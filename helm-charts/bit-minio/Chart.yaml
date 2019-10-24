@@ -18,4 +18,4 @@ maintainers:
 name: bit-minio
 sources:
 - https://github.com/bitnami/bitnami-docker-minio
-version: 1.2.16
+version: 2.0.1

@@ -17,4 +17,4 @@ maintainers:
 name: bit-jenkins
 sources:
 - https://github.com/bitnami/bitnami-docker-jenkins
-version: 3.4.5
+version: 3.4.7

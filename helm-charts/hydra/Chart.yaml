@@ -18,4 +18,4 @@ name: hydra
 sources:
 - https://github.com/ory/hydra
 - https://github.com/ory/k8s
-version: 0.0.34
+version: 0.0.35
