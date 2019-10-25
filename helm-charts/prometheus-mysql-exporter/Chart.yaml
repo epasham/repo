@@ -10,4 +10,4 @@ maintainers:
 name: prometheus-mysql-exporter
 sources:
 - https://github.com/prometheus/mysqld_exporter
-version: 0.5.1
+version: 0.5.2

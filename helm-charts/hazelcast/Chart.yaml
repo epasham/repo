@@ -23,4 +23,4 @@ name: hazelcast
 sources:
 - https://github.com/hazelcast/hazelcast
 tillerVersion: '>=2.7.2'
-version: 2.5.0
+version: 2.6.0

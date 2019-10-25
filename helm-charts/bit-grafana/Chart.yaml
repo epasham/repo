@@ -16,4 +16,4 @@ maintainers:
 name: bit-grafana
 sources:
 - https://github.com/bitnami/bitnami-docker-grafana
-version: 1.0.2
+version: 1.0.3
