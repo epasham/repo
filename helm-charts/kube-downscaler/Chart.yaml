@@ -11,4 +11,4 @@ maintainers:
 name: kube-downscaler
 sources:
 - https://github.com/hjacobs/kube-downscaler
-version: 0.2.1
+version: 0.3.0

@@ -15,4 +15,4 @@ maintainers:
 name: nats
 sources:
 - https://github.com/bitnami/bitnami-docker-nats
-version: 4.2.4
+version: 4.2.6

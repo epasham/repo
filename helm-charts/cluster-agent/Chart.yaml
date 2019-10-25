@@ -14,4 +14,4 @@ maintainers:
 name: cluster-agent
 sources:
 - https://github.com/Appdynamics/cluster-agent/blob/master/build/Dockerfile
-version: 0.1.2
+version: 0.1.3
