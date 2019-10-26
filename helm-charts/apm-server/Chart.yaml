@@ -12,4 +12,4 @@ maintainers:
 name: apm-server
 sources:
 - https://www.elastic.co/guide/en/apm/get-started/current/index.html
-version: 2.1.4
+version: 2.1.5

@@ -4,9 +4,10 @@
 
 ## Prerequisites
 
-1. Kubernetes Cluster 1.11+
-2. A Forseti environment.  This can be created via the Forseti Security [install scripts](https://forsetisecurity.org/docs/latest/setup/install.html) OR the Forseti [Terraform module](https://registry.terraform.io/modules/terraform-google-modules/forseti/google/2.0.0). Specifically: <ol type="a"><li>A CloudSQL Instance</li><li>A forseti-server IAM service account</li><li>A forseti-client IAM service account (for the orchestrator)</li><li>A local copy of a service account key for the forseti-server and forseti-client IAM service accounts</li></ol>
-
+1. Kubernetes Cluster 1.12+ with the [workload-identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) addon enabled.
+2. A Forseti environment.  This can be created via the Forseti Security [Terraform module](https://forsetisecurity.org/docs/latest/setup/install.html).
+3. A GCP project IAM policy binding tying the Kubernetes Service account for the server (created by this chart) to the GCP IAM Forseti server service account.  This binding is created via the Terraform module or can be created [manually](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity#enable_workload_identity_on_a_new_cluster).
+4. A GCP project IAM policy binding tying the Kubernetes Service account for the orchestrator (created by this chart) to the GCP IAM Forseti client service account.  This binding is created via the Terraform module or can be created [manually](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity#enable_workload_identity_on_a_new_cluster).
 
 ## Production Configuration
 Whether or not to deploy the forseti-security helm chart in a production configuration is controlled by the **production** value.  By default, this is set to **false**.  A production configuration presumes the existence of [Forseti infrastructure](https://forsetisecurity.org/docs/latest/concepts/architecture.html).  The required components are deployed via the Forseti Terrafom Module.  
@@ -35,8 +36,6 @@ The forseti-security Helm chart can be installed using the following as an examp
 ```bash
 helm install --set production=true \
              --name forseti  \
-             --set-string serverKeyContents="$(cat forseti-server.json | base64 - -w 0)" \
-             --set-string orchestratorKeyContents="$(cat forseti-client.json | base64 - -w 0)" \
              --set-string serverConfigContents="$(gsutil cat gs://<BUCKET_NAME>/configs/forseti_conf_server.yaml | base64 -)" \
              --values=forseti-values.yaml \
              forseti-security/forseti-security
@@ -52,8 +51,6 @@ The forseti-security Helm chart can be easily upgraded via the ```helm upgrade``
 helm upgrade -i forseti forseti-security/forseti-security \
     --set production=true \
     --recreate-pods \
-    --set-string serverKeyContents="$(cat forseti-server.json | base64 - -w 0)" \
-    --set-string orchestratorKeyContents="$(cat forseti-client.json | base64 - -w 0)" \
     --set-string serverConfigContents="$(gsutil cat gs://<BUCKET_NAME>/configs/forseti_conf_server.yaml | base64 -)" \
     --values=forseti-values.yaml
 ```
@@ -84,8 +81,6 @@ Next, render the template and pipe it into `kubectl`.  Take note to change the *
 
 ```bash
 helm template --set production=true \
-              --set-string serverKeyContents="$(cat forseti-server.json | base64 - -w 0)" \
-              --set-string orchestratorKeyContents="$(cat forseti-client.json | base64 - -w 0)" \
               --set-string serverConfigContents="$(gsutil cat gs://[SERVER_BUCKET]/configs/forseti_conf_server.yaml | base64 -)" \
               --values=forseti-values.yaml \
               forseti-security-[VERSION].tgz | kubectl apply -f -
@@ -98,8 +93,6 @@ Similar to installing or upgrading, the Forseti Security components can be unins
 
 ```bash
 helm template --set production=true \
-              --set-string serverKeyContents="$(cat forseti-server.json | base64 - -w 0)" \
-              --set-string orchestratorKeyContents="$(cat forseti-client.json | base64 - -w 0)" \
               --set-string serverConfigContents="$(gsutil cat gs://[SERVER_BUCKET]/configs/forseti_conf_server.yaml | base64 -)" \
               --values=forseti-values.yaml \
               forseti-security-[VERSION].tgz | kubectl delete -f -
@@ -134,8 +127,6 @@ The following table lists the configurable parameters of the Forseti Security ch
 helm install forseti-security/forseti-security \
     --name forseti \
     --set production=true
-    --set-string orchestratorKeyContents="$(cat PATH_TO_CLIENT_KEY_JSON| base64 - -w 0)" \
-    --set-string serverKeyContents="$(cat PATH_TO_SERVER_KEY_JSON | base64 - -w 0)" \
     --set-string serverConfigContents="$(gsutil cat gs://<BUCKET_NAME>/configs/forseti_conf_server.yaml | base64 -)" \
     --values forseti-values.yaml
     
@@ -143,33 +134,28 @@ helm install forseti-security/forseti-security \
 
 | Parameter                                | Description                                    | Default|
 | ----------------------------- | ------------------------------------ |------------------------------------------- |
-| **cloudsqlConnection**        | This is the connection to the CloudSQL instance.          | `nil`|
-| configValidator               | This sets whether or not to deploy config-validator       | `true` |
-| configValidatorImage          | This is the container image used by the config-validator  | `gcr.io/forseti-containers/config-validator` |
-| configValidatorImageTag       | This is the tag for the config-validator image.           | `latest` |
-| gitSyncImage                  | This is the container image used by the config-validator git-sync side-car | `gcr.io/google-containers/git-sync` |
-| gitSyncImageTag               | This is the container image tag used by the config-validator git-sync side-car | `v3.1.2` |
-| gitSyncPrivateSSHKey          | This is the private OpenSSH key generated to allow the git-sync to clone the policy library repository. | `nil` |
-| gitSyncSSH                    | Whether or not to use SSH for git-sync operations         | `false` |
-| gitSyncWait                   | This is the time number of seconds between git-syncs      | `30` |
-| loadBalancer                  | Deploy a Load Balancer allowing access to the Forseti server ['none', 'internal', 'external'] | `none` |
-| networkPolicyEnable           | Enable pod network policy to limit the connectivty to the server. | `false` |
-| networkPolicyIngressCidr      | A list of CIDR's from which to allow communication to the server.  This is only relevant for client connectivity from outside the Kubernetes cluster. | `[]` |
-| orchestratorDeploy            | Whether or not to deploy the orchestrator.                | `true`|
-| orchestratorImage             | The container image used by the orchestrator.             | `gcr.io/forseti-security-containers/forseti`|
-| orchestratorImageTag          | The tag for the orchestrator container image.              | `v2.18.0` |
-| **orchestratorKeyContents**   | The Base64 encoded JSON credentials for the orchestrator.  This can be the IAM service account key for the Forseti Client.| `nil`|
+| **server.cloudsqlConnection**        | This is the connection to the CloudSQL instance.          | `nil`|
+| configValidator.enabled               | This sets whether or not to deploy config-validator       | `false` |
+| networkPolicy.enabled           | Enable pod network policy to limit the connectivty to the server. | `false` |
+| networkPolicy.ingressCidr      | A list of CIDR's from which to allow communication to the server.  This is only relevant for client connectivity from outside the Kubernetes cluster. | `[]` |
+| nodeSelectors                 | A list of strings in the form of label=value describing on which nodes to run the Forseti on-GKE pods. | `nil` |
+| orchestrator.enabled            | Whether or not to deploy the orchestrator.                | `true`|
+| orchestrator.image             | The container image used by the orchestrator.             | `gcr.io/forseti-security-containers/forseti`|
+| orchestrator.imageTag          | The tag for the orchestrator container image.              | `v2.23.0` |
+| **orchestrator.workloadIdentity**  | the GCP IAM Service account for the Forseti client/orchestrator. | `nil` |
 | production                    | Deploy in a production configuration.                      | `false`|
-| policyLibraryRepositoryURL    | The Git repository containing the policy-library. | `https://github.com/forseti-security/policy-library` |
-| rulesBucket                   | The GCS bucket containing the rules.  Often this is the same as the serverBucket.  Ommit the "gs://".| serverBucket |
-| rulesBucketFolder             | The Folder inside the rulesBucket containing all the rules.| `rules`|
-| **serverBucket**              | The GCS bucket used by the Forseti server.  Omit the "gs://" | `nil`|
-| serverBucketConfigFolder      | The folder in the server bucket containing the server configs. | `configs` |
-| **serverConfigContents**      | The Base64 encoded contents of the forseti_conf_server.yaml file.| `nil`|
-| serverImage                   | The container image used by the server.                   | `gcr.io/forseti-security-containers/forseti`|
-| serverImageTag                | The tag for the server container image.              | `v2.18.0` |
-| **serverKeyContents**         | The Base64 JSON credentials for the server.                       | `nil`|
-| serverLogLevel                | The log level for the server.                             | `info` |
-| serverSchedule                | The cron schedule for the server.  The default is every 60 minute.    | `"*/60 * * * *"` Every 60 minutes|
+| server.cloudProfilerEnabled           | enables the forseti-server to send metrics to Cloud Profiler | `false` |
+| server.loadBalancer                  | Deploy a Load Balancer allowing access to the Forseti server ['none', 'internal', 'external'] | `none` |
+| server.rules.bucket                   | The GCS bucket containing the rules.  Often this is the same as the serverBucket.  Ommit the "gs://".| server.bucket |
+| server.rules.bucketFolder             | The Folder inside the rulesBucket containing all the rules.| `rules`|
+| **server.config.bucket**              | The GCS bucket used by the Forseti server.  Omit the "gs://" | `nil`|
+| server.config.bucketFolder      | The folder in the server bucket containing the server configs. | `configs` |
+| **server.config.contents**      | The Base64 encoded contents of the forseti_conf_server.yaml file.| `nil`|
+| server.image                   | The container image used by the server.                   | `gcr.io/forseti-security-containers/forseti`|
+| server.imageTag                | The tag for the server container image.              | `v2.23.0` |
+| server.logLevel                | The log level for the server.                             | `info` |
+| server.runFrequency               | The cron schedule for the server.  The default is every 60 minute.    | `"*/60 * * * *"` Every 60 minutes|
+| **server.workloadIdentity**        | The GCP IAM Service account for the Forseti server.       | `nil` |
 
 **NOTE:** Bolded parameters denotes a required value.
+**NOTE 2:** Please see the config-validator chart for input values.

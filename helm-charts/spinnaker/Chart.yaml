@@ -17,4 +17,4 @@ name: spinnaker
 sources:
 - https://github.com/spinnaker
 - https://github.com/viglesiasce/images
-version: 1.20.3
+version: 1.22.0

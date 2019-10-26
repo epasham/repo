@@ -16,4 +16,4 @@ name: unifi
 sources:
 - https://github.com/jacobalberty/unifi-docker
 - https://github.com/helm/charts/tree/master/stable/unifi
-version: 0.5.0
+version: 0.5.1

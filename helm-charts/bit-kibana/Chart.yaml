@@ -17,4 +17,4 @@ maintainers:
 name: bit-kibana
 sources:
 - https://github.com/bitnami/bitnami-docker-kibana
-version: 1.0.1
+version: 2.0.0
