@@ -1,5 +1,5 @@
 apiVersion: v1
-appVersion: 0.5.0
+appVersion: 0.6.0
 description: A Helm chart for prometheus cloudwatch-exporter
 home: https://github.com/prometheus/cloudwatch_exporter
 keywords:
@@ -12,7 +12,9 @@ maintainers:
   name: gianrubio
 - email: mail@torstenwalter.de
   name: torstenwalter
+- email: asher@asherfoa.com
+  name: asherf
 name: prometheus-cloudwatch-exporter
 sources:
 - https://github.com/prometheus/cloudwatch_exporter
-version: 0.4.11
+version: 0.4.13
