@@ -19,4 +19,4 @@ name: oathkeeper
 sources:
 - https://github.com/ory/oathkeeper
 - https://github.com/ory/k8s
-version: 0.0.41
+version: 0.0.42
