@@ -1,0 +1,15 @@
+apiVersion: v1
+appVersion: 1.0.0
+description: Serial to Socket Redirector
+home: https://github.com/billimek/billimek-charts/tree/master/ser2sock
+icon: https://i.imgur.com/GfZ7McO.png
+keywords:
+- ser2sock
+maintainers:
+- email: jeff@billimek.com
+  name: billimek
+name: ser2sock
+sources:
+- https://github.com/nutechsoftware/ser2sock
+- https://github.com/tenstartups/ser2sock
+version: 0.0.1

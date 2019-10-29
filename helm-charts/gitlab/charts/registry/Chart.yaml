@@ -16,4 +16,4 @@ name: registry
 sources:
 - https://github.com/docker/distribution-library-image
 - https://gitlab.com/gitlab-org/charts/gitlab/charts/registry
-version: 0.2.0
+version: 0.3.0

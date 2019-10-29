@@ -30,12 +30,32 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-forwarding:
-  enabled: false
-  # will use the the existing tls secret used by the fluentd input
-  #tlsSharedKey: example
-  #targetHost: fluentd.target.svc
-  #targetPort: 24240
+loggingOperator:
+  fluentd: {}
+#    metrics:
+#      serviceMonitor: false
+#      prometheusAnnotations: false
+#      port: 24231
+#      path: "/metrics"
+#      timeout: "30s"
+#      interval: "15s"
+  fluentbit: {}
+#    metrics:
+#      serviceMonitor: false
+#      prometheusAnnotations: false
+#      port: 2020
+#      path: "/api/v1/metrics/prometheus"
+#      timeout: "30s"
+#      interval: "15s"
+# If specified, the pod's tolerations.
+# ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+#     tolerations:
+#      - key: "node-role.kubernetes.io/master"
+#        operator: "Equal"
+#        effect: "NoSchedule"
+#      - key: "node.kubernetes.io/unschedulable"
+#        operator: "Equal"
+#        effect: "NoSchedule"
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -54,3 +74,12 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+minio:
+  enabled: true
+  existingSecret: logging-s3
+  environment:
+    MINIO_REGION: test_region
+  defaultBucket:
+    enabled: true
+    name: demo

@@ -13,10 +13,10 @@ dependencies:
   repository: https://kubernetes-charts.storage.googleapis.com/
   condition: postgresql.install
 - name: gitlab-runner
-  version: 0.9.1
+  version: 0.10.0
   repository: https://charts.gitlab.io/
   condition: gitlab-runner.install
 - name: grafana
-  version: 3.5.12
+  version: 3.8.15
   repository: https://kubernetes-charts.storage.googleapis.com/
   condition: global.grafana.enabled

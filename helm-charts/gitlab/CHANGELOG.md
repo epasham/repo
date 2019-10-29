@@ -2,6 +2,59 @@
 documentation](doc/development/changelog.md) for instructions on adding your own
 entry.
 
+## 2.4.2
+
+### Fixed (1 change)
+
+- Fix artifacts upload by ensuring appropriate tmp directory permissions. !1010
+
+### Other (1 change)
+
+- Update GitLab Version to 12.4.0.
+
+
+## 2.4.1
+
+### Fixed (2 changes)
+
+- Fix typo in nginx backend PDB. !1006
+- Unicorn add shared /tmp mount. !1009
+
+### Other (1 change)
+
+- Update GitLab Version to 12.4.0.
+
+
+## 2.4.0
+
+### Fixed (5 changes, 1 of them is from the community)
+
+- Handle CRLF line endings #1541. !938
+- Use specified Gitaly port in listen_address. !970
+- Convert Gitaly port to an Integer before rendering in config files. !979
+- Removed unused persistence.volumeName from gitaly's values.yaml. !990 (aurelien.balteaux)
+- Unicorn: set ipWhitelist default to documented value. !997
+
+### Changed (3 changes)
+
+- Switch to using newer APIs for ones dropped in k8s 1.16. !975
+- Update the grafana chart to 3.8.15. !976
+- Update unicorn.rb to match upstream changes. !988
+
+### Added (4 changes)
+
+- Added S/MIME support. !943
+- Allow to configure liveness and readiness probes for unicorn/workhorse. !985
+- Improve sidekiq readinessProbe to check for sidekiq process. !994
+- Add pre-upgrade hook for pausing Gitaly while operator is in place. !998
+
+### Other (3 changes)
+
+- Add example values for UBI-based deployment. !986
+- Update gitlab-runner to 0.10.0/12.4.0. !1003
+- Update GitLab Version to 12.4.0.
+
+
 ## 2.3.8
 
 ### Fixed (1 change)
@@ -45,13 +98,6 @@ entry.
 ### Other (1 change)
 
 - Update GitLab Version to 12.3.4.
-
-
-## 2.3.4
-
-### Other (1 change)
-
-- Update GitLab Version to 12.3.3.
 
 
 ## 2.3.3
@@ -109,6 +155,53 @@ entry.
 - Rename gitlab-monitor to gitlab-exporter. !897
 - Update gitlab-runner to 0.9.0/12.3.0. !965
 - Update GitLab Version to 12.3.0.
+
+
+## 2.2.11
+
+### Other (1 change)
+
+- Update GitLab Version to 12.2.8.
+
+
+## 2.2.10
+
+### Other (1 change)
+
+- Update GitLab Version to 12.2.7.
+
+
+## 2.2.9
+
+### Other (1 change)
+
+- Update GitLab Version to 12.2.7.
+
+### Fixed (1 change, 1 of them is from the community)
+
+- Fix volumeMounts indentation in task-runner backup-job. !983 (Chris Boot)
+
+### Other (1 change)
+
+- Update GitLab Version to 12.2.8.
+
+
+## 2.2.8
+
+### Other (1 change)
+
+- Update GitLab Version to 12.2.7.
+
+
+## 2.2.7
+
+### Fixed (1 change)
+
+- Disable object storage for disabled features. !962
+
+### Other (1 change)
+
+- Update GitLab Version to 12.2.6.
 
 
 ## 2.2.6
@@ -195,6 +288,38 @@ entry.
 - Update operator to v0.6 for newer k8s support. !895
 - Document global.ingress.class & sample Traefik. !898
 - Update GitLab Version to 12.2.0.
+
+
+## 2.1.14
+
+### Other (1 change)
+
+- Update GitLab Version to 12.1.14.
+
+
+## 2.1.13
+
+### Fixed (1 change, 1 of them is from the community)
+
+- Fix volumeMounts indentation in task-runner backup-job. !983 (Chris Boot)
+
+### Other (1 change)
+
+- Update GitLab Version to 12.1.14.
+
+
+## 2.1.12
+
+### Other (1 change)
+
+- Update GitLab Version to 12.1.13.
+
+
+## 2.1.11
+
+### Other (1 change)
+
+- Update GitLab Version to 12.1.12.
 
 
 ## 2.1.10

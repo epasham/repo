@@ -1,0 +1,6 @@
+dependencies:
+- name: config-validator
+  repository: https://forseti-security-charts.storage.googleapis.com/release/
+  version: 0.1.0
+digest: sha256:b4f90324c68e301e1586ec20b0e2d6b4849ae8a3f9718d8bb5f7e350eb19e9a0
+generated: 2019-10-28T14:30:09.382375169-07:00
