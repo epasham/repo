@@ -32,4 +32,4 @@ maintainers:
 name: azuremonitor-containers
 sources:
 - https://github.com/Microsoft/OMS-docker/tree/ci_feature_prod
-version: 2.2.0
+version: 2.3.0
