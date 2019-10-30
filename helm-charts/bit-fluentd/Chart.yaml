@@ -16,4 +16,4 @@ maintainers:
 name: bit-fluentd
 sources:
 - https://github.com/bitnami/bitnami-docker-fluentd
-version: 0.1.4
+version: 0.2.0

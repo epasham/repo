@@ -10,4 +10,4 @@ maintainers:
 - email: rmocius@gmail.com
   name: rimusz
 name: hostpath-provisioner
-version: 0.2.4
+version: 0.2.5
