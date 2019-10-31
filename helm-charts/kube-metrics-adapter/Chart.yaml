@@ -13,4 +13,4 @@ sources:
 - https://github.com/kubernetes/charts
 - https://github.com/banzaicloud/kube-metrics-adapter
 - https://github.com/zalando-incubator/kube-metrics-adapter
-version: 0.0.4
+version: 0.0.5

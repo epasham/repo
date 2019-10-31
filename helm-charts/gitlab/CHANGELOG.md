@@ -2,6 +2,36 @@
 documentation](doc/development/changelog.md) for instructions on adding your own
 entry.
 
+## 2.4.5
+
+### Other (2 changes)
+
+- Update GitLab Runner to v12.4.1. !1018
+- Update GitLab Version to 12.4.1.
+
+
+## 2.4.4
+
+### Added (1 change)
+
+- Added Redis Sentinel support. !999
+
+### Other (1 change)
+
+- Update GitLab Version to 12.4.1.
+
+
+## 2.4.3
+
+### Fixed (1 change)
+
+- Broken pluck expectation in gitlab.ingress.tls.configured #1653. !1013
+
+### Other (1 change)
+
+- Update GitLab Version to 12.4.1.
+
+
 ## 2.4.2
 
 ### Fixed (1 change)

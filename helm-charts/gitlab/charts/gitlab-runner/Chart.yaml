@@ -1,4 +1,4 @@
-appVersion: 12.4.0
+appVersion: 12.4.1
 description: GitLab Runner
 icon: https://gitlab.com/uploads/-/system/project/avatar/250833/runner_logo.png
 keywords:
@@ -12,4 +12,4 @@ name: gitlab-runner
 sources:
 - https://hub.docker.com/r/gitlab/gitlab-runner/
 - https://docs.gitlab.com/runner/
-version: 0.10.0
+version: 0.10.1
