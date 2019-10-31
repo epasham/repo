@@ -7,7 +7,7 @@ dependencies:
   version: 1.1.7
 - name: postgresql
   repository: https://cetic.github.io/helm-charts/
-  version: 0.1.2
+  version: 0.1.3
 - name: minio
   repository: https://kubernetes-charts.storage.googleapis.com/
   version: 2.4.18
@@ -22,13 +22,13 @@ dependencies:
   version: 0.2.1
 - name: pgadmin
   repository: https://cetic.github.io/helm-charts/
-  version: 0.1.11
+  version: 0.1.12
 - name: openldap
   repository: https://kubernetes-charts.storage.googleapis.com/
-  version: 1.2.1
+  version: 1.2.2
 - name: phpldapadmin
   repository: https://cetic.github.io/helm-charts/
-  version: 0.1.2
+  version: 0.1.3
 - name: kafka
   repository: https://kubernetes-charts-incubator.storage.googleapis.com
   version: 0.19.0
@@ -47,5 +47,11 @@ dependencies:
 - name: logstash
   repository: https://kubernetes-charts.storage.googleapis.com/
   version: 1.13.0
-digest: sha256:2869d546268f8c29ab3361b553e95f74a022d862a1ba9f29afd439d28cffbf6f
-generated: "2019-10-22T12:54:09.02547026Z"
+- name: tsaas
+  repository: https://cetic.github.io/helm-charts/
+  version: 0.1.2
+- name: swaggerui
+  repository: https://cetic.github.io/helm-charts/
+  version: 0.1.0
+digest: sha256:8857cf75cdbdbe7d8a00c7817ee33d2610d37b43debb59b82fdf60b366174f20
+generated: "2019-10-31T09:06:06.654124237Z"

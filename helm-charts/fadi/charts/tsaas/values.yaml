@@ -1,0 +1,37 @@
+# Default values for tsaas.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: ceticasbl/tsimulus-saas
+  tag: latest
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: NodePort
+  port: 8080
+
+## Configure Ingress based on the documentation here: https://kubernetes.io/docs/concepts/services-networking/ingress/
+##
+ingress:
+  enabled: false
+  annotations: {}
+  path: /
+  hosts: []
+  tls: []
+
+env:
+  binding:
+    value: 0.0.0.0 
+resources:
+  requests:
+    memory: "250Mi"
+    cpu: "250m"
+  limits:
+    memory: "1000Mi"
+    cpu: "500m"

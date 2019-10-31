@@ -19,4 +19,4 @@ name: schema-registry
 sources:
 - https://github.com/confluentinc/schema-registry
 - https://github.com/confluentinc/cp-docker-images
-version: 1.1.6
+version: 1.1.7

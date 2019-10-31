@@ -6,7 +6,9 @@ icon: https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileDa
 maintainers:
 - email: tliddle30@gmail.com
   name: thomasliddledba
+- email: winromulus@winromulus.com
+  name: winromulus
 name: mssql-linux
 sources:
 - https://hub.docker.com/r/microsoft/mssql-server-linux/
-version: 0.10.0
+version: 0.10.1

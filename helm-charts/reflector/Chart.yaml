@@ -17,4 +17,4 @@ maintainers:
 name: reflector
 sources:
 - https://github.com/EmberStack/ES.Kubernetes.Reflector
-version: 2.19197.5
+version: 3.19304.10

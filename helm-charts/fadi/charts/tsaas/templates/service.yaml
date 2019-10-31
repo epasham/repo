@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "tsaas.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "tsaas.name" . }}
+    helm.sh/chart: {{ include "tsaas.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "tsaas.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

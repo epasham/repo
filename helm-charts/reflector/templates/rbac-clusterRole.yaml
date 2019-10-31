@@ -1,5 +1,5 @@
 {{- if .Values.rbac.enabled }}
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: {{ include "reflector.fullname" . }}
@@ -19,6 +19,9 @@ rules:
     resources: ["customresourcedefinitions"]
     verbs: ["*"]
   - apiGroups: ["certmanager.k8s.io"]
+    resources: ["certificates", "certificates/finalizers"]
+    verbs: ["*"]
+  - apiGroups: ["cert-manager.io"]
     resources: ["certificates", "certificates/finalizers"]
     verbs: ["*"]
 {{- end }}
