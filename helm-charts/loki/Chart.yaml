@@ -11,4 +11,4 @@ maintainers:
 name: loki
 sources:
 - https://github.com/grafana/loki
-version: 0.17.0
+version: 0.17.1

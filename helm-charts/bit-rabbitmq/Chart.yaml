@@ -17,4 +17,4 @@ maintainers:
 name: bit-rabbitmq
 sources:
 - https://github.com/bitnami/bitnami-docker-rabbitmq
-version: 6.10.1
+version: 6.11.0

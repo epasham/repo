@@ -1,10 +1,10 @@
 dependencies:
 - name: loki
   repository: file://../loki
-  version: 0.17.0
+  version: 0.17.1
 - name: promtail
   repository: file://../promtail
-  version: 0.13.0
+  version: 0.13.1
 - name: fluent-bit
   repository: file://../fluent-bit
   version: 0.0.2
@@ -15,4 +15,4 @@ dependencies:
   repository: https://kubernetes-charts.storage.googleapis.com/
   version: 8.11.6
 digest: sha256:43bd298c709906995bd22098d746fbb3884e6cef442cfb24f2efae481c836ad5
-generated: 2019-10-30T18:32:03.7051661Z
+generated: 2019-10-31T14:35:57.033193396Z

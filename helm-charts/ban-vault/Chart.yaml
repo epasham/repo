@@ -11,4 +11,4 @@ sources:
 - https://github.com/hashicorp/vault
 - https://github.com/banzaicloud/bank-vaults
 - https://github.com/banzaicloud/banzai-charts
-version: 0.8.2
+version: 0.8.3

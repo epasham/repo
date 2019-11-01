@@ -11,4 +11,4 @@ maintainers:
 name: promtail
 sources:
 - https://github.com/grafana/loki
-version: 0.13.0
+version: 0.13.1
