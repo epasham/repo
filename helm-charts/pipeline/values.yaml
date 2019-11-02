@@ -85,6 +85,8 @@ deploymentAnnotations: {}
 
 ## Pipeline metrics, rules and alerting configuration
 metrics:
+  enabled: false
+  port: 9900
   serviceMonitor:
     enabled: false
     additionalLabels: {}
@@ -116,22 +118,11 @@ configuration:
         secretName: ""
         secretKey: adminPassword
 
-  logging:
-    logformat: text
-    loglevel: debug
-
-  cloud:
-    configRetryCount: 30
-    configRetrySleep: 15
-
   # CORS configuration
   cors:
     AllowAllOrigins: false
     AllowOrigins: []
     AllowOriginsRegexp: ".*"
-
-  statestore:
-    path: ""
 
   # CICD
   cicd:
@@ -158,14 +149,7 @@ configuration:
 
   # Pipeline Helm related configuration
   helm:
-   retryAttemp: 30
-   retrySleepSeconds: 15
-   tillerVersion: "v2.14.2"
-   path: "/cache/helm"
-
-   #helm repo URLs
-   stableRepositoryURL: "https://kubernetes-charts.storage.googleapis.com"
-   banzaiRepositoryURL: "https://kubernetes-charts.banzaicloud.com"
+    home: "/cache/helm"
 
   # Pipeline federated monitoring configurations
   monitor:
@@ -195,26 +179,9 @@ configuration:
     # are cleaned up
     maintenanceWindowMinute: 15
 
-  # Default Amazon region to initialize client
-  amazon:
-    defaultApiRegion: us-west-1
-
-  # Default Alibaba region to initialize client
-  alibaba:
-    defaultApiRegion: eu-central-1
-
   # Pipeline infra environment related settings
   infra:
     namespace: pipeline-system
-
-    # Name of the node pool reserved for infra deployments
-    # If you set this property Pipeline will place a taint on all nodes in this node pool and Tiller will be deployed with
-    # a node selector and toleration matching nodes from this node pool. Make sure all Infra deployments are setup with
-    # the node-affinity and toleration as described in docs/infra-node-pool.md
-    #headNodePoolName="head"
-
-    headNodeTaintRetryAttempt: 30
-    headNodeTaintRetrySleepSeconds: 5
 
     forbiddenLabelDomains:
       - k8s.io
@@ -227,17 +194,6 @@ configuration:
       - agentpool
       - storageprofile
       - storagetier
-
-  eks:
-    ASGFulfillmentTimeout: 10m
-
-  gke:
-    resourceDeleteWaitAttempt: 12
-    resourceDeleteSleepSeconds: 5
-
-  oke:
-    waitAttemptsForNodepoolActive: 60
-    sleepSecondsForNodepoolActive: 30
 
   ark:
     name: ark
@@ -264,17 +220,6 @@ configuration:
     syncInterval: 5m
     sharedLibraryGitHubOrganization: spotguides
 
-  metrics:
-    enabled: false
-    port: 9900
-    # if true, some metrics have unique labels
-    debug: true
-
-  issue:
-    type: "github"
-    githubOwner: "kelly-slater"
-    githubRepository: "the-pipeline-issues"
-
   spotmetrics:
     enabled: false
     collectionInterval: 30s
@@ -286,11 +231,6 @@ configuration:
     ca:
       key: ""
       cert: ""
-
-  cadence:
-    host: "cadence"
-    port: 7933
-    domain: pipeline
 
 ##
 ## Vault connector settings
