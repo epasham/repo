@@ -19,4 +19,4 @@ name: bit-mariadb
 sources:
 - https://github.com/bitnami/bitnami-docker-mariadb
 - https://github.com/prometheus/mysqld_exporter
-version: 6.12.2
+version: 6.13.0
