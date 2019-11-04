@@ -2,4 +2,4 @@ apiVersion: v1
 appVersion: v0.0.1
 description: A Helm chart for ORY Hive's example ui for Kubernetes
 name: hive-selfservice-ui-node
-version: 0.0.42
+version: 0.0.43
