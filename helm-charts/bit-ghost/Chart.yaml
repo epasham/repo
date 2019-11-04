@@ -19,4 +19,4 @@ maintainers:
 name: bit-ghost
 sources:
 - https://github.com/bitnami/bitnami-docker-ghost
-version: 8.0.2
+version: 8.0.3

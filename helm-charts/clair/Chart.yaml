@@ -1,4 +1,4 @@
-appVersion: 3.0.0-pre
+appVersion: v2.0.9
 description: Clair is an open source project for the static analysis of vulnerabilities
   in application containers.
 home: https://coreos.com/clair
@@ -9,4 +9,4 @@ maintainers:
 name: clair
 sources:
 - https://github.com/coreos/clair
-version: 0.1.1
+version: 0.1.2
