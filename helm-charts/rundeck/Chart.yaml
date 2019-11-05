@@ -1,5 +1,5 @@
 apiVersion: v1
-appVersion: 3.0.16
+appVersion: 3.1.12
 description: A Rundeck chart for Kubernetes
 home: https://github.com/rundeck/rundeck
 keywords:
@@ -10,7 +10,11 @@ keywords:
 maintainers:
 - email: hello@dwardu.com
   name: dwardu89
+- email: fabioviana.bh@gmail.com
+  name: fabioviana
+- email: diego.fl.duarte@gmail.com
+  name: dfduarte
 name: rundeck
 sources:
 - https://github.com/rundeck/rundeck
-version: 0.1.1
+version: 0.1.2

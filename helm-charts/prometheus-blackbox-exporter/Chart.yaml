@@ -14,4 +14,4 @@ maintainers:
 name: prometheus-blackbox-exporter
 sources:
 - https://github.com/prometheus/blackbox_exporter
-version: 1.4.0
+version: 1.5.0
