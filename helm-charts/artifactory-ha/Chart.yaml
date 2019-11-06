@@ -21,4 +21,4 @@ name: artifactory-ha
 sources:
 - https://bintray.com/jfrog/product/JFrog-Artifactory-Pro/view
 - https://github.com/jfrog/charts
-version: 1.1.0
+version: 1.1.2

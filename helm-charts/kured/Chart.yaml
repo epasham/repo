@@ -11,4 +11,4 @@ maintainers:
 name: kured
 sources:
 - https://github.com/weaveworks/kured
-version: 1.4.0
+version: 1.4.1

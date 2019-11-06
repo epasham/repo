@@ -13,4 +13,4 @@ maintainers:
 name: kube-slack
 sources:
 - https://github.com/wongnai/kube-slack
-version: 1.1.0
+version: 1.2.0

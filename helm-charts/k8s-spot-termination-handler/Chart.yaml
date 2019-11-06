@@ -11,7 +11,9 @@ maintainers:
   name: kierranm
 - email: egeland@gmail.com
   name: egeland
+- email: myself@mariusv.com
+  name: mariusv
 name: k8s-spot-termination-handler
 sources:
 - https://github.com/kube-aws/kube-spot-termination-notice-handler
-version: 1.4.6
+version: 1.4.7

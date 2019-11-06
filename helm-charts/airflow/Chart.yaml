@@ -13,4 +13,4 @@ maintainers:
 name: airflow
 sources:
 - https://airflow.apache.org/
-version: 4.2.0
+version: 4.3.0
