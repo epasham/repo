@@ -19,4 +19,4 @@ maintainers:
 name: sumologic-fluentd
 sources:
 - https://github.com/SumoLogic/fluentd-kubernetes-sumologic
-version: 2.0.0
+version: 2.0.1

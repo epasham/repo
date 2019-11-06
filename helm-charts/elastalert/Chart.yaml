@@ -14,4 +14,4 @@ name: elastalert
 sources:
 - https://github.com/jertel/elastalert-docker
 - https://github.com/Yelp/elastalert
-version: 1.2.2
+version: 1.2.3
