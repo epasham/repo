@@ -19,4 +19,4 @@ maintainers:
 name: orangehrm
 sources:
 - https://github.com/bitnami/bitnami-docker-orangehrm
-version: 6.2.7
+version: 6.2.8

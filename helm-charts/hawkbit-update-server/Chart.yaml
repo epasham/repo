@@ -8,8 +8,10 @@ maintainers:
   name: fabian-schlegel
 - email: andre.bauer@kiwigrid.com
   name: monotek
+- email: axel.koehler@kiwigrid.com
+  name: axdotl
 name: hawkbit-update-server
 sources:
 - https://github.com/eclipse/hawkbit
 - https://github.com/kiwigrid/helm-charts/tree/master/charts/hawkbit-update-server
-version: 2.0.2
+version: 2.1.0

@@ -13,4 +13,4 @@ maintainers:
 name: bit-memcached
 sources:
 - https://github.com/bitnami/bitnami-docker-memcached
-version: 3.0.8
+version: 3.0.9

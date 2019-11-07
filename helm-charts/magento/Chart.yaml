@@ -18,4 +18,4 @@ maintainers:
 name: magento
 sources:
 - https://github.com/bitnami/bitnami-docker-magento
-version: 9.0.0
+version: 9.0.1
