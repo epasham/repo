@@ -18,4 +18,4 @@ maintainers:
 name: mediawiki
 sources:
 - https://github.com/bitnami/bitnami-docker-mediawiki
-version: 8.2.10
+version: 8.2.11
